@@ -149,6 +149,9 @@ The package must fulfill the following requirements:
   * The package should not deal with exotic hardware which we cannot support.
   * The package must include a non-trivial test suite, and if there is no obvious reason why it cannot work during build (e.g. it needs root privileges or network access), it should be run during package build, and a failing test suite should fail the build. The package should, but is not required to, also contain non-trivial autopkgtest(s).
    * If no build tests nor autopkgtests are included, and/or if the package requires specific hardware to perform testing, the subscribed team must provide a written test plan in a comment to the MIR bug, and commit to running that test either at each upload of the package or at least once each release cycle. In the comment to the MIR bug, please link to the codebase of these tests (scripts or doc of manual steps) and attach a full log of these test runs. This is meant to assess their validity (e.g. not just superficial)
+  * In some cases a solution that is about to be promoted consists of several very small libraries and one actual application uniting them to achieve something useful. This is rather common in the go/rust space.  In that case often these micro-libs on their own can and should only provide low level unit-tests. But more complex autopkgtests make no sense on that level. Therefore in those cases one might want to test on the solution level.
+   * Process wise MIR-requesting teams can ask (on the bug) for this special case to apply for a given case, which reduces the test constraints on the micro libraries but in return increases the requirements for the test of the actual app/solution.
+   * Since this might promote micro-lib packages to main with less than the common level of QA any further MIRed program using them will have to provide the same amount of increased testing.
   * The package uses a debian/watch file whenever possible. In cases where this is not possible (e.g. native packages), the package should either provide a debian/README.source file or a debian/watch file (with comments only) providing clear instructions on how to generate the source tar file.
   * It is often useful to run `lintian --pedantic` on the package to spot the most common packaging issues in advance
   * The package should not rely on obsolete or about to be demoted packages. That currently includes package dependencies on Python2 (without providing Python3 packages), and packages depending on GTK2.
@@ -286,6 +289,7 @@ OK:
 TODO - no other Dependencies to MIR due to this
 TODO   (use tools: check-mir, seeded-in-ubuntu, reverse-depends)
 TODO - no -dev/-debug/-doc packages that need exclusion
+TODO - No dependencies in main that are only superficially tested requiring more tests now?
 
 TODO: Problems:
 
@@ -318,6 +322,7 @@ TODO: - does have a test suite that runs at build time
 TODO:   - test suite fails will fail the build upon error.
 TODO: - does have a non-trivial test suite that runs as autopkgtest
 TODO: - if special HW does prevent build/autopkgtest is there a test plan, code, log provided?
+TODO: - if a test on this level does not make sense, is the overall solution (app+libs) extensively covered?
 TODO: - no translation present, but none needed for this case (user visible)?
 TODO: - not a python/go package, no extra constraints to consider in that regard
 TODO: - no new python2 dependency
