@@ -322,7 +322,9 @@ TODO: - does have a test suite that runs at build time
 TODO:   - test suite fails will fail the build upon error.
 TODO: - does have a non-trivial test suite that runs as autopkgtest
 TODO: - if special HW does prevent build/autopkgtest is there a test plan, code, log provided?
-TODO: - if a test on this level does not make sense, is the overall solution (app+libs) extensively covered?
+TODO: - if a non-trivial test on this level does not make sense (the lib alone
+TODO:   is only doing rather simple things), is the overall solution (app+libs)
+TODO:   extensively covered i.e. via end to end autopkgtest ?
 TODO: - no translation present, but none needed for this case (user visible)?
 TODO: - not a python/go package, no extra constraints to consider in that regard
 TODO: - no new python2 dependency
