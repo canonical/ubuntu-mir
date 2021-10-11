@@ -267,29 +267,30 @@ By default statements are in the ''OK'' section, issues that need to be addresse
 
 {{{
 [Summary]
-TODO: WRITE - The essence of the review result from the MIR POV
+TODO: WRITE - <TBD> The essence of the review result from the MIR POV
 TODO: MIR team ACK
 TODO: MIR team NACK
 TODO: This does need a security review, so I'll assign ubuntu-security
-TODO: List of specific binary packages to be promoted to main: <TODO>
+TODO: List of specific binary packages to be promoted to main: <TBD>
 
 Notes:
 TODO: - add todos, issues or special cases to discuss
 Required TODOs:
-TODO - TBD
+TODO: - TBD
 Recommended TODOs:
-TODO: - The package has a team bug subscriber
-TODO - TBD
+TODO: - The package should get a team bug subscriber
+TODO: - TBD
 
 [Duplication]
 TODO: There is no other package in main providing the same functionality.
 
 [Dependencies]
 OK:
-TODO - no other Dependencies to MIR due to this
-TODO   (use tools: check-mir, seeded-in-ubuntu, reverse-depends)
-TODO - no -dev/-debug/-doc packages that need exclusion
-TODO - No dependencies in main that are only superficially tested requiring more tests now?
+TODO: - no other Dependencies to MIR due to this
+RULE:   (use tools: check-mir, seeded-in-ubuntu, reverse-depends)
+TODO: - no -dev/-debug/-doc packages that need exclusion
+TODO: - No dependencies in main that are only superficially tested requiring
+TODO:   more tests now?
 
 TODO: Problems:
 
@@ -321,7 +322,8 @@ TODO: - does not FTBFS currently
 TODO: - does have a test suite that runs at build time
 TODO:   - test suite fails will fail the build upon error.
 TODO: - does have a non-trivial test suite that runs as autopkgtest
-TODO: - if special HW does prevent build/autopkgtest is there a test plan, code, log provided?
+TODO: - if special HW does prevent build/autopkgtest is there a test plan, code,
+TODO:   log provided?
 TODO: - if a non-trivial test on this level does not make sense (the lib alone
 TODO:   is only doing rather simple things), is the overall solution (app+libs)
 TODO:   extensively covered i.e. via end to end autopkgtest ?
@@ -336,7 +338,8 @@ TODO: Problems:
 [Packaging red flags]
 OK:
 TODO: - Ubuntu does not carry a delta
-TODO: - Ubuntu does carry a delta, but it is reasonable and maintenance under control
+TODO: - Ubuntu does carry a delta, but it is reasonable and maintenance under
+TODO:   control
 TODO: - symbols tracking is in place
 TODO: - symbols tracking not applicable for this kind of code.
 TODO: - d/watch is present and looks ok (if needed, e.g. non-native)
@@ -349,10 +352,10 @@ TODO: - no massive Lintian warnings
 TODO: - d/rules is rather clean
 TODO: - Does not have Built-Using
 TODO: - Go Package that follows the Debian Go packaging guidelines
-TODO:   (see https://go-team.pages.debian.net/packaging.html)
-TODO: - is not on the lto-disabled list
-TODO:   (fix, or the work-around should be directly in the package,
-TODO:    see https://launchpad.net/ubuntu/+source/lto-disabled-list/+publishinghistory)
+RULE:   (see https://go-team.pages.debian.net/packaging.html)
+TODO: - It is not on the lto-disabled list
+RULE:   (fix, or the work-around should be directly in the package,
+RULE:    see https://launchpad.net/ubuntu/+source/lto-disabled-list)
 
 TODO: Problems:
 
@@ -360,7 +363,8 @@ TODO: Problems:
 OK:
 TODO: - no Errors/warnings during the build
 TODO: - no incautious use of malloc/sprintf (as far as I can check it)
-TODO: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside tests)
+TODO: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside
+TODO:   tests)
 TODO: - no use of user nobody
 TODO: - no use of setuid
 TODO: - no important open bugs (crashers, etc) in Debian or Ubuntu
