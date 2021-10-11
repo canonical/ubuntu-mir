@@ -93,16 +93,21 @@ Notes:
  * New binary packages from existing source packages, where the source package is already in main, do not require MIR bugs.
  * If a new source package contains only code which is already in main (e.g. the result of a source package split or rename, or source packages with a version in the name), it may not need a full review. Submitting a MIR bug with an explanation (but without the full template) or updating/extending on the existing old MIR bug and re-opening it by setting it to "NEW" is sufficient.
 
+=== Templates and Rules ===
 
-=== Main Inclusion requirements  ===
+It is the task of the reporter/reviewer to evaluate all the entries listed in
+''RULE'' sections and based ob that to adapt all ''TODO'' entries to create
+the initial MIR request and/or the review feedback.
 
-The package must fulfill the following requirements.
-Use this template for the MIR bug report that you will file.
-It is the task of the reporter to evaluate all the entries listed in ''RULE''
-sections and based ob that to adapt all ''TODO'' entries to create the initial
-MIR request.
+The sum of ''RULE'' sections is not meant to be complete without the ''TODO''
+entries. Only combined they define the full rules as that allows to avoid
+duplication.
+On one hand The ''TODO'' entries shall cover everything we expect from a report.
+These shall help to create a concise yet complete report/review.
+On the other hand the ''RULE'' entries provide additional background, details,
+options and interpretation help.
 
-The reporter is asked to use this template the following way:
+The reporter/reviewer is asked to use the templates the following way:
 
  0. Copy the full template below into an editor of your choice
  0. Read the lines starting with ''RULE'' for all aspects of the MIR
@@ -114,7 +119,18 @@ The reporter is asked to use this template the following way:
  0. Remove the lines starting with ''RULE'' after you have processed them
  0. Eventually all you will have left are the categories Availability, Rationale, ... and the therin the answers that the MIR process expects
  0. You can and are encouraged to always add more details/background that make the case comprehensible
- 0. File the MIR bug with this content as the bug description
+ 0. Post
+  0. File the MIR bug with this content as the bug description or..
+  0. Add a comment to the bug that contains the review in place (not as attachment)
+
+
+=== Main Inclusion requirements  ===
+
+Use this template for the MIR bug report that you will file.
+
+Usage follows [[#Templates_and_Rules|Templates and Rules]].
+
+The package must fulfill the following requirements.
 
 {{{
 [Availability]
@@ -372,14 +388,9 @@ TODO: <TBD> (any further background that might be helpful
 
 This section is a guideline for the review by the [[https://launchpad.net/~ubuntu-mir|MIR Team]].
 
-The following template holds entries helping to create a concise but complete review.
-In addition it provides background, details and interpretation help on the rules
-and guidelines that are all meant to answer the primary decision a reviewer is
-making is '''"Will this package be well maintained in main?"'''
+Usage follows [[#Templates_and_Rules|Templates and Rules]].
 
-In a perfect world with a perfect package one would only remove ''TODO:'' prefixes and be done.
-In reality check them one by one and in case you can't just remove the ''TODO:'' prefix add an explanation as needed.
-In general the usage is the same as outlined for the reporter template in [[#Main_Inclusion_requirements|Ubuntu Main Inclusion RULEs and TODOs]].
+The Intent is to answer the primary decision '''"Will this package be well maintained in main?"'''
 
 By default statements are in the ''OK'' section, but issues that need to be addressed should go to the ''Problem:'' sections (and briefly the summary at the top).
 
