@@ -72,11 +72,13 @@ The steps of the MIR process require a reporter (the one who wants a package pro
 
 The MIR-bug reporter is expected to:
 
- 1. Thoroughly go through [[#Main_Inclusion_requirements|Ubuntu Main Inclusion Requirements]], check that the package meets all the points there. If this package has nontrivial problems, it is not eligible for main inclusion, and needs to be fixed first.
+ 1. Thoroughly go through TODO/RULE entries in [[#Main_Inclusion_requirements|Ubuntu Main Inclusion RULEs and TODOs]], check that the package meets all the points there. If this package has nontrivial problems, it is not eligible for main inclusion, and needs to be fixed first.
   1. Write down issues that violate the requirements and list them in the MIR bug
   1. Write down all positive checks that you did as well (not only the issues)
  1. File a bug report about the package, titled "[MIR] sourcepackagename".
-  1. Include the rationale and description of the violations of [[#Main_Inclusion_requirements|Ubuntu Main Inclusion Requirements]], and a confirmation that you checked the requirements carefully.
+  1. use below template from [[#Main_Inclusion_requirements|Ubuntu Main Inclusion RULEs and TODOs]]
+  1. For each rule include a positive or negative statment as confirmation that you checked each requirement carefully.
+  1. For any rule violations ensure to explain why it should be ok for this case.
  1. Subscribe `ubuntu-mir` to the bug report (do not assign it to anyone!), so that it appears in the [[https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir|MIR bug list]].
  1. The [[https://launchpad.net/~ubuntu-mir|MIR team]] reviews the reports, and sets acceptable ones to ''In Progress'' or ''Fix Committed''. They might also delegate portions of the review to other teams, by assigning it to them; common cases are getting a thorough security review from the [[https://launchpad.net/~ubuntu-security|security team]] (please see [[SecurityTeam/Auditing|SecurityTeam/Auditing]] for details on requesting an audit and the [[https://trello.com/b/HvFhIQpv/security-team|security team trello board]] (private board; Reviews lane) for prioritized list of MIR security reviews), or getting a sign-off from particular team leads about maintenance commitments.
   1. In the case where an MIR needs a security review, a normal MIR review will happen by a member of the MIR team and the security review by a member of the security team. Among these team members, whoever does the last review shall adjust the bug status accordingly. For instance, if MIR team says ok then security says ok, the security team member should mark the bug as Fix Committed (see above for other statuses).
@@ -92,82 +94,240 @@ Notes:
  * If a new source package contains only code which is already in main (e.g. the result of a source package split or rename, or source packages with a version in the name), it may not need a full review. Submitting a MIR bug with an explanation (but without the full template) or updating/extending on the existing old MIR bug and re-opening it by setting it to "NEW" is sufficient.
 
 
-=== MIR bug report template ===
-Use this template for the MIR bug report.
-See below at [[#Main_Inclusion_requirements|Ubuntu Main Inclusion Requirements]] for the details to add in those sections.
+=== Main Inclusion requirements  ===
+
+The package must fulfill the following requirements.
+Use this template for the MIR bug report that you will file.
+It is the task of the reporter to evaluate all the entries listed in ''RULE''
+sections and based ob that to adapt all ''TODO'' entries to create the initial
+MIR request.
+
+The reporter is asked to use this template the following way:
+
+ 0. Copy the full template below into an editor of your choice
+ 0. Read the lines starting with ''RULE'' for all aspects of the MIR
+ 0. For each related line marked with ''TODO''
+  0. Adapt the line to provide the correct answer matching the package(s) that you request.
+  0. In some of those lines you'll need to replace placeholders '<TBD>' with whatever matches your request
+  0. Remove the ''TODO'' prefix
+  0. Sometimes mutually exclusive options are provided like "link to CVE" or "no security issues in the past", leave only those statements that apply
+ 0. Remove the lines starting with ''RULE'' after you have processed them
+ 0. Eventually all you will have left are the categories Availability, Rationale, ... and the therin the answers that the MIR process expects
+ 0. You can and are encouraged to always add more details/background that make the case comprehensible
+ 0. File the MIR bug with this content as the bug description
 
 {{{
 [Availability]
+RULE: The package must already be in the Ubuntu universe, and must build for
+RULE: the architectures it is designed to work on.
+
+TODO: The package <TBD> is already in Ubuntu universe
+TODO: Link to package [[https://launchpad.net/ubuntu/+source/<TBD>|<TBD>]]
 
 [Rationale]
+RULE: There must be a certain level of demand for the package, for example:
+RULE: - The package is useful for a large part of our user base.
+RULE: - The package is a new runtime dependency of a package that we already
+RULE:   support (build-dependencies can stay in universe).
+RULE: - The package helps meet a specific Blueprint/Roadmap goal.
+RULE: - The package replaces another package we currently support and promises
+RULE:   higher quality and/or better features, so that we can drop the old
+RULE:   package from the supported set.
+
+TODO: The package <TBD> is required in Ubuntu main for <TBD>
+TODO: Addtional reasons <TBD>
+TODO: New use-cases are <TBD>
+TODO: Package <TBD> covers the same user case as <TBD>, but is better
+TODO: because <TBD>
 
 [Security]
+RULE: The security history and the current state of security issues in the
+RULE: package must allow us to support the package for at least 9 months (120
+RULE: for LTS+ESM support) without exposing its users to an inappropriate level
+RULE: of security risks. This requires checking of several things:
+RULE: - Check how many vulnerabilities the package had in the past and how they
+RULE:   were handled by upstream and the Debian/Ubuntu package:
+RULE:   - Search in the National Vulnerability Database using the PKG as keyword
+RULE:     http://cve.mitre.org/cve/search_cve_list.html
+RULE:   - check OSS security mailing list (feed into search engine
+RULE:     'site:www.openwall.com/lists/oss-security <pkgname>')
+RULE:   - Ubuntu CVE Tracker
+RULE:     - http://people.ubuntu.com/~ubuntu-security/cve/main.html
+RULE:     - http://people.ubuntu.com/~ubuntu-security/cve/universe.html
+RULE:     - http://people.ubuntu.com/~ubuntu-security/cve/partner.html
+RULE: - Check for security relevant binaries. If any are present, this requires
+RULE:   a more in-depth security review.
+RULE:   - Executables which have the `suid` or `sgid` bit set.
+RULE:   - Executables in `/sbin`, `/usr/sbin`.
+RULE:   - Add-ons and plugins to security-sensitive software (filters, scanners,
+RULE:     UI skins, etc)
+RULE: - Check for security relevant behavior. If any is present, this requires
+RULE:   a more in-depth security review.
+RULE:   - Packages which install services / daemons (`/etc/init.d/*`,
+RULE:     `/etc/init/*`, `/lib/systemd/system/*`)
+RULE:   - Packages which open privileged ports (ports < 1024).
+
+TODO: - <TBD> security issues in the past
+TODO: - <TBD> links to such security issues in trackers
+TODO: - <TBD> to any context that shows how these issues got handled in the past
+TODO: - No CVEs in this software in the past
+TODO: - no `suid` or `sgid` binaries
+TODO: - no executables in `/sbin` and `/usr/sbin`
+TODO: - Binary <TBD> in sbin is no problem because <TBD>
+TODO: - Package does not install services
+TODO: - Package installs services, but they are safe because <TBD> (reduced
+TODO:   permissions, tmp env, restricted user, ...)
+TODO: - Packages does not open privileged ports (ports < 1024)
+TODO: - Packages does not contain plugins to security-sensitive software
 
 [Quality assurance]
+RULE: - After installing the package it must be possible to make it working with
+RULE:   a reasonable effort of configuration and documentation reading.
+RULE: - The package must not ask debconf questions higher than medium if it is
+RULE:   going to be installed by default. The debconf questions must have
+RULE:   reasonable defaults.
+RULE: - There are no long-term outstanding bugs which affect the usability of
+RULE:   the program to a major degree. To support a package, we must be
+RULE:   reasonably convinced that upstream supports and cares for the package.
+RULE: - The status of important bugs in [[http://bugs.debian.org|Debian's]],
+RULE:   [[https://bugs.launchpad.net/ubuntu|Ubuntu's]], and upstream's bug
+RULE:   tracking systems must be evaluated. Important bugs must be pointed out
+RULE:   and discussed in the MIR report.
+RULE: - The package is maintained well in Debian/Ubuntu
+RULE: - The package should not deal with exotic hardware which we cannot
+RULE:   support.
+RULE: - The package must include a non-trivial test suite, and if there is no
+RULE:   obvious reason why it cannot work during build (e.g. it needs root
+RULE:   privileges or network access), it should be run during package build,
+RULE:   and a failing test suite should fail the build. The package should, but
+RULE:   is not required to, also contain non-trivial autopkgtest(s).
+RULE:   - If no build tests nor autopkgtests are included, and/or if the package
+RULE:     requires specific hardware to perform testing, the subscribed team
+RULE:     must provide a written test plan in a comment to the MIR bug, and
+RULE:     commit to running that test either at each upload of the package or
+RULE:     at least once each release cycle. In the comment to the MIR bug,
+RULE:     please link to the codebase of these tests (scripts or doc of manual
+RULE:     steps) and attach a full log of these test runs. This is meant to
+RULE:     assess their validity (e.g. not just superficial)
+RULE: - In some cases a solution that is about to be promoted consists of
+RULE:   several very small libraries and one actual application uniting them
+RULE:   to achieve something useful. This is rather common in the go/rust space.
+RULE:   In that case often these micro-libs on their own can and should only
+RULE:   provide low level unit-tests. But more complex autopkgtests make no
+RULE:   sense on that level. Therefore in those cases one might want to test on
+RULE:   the solution level.
+RULE:   - Process wise MIR-requesting teams can ask (on the bug) for this
+RULE:     special case to apply for a given case, which reduces the test
+RULE:     constraints on the micro libraries but in return increases the
+RULE:     requirements for the test of the actual app/solution.
+RULE:   - Since this might promote micro-lib packages to main with less than
+RULE:     the common level of QA any further MIRed program using them will have
+RULE:     to provide the same amount of increased testing.
+RULE: - The package uses a debian/watch file whenever possible. In cases where
+RULE:   this is not possible (e.g. native packages), the package should either
+RULE:   provide a debian/README.source file or a debian/watch file (with
+RULE:   comments only) providing clear instructions on how to generate the
+RULE:   source tar file.
+RULE: - It is often useful to run `lintian --pedantic` on the package to spot
+RULE:   the most common packaging issues in advance
+RULE: - The package should not rely on obsolete or about to be demoted packages.
+RULE:   That currently includes package dependencies on Python2 (without
+RULE:   providing Python3 packages), and packages depending on GTK2.
+
+TODO: - The package works well right after install
+TODO: - The package needs post install configuration, that is for <TBD>
+TODO: - The package will be installed by default, but does not ask debconf
+TODO:   questions higher than medium
+TODO: - The package will not be installed by default
+TODO: - The package is maintained well in Debian/Ubuntu and has not too many and
+TODO:   no critical bugs open
+TODO:   - Ubuntu https://bugs.launchpad.net/ubuntu/+source/<TBD>/+bug
+TODO:   - Debian https://bugs.debian.org/cgi-bin/pkgreport.cgi?src=<TBD>
+TODO: - Important open bugs are <TBD>
+TODO: - The package does not deal with exotic hardware
+TODO: - The package runs a test suite on build time, link to build log <TBD>
+TODO: - The package does not run a test at build time because <TBD>
+TODO: - The package runs an autopkgtest, link to test log <TBD>
+TODO: - The package does not run an autopkgtest because <TBD>
+TODO: - The package can not be tested at build or autopktest time because <TBD>
+TODO:   to make up for that here <TBD> is a test plan/automation and example
+TODO:   test <TBD> (logs/scripts)
+TODO: - This package is minimal and will be tested in a more wide reaching
+TODO:   solution context <TBD>, details about this testing are here <TBD>
+TODO: - debian/watch is present and works
+TODO: - debian/watch is not present, instead it has <TBD>
+TODO: - This package does not yield massive lintian Warnings, Errors
+TODO: - Link to recent build log including a lintian run <TBD>
+TODO: - This package does not rely on obsolete or about to be demoted packages.
+TODO: - This package has no python2 or GTK2 dependencies
 
 [UI standards]
+RULE: - Generally those are only for end-user-facing applications
+RULE:   End-user applications must be internationalized (translatable), using
+RULE:   the standard intltool/gettext build and runtime system and produce a
+RULE:   proper PO template during build.
+RULE: - End-user applications must ship a standard conformant desktop file.
+
+TODO: Application is not end-user facing (does not need translation)
+TODO: Translation is present, see <TBD>
 
 [Dependencies]
+RULE: - All binary dependencies (including `Recommends:`) must be satisfiable in
+RULE:   main (i. e. the preferred alternative must be in main). If not, these
+RULE:   dependencies need a separate MIR report (this can be a separate bug or
+RULE:   another task on the main MIR bug)
+
+TODO: - No further dependencies that are not yet in main
+TODO: - There are further dependencies that are not yet in main, MIR for them is
+TODO:   at <TBD>
 
 [Standards compliance]
+RULE: The package should meet the standards for:
+RULE:   - [[https://refspecs.linuxfoundation.org/fhs.shtml|FHS]]
+RULE:   - [[http://www.debian.org/doc/debian-policy/|Debian Policy]]
+RULE: - Major violations should be documented and justified. Also, the source
+RULE: - packaging should be reasonably easy to understand and maintain.
+
+TODO: - This package correctly follows FHS and Debian Policy
+TODO: - This package violates FHS or Debian Polciy, reasons for that are <TBD>
+TODO: - Packaging and build is easy, <TBD> link to d/rules
+TODO: - Packaging is complex, but that is ok because <TBD>
 
 [Maintenance]
+RULE: The package must have an acceptable level of maintenance corresponding
+RULE: to its complexity:
+RULE: - All packages must have a designated "owning" team, regardless of
+RULE:   complexity, which is set as a package bug contact. This is not a
+RULE:   requirement for the MIR team ACK, but for the package to be promoted
+RULE    by an archive admin. Still, it is strongly suggested to subscribe,
+RULE:   as the owning team will get a preview of the to-be-expected incoming
+RULE:   bugs later on.
+RULE: - Simple packages (e.g. language bindings, simple Perl modules, small
+RULE:   command-line programs, etc.) might not need very much maintenance
+RULE:   effort, and if they are maintained well in Debian we can just keep them
+RULE:   synced. They still need a subscribing team to handle bugs, FTBFS and
+RULE:   tests
+RULE: - More complex packages will usually need a developer or team of
+RULE:   developers paying attention to their bugs, whether that be in Ubuntu
+RULE:   or elsewhere (often Debian). Packages that deliver major new headline
+RULE:   features in Ubuntu need to have commitment from Ubuntu developers
+RULE:   willing to spend substantial time on them.
+
+TODO: Owning Team will be <TBD>
+TODO: Team is already subscribed to the package
 
 [Background information]
+RULE: - The package descriptions should explain the general purpose and context
+RULE:   of the package. Additional explanations/justifications should be done in
+RULE:   the MIR report.
+RULE: - If the package was renamed recently, or has a different upstream name,
+RULE:   this needs to be explained in the MIR report.
+
+TODO: The Package description explains the package well
+TODO: Upstream Name is <TBD>
+TODO: Link to upstream project <TBD>
+TODO: <TBD> (any further background that might be helpful
 }}}
-
-=== Main Inclusion requirements  ===
-
-The package must fulfill the following requirements:
-
- 0. ''Availability:'' The package must already be in the Ubuntu universe, and must build for the architectures it is designed to work on.
- 0. ''Rationale:'' There must be a certain level of demand for the package, for example:
-  * The package is useful for a large part of our user base.
-  * The package is a new runtime dependency of a package that we already support (build-dependencies can stay in universe).
-  * The package helps meet a specific Blueprint/Roadmap goal.
-  * The package replaces another package we currently support and promises higher quality and/or better features, so that we can drop the old package from the supported set.
- 0. ''Security:'' The security history and the current state of security issues in the package must allow us to support the package for at least 9 months (60 for LTS support) without exposing its users to an inappropriate level of security risks. This requires checking of several things:
-  * Check how many vulnerabilities the package had in the past and how they were handled by upstream and the Debian/Ubuntu package:
-   * http://cve.mitre.org/cve/search_cve_list.html: Search in the National Vulnerability Database using the package as a keyword
-   * check OSS security mailing list (feed 'site:www.openwall.com/lists/oss-security <pkgname>' into search engine)
-   * Ubuntu CVE Tracker
-    * http://people.ubuntu.com/~ubuntu-security/cve/main.html
-    * http://people.ubuntu.com/~ubuntu-security/cve/universe.html
-    * http://people.ubuntu.com/~ubuntu-security/cve/partner.html
-  * Check for security relevant binaries. If any are present, this requires a more in-depth security review.
-   * Executables which have the `suid` or `sgid` bit set.
-   * Executables in `/sbin`, `/usr/sbin`.
-   * Packages which install services / daemons (`/etc/init.d/*`, `/etc/init/*`, `/lib/systemd/system/*`)
-   * Packages which open privileged ports (ports < 1024).
-   * Add-ons and plugins to security-sensitive software (filters, scanners, UI skins, etc)
- 0. ''Quality assurance:''
-  * After installing the package it must be possible to make it working with a reasonable effort of configuration and documentation reading.
-  * The package must not ask debconf questions higher than medium if it is going to be installed by default. The debconf questions must have reasonable defaults.
-  * There are no long-term outstanding bugs which affect the usability of the program to a major degree. To support a package, we must be reasonably convinced that upstream supports and cares for the package.
-  * The status of important bugs in [[http://bugs.debian.org|Debian's]], [[https://bugs.launchpad.net/ubuntu|Ubuntu's]], and upstream's bug tracking systems must be evaluated. Important bugs must be pointed out and discussed in the MIR report.
-  * The package is maintained well in Debian/Ubuntu (check out the Debian PTS)
-  * The package should not deal with exotic hardware which we cannot support.
-  * The package must include a non-trivial test suite, and if there is no obvious reason why it cannot work during build (e.g. it needs root privileges or network access), it should be run during package build, and a failing test suite should fail the build. The package should, but is not required to, also contain non-trivial autopkgtest(s).
-   * If no build tests nor autopkgtests are included, and/or if the package requires specific hardware to perform testing, the subscribed team must provide a written test plan in a comment to the MIR bug, and commit to running that test either at each upload of the package or at least once each release cycle. In the comment to the MIR bug, please link to the codebase of these tests (scripts or doc of manual steps) and attach a full log of these test runs. This is meant to assess their validity (e.g. not just superficial)
-  * In some cases a solution that is about to be promoted consists of several very small libraries and one actual application uniting them to achieve something useful. This is rather common in the go/rust space.  In that case often these micro-libs on their own can and should only provide low level unit-tests. But more complex autopkgtests make no sense on that level. Therefore in those cases one might want to test on the solution level.
-   * Process wise MIR-requesting teams can ask (on the bug) for this special case to apply for a given case, which reduces the test constraints on the micro libraries but in return increases the requirements for the test of the actual app/solution.
-   * Since this might promote micro-lib packages to main with less than the common level of QA any further MIRed program using them will have to provide the same amount of increased testing.
-  * The package uses a debian/watch file whenever possible. In cases where this is not possible (e.g. native packages), the package should either provide a debian/README.source file or a debian/watch file (with comments only) providing clear instructions on how to generate the source tar file.
-  * It is often useful to run `lintian --pedantic` on the package to spot the most common packaging issues in advance
-  * The package should not rely on obsolete or about to be demoted packages. That currently includes package dependencies on Python2 (without providing Python3 packages), and packages depending on GTK2.
- 0. ''UI standards:'' (generally only for user-facing applications)
-  * End-user applications must be internationalized (translatable), using the standard intltool/gettext build and runtime system and produce a proper PO template during build.
-  * End-user applications must ship a standard conformant desktop file.
- 0. ''Dependencies:''
-  * All binary dependencies (including `Recommends:`) must be satisfiable in main (i. e. the preferred alternative must be in main). If not, these dependencies need a separate MIR report (this can be a separate bug or another task on the main MIR bug)
- 0. ''Standards compliance:'' The package should meet the [[https://refspecs.linuxfoundation.org/fhs.shtml|FHS]] and [[http://www.debian.org/doc/debian-policy/|Debian Policy]] standards. Major violations should be documented and justified. Also, the source packaging should be reasonably easy to understand and maintain.
- 0. ''Maintenance:'' The package must have an acceptable level of maintenance corresponding to its complexity:
-  * All packages must have a designated "owning" team, regardless of complexity, which is set as a package bug contact. This is not a requirement for the MIR team ACK, but for the package to be promoted by an archive admin. Still, it is strongly suggested to subscribe, as the owning team will get a preview of the to-be-expected incoming bugs later on (once they are responsible).
-  * Simple packages (e.g. language bindings, simple Perl modules, small command-line programs, etc.) might not need very much maintenance effort, and if they are maintained well in Debian we can just keep them synced
-  * More complex packages will usually need a developer or team of developers paying attention to their bugs, whether that be in Ubuntu or elsewhere (often Debian). Packages that deliver major new headline features in Ubuntu need to have commitment from Ubuntu developers willing to spend substantial time on them.
- 0. ''Background information:''
-  * The package descriptions should explain the general purpose and context of the package. Additional explanations/justifications should be done in the MIR report.
-  * If the package was renamed recently, or has a different upstream name, this needs to be explained in the MIR report.
 
 == Reviewing a bug ==
 
