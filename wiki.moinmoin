@@ -316,6 +316,45 @@ RULE:   willing to spend substantial time on them.
 TODO: Owning Team will be <TBD>
 TODO: Team is already subscribed to the package
 
+RULE: - Responsibilities implied by static builds promoted to main, which is
+RULE:   not a recommended but a common case with golang packages.
+RULE:   - the security team will track CVEs for all golang packages in main
+RULE:   - the security team will provide updates to main for all `golang-*-dev`
+RULE:     packages
+RULE:   - the security team will provide updates to main for golang applications
+RULE:     whose non-vendored source code is affected as per normal procedures
+RULE:     (including e.g., sponsoring/coordinating uploads from teams/upstream
+RULE:     projects, etc)
+RULE:   - the security team will perform no-change-rebuilds for all packages
+RULE:     Built-Using `golang-*-dev` packages it has provided, and coordinate
+RULE:     testing with the owning teams responsible for the rebuilt packages
+RULE:   - for packages that build using any `golang-*-dev` packages:
+RULE:     - the owning team must state their commitment to test
+RULE:       no-change-rebuilds triggered by a dependent library/compiler and to
+RULE:       fix any issues found for the lifetime of the release (including ESM
+RULE:       when included)
+RULE:     - the owning team must provide timely testing of no-change-rebuilds
+RULE:       from the security team, fixing the rebuilt package as necessary
+RULE:   - for packages that build with approved vendored code:
+RULE:     - the owning team must state their commitment to provide updates to
+RULE:       the security team for any affected vendored code for the lifetime of
+RULE:       the release (including ESM when included)
+RULE:     - the security team will alert the owning team of issues that may
+RULE:       affect their vendored code
+RULE:     - the owning team will provide timely, high quality updates for the
+RULE:       security team to sponsor to fix issues in the affected vendored code
+
+TODO: - This does not use static builds
+TODO: - The team <TBD> is aware of the implications by a static build and
+TODO:   commits to test no-change-rebuilds and to fix any issues found for the
+TODO:   lifetime of the release (including ESM)
+TODO: - This does not use vendored code
+TODO: - The team <TBD> is aware of the implications of vendored code and (as
+TODO:   alerted by the security team) commits to provide updates to the security
+TODO:   team for any affected vendored code for the lifetime of the release
+TODO:   (including ESM).
+
+
 [Background information]
 RULE: - The package descriptions should explain the general purpose and context
 RULE:   of the package. Additional explanations/justifications should be done in
@@ -331,99 +370,18 @@ TODO: <TBD> (any further background that might be helpful
 
 == Reviewing a bug ==
 
-This section is a guideline for the [[https://launchpad.net/~ubuntu-mir|MIR Team]].
-The primary decision a reviewer is making is '''"Will this package be well maintained in main?"'''
+This section is a guideline for the review by the [[https://launchpad.net/~ubuntu-mir|MIR Team]].
 
-The following guidelines are just ways to help you answer to that question.
+The following template holds entries helping to create a concise but complete review.
+In addition it provides background, details and interpretation help on the rules
+and guidelines that are all meant to answer the primary decision a reviewer is
+making is '''"Will this package be well maintained in main?"'''
 
- 1. Duplication
-  * One easy way to avoid the burden of maintaining the package is to not use it in the first place!  If a package is pulling in some random jpeg parsing library that needs a MIR, maybe it makes more sense to patch the package to just use libjpeg instead.  Keep an eye out for duplicated functionality in main, since that makes bug fixing and security reviewing that much harder.
-
- 1. Embedded sources and static linking
-  * Embedding a library source increases the maintenance burden of a package since that source needs to be maintained separately from the source in the Ubuntu archive. If a source embeds another package, in general the embedded package should not be used and the packaging should be modified to use the Ubuntu archive version. When this is not possible, the security team must agree to using the embedded source.
-
-  * Similarly, when a binary from one source package statically links to libraries from another source package from the archive, when those libraries are updated the statically linked binaries must be rebuilt with the updated libraries to receive the fix, which increases the maintenance burden. For this reason, static linking in archive builds is discouraged unless static linking is required for the package in question to function correctly (e.g. an integrity scanner).
-
-  * Golang
-   * golang 1.4 packages and earlier could only statically compile their binaries. golang 1.5 in Ubuntu 16.10 introduced `-buildmode=shared` to build shared libraries and `-linkshared` to dynamically link against shared libraries. In general, statically compiled binaries are not suitable for the Ubuntu archive because they increase the maintenance burden significantly. As such, from Ubuntu 16.10 through 17.04, golang packages packages in main were expected to be built with shared libraries.
-
-   * Evaluating cost/benefits while considering the ABI instability of golang libraries during this period, the MIR team decided for 17.10 and later to allow static builds of golang packages in main, so long as the number of these packages remains low and they follow the guidelines below (under "Packaging red flags/If it's a statically compiled golang package").
-
-   * Specifically, in 17.10 and later, golang applications in main are expected:
-    1. to build using `golang-*-dev` packages from the Ubuntu archive with `Built-Using` in debian/control. This requirement ensures that the security team is able to track security issues for all affected static binary packages
-    2. not to build any vendored (i.e. embedded) code in the source package whose binaries appear in the archive (e.g. test code is ok) without clear justification from the requesting team and approval from the security team. This requirement ensures that the security team is able to track security issues for all affected source packages.
-    3. only build against approved vendored sources (when applicable) and not build against newly added vendored code in subsequent Ubuntu uploads without approval from the security team. This requirement ensures that the security team is able to track security issues for all affected source packages.
-
-   * The intended outcomes from the above requirements are for packages in main to standardize on particular versions of `golang-*-dev` packages (when possible) with the requesting team adjusting their packaging as necessary, all teams responsible for golang packages coordinating on transitions and the requesting team occasionally creating new `golang-*-dev` packages as agreed to in the MIR bug (upstreaming to Debian whenever possible). 
-
-   * As a practical matter, golang source packages in main are not required to remove embedded code copies.
-
-   * When it is infeasible to comply with this policy, the justification, discussion and approval should all be clearly represented in the bug.
-
-   * Responsibilities once promoted to main (17.10+)
-    * the security team will track CVEs for all golang packages in main
-    * the security team will provide updates to main for all `golang-*-dev` packages
-    * the security team will provide updates to main for golang applications whose non-vendored source code is affected as per normal procedures (including e.g., sponsoring/coordinating uploads from teams/upstream projects, etc)
-    * the security team will perform no-change-rebuilds for all packages Built-Using `golang-*-dev` packages it has provided, and coordinate testing with the owning teams responsible for the rebuilt packages
-    * for packages that build using any `golang-*-dev` packages:
-     * the owning team must state their commitment to test no-change-rebuilds triggered by a dependent library/compiler and to fix any issues found for the lifetime of the release (including ESM when included)
-     * the owning team must provide timely testing of no-change-rebuilds from the security team, fixing the rebuilt package as necessary
-    * for packages that build with approved vendored code:
-     * the owning team must state their commitment to provide updates to the security team for any affected vendored code for the lifetime of the release (including ESM when included)
-     * the security team will alert the owning team of issues that may affect their vendored code
-     * the owning team will provide timely, high quality updates for the security team to sponsor to fix issues in the affected vendored code
-
- 1. Security
-  * Determine if the package may have security implications (has a history of CVEs, runs a daemon as root, uses webkit^1,2^, uses lib*v8 directly, parses data formats, opens a port, processes arbitrary web content, uses centralized online accounts, integrates arbitrary javascript into the desktop, deals with system authentication (e.g. pam), etc).  Err on the side of caution.
-  * If the package is security sensitive, you should review as much as you can and then assign to the ubuntu-security team. The bug will then be added to the [[https://trello.com/b/HvFhIQpv/security-team|security team trello board]] (private board; Reviews lane) in the prioritized list of MIR security reviews.
-
- 1. Common blockers
-
-  * Does it FTBFS currently?
-  * Does it have a test suite?  Make sure it's being run and will fail the build upon error.
-  * Does it have a team bug subscriber? (This is not a blocker for a MIR team ACK, but needs to be provided before the package can be promoted by an AA)
-  * Is the code translatable (if end user visible)?
-  * If it's a Python package, does it use dh_python?
-  * If it's a Python package going on the desktop CD, will it pull in Python 2?
-
- 1. Packaging red flags
-
-  * Does Ubuntu carry a delta?
-   * If it's a library, does it either have a symbols file or use an empty argument to dh_makeshlibs -V?  (pass such a patch on to Debian, but don't block on it).  Note that for C++, see [[DailyRelease/FAQ]] for a method to demangle C++ symbols files.
-   * Does it have a watch file? (If relevant, e.g. non-native)
-   * Is its update history slow or sporadic?
-   * Is the current release packaged?
-   * Will entering main make it harder for the people currently keeping it up to date?  (i.e. are they only MOTUs?)
-   * Lintian warnings
-   * Is debian/rules a mess?  Ideally it uses dh7 and overrides to make it as tiny as possible.
-   * Does debian/control use `Built-Using`. This may indicate static linking which should be discouraged (excepting golang, see below)
-   * If it's a statically compiled golang package:
-    * Does the package use dh-golang (if not, suggest dh-make-golang to create the package)?
-    * Does debian/control use `Built-Using: ${misc:Built-Using}` for each non'-dev' binary package (importantly, golang-*-dev packages only ship source files so don't need Built-Using)? 
-    * Does the package follow [[http://pkg-go.alioth.debian.org/packaging.html|Debian Go packaging guidelines]]?
-   * If a package shall be promoted it should NOT be on the lto-disabled list, but the fix, or the work-around should be directly in the package to enforce maintainer awareness and make it more visible to anyone looking at the package - see https://wiki.ubuntu.com/ToolChain/LTO.
-
- 1. Upstream red flags
-
-  * Errors/warnings during the build
-  * Incautious use of malloc/sprintf
-  * Uses of sudo, gksu, pkexec, or LD_LIBRARY_PATH (its OK to be used in tests)
-  * User nobody is strictly for NFS's use and must not be used by any running processes on the system.
-  * Use of setuid needs very careful design (prefer systemd to set those for services)
-  * Important bugs (crashers, etc) in Debian or Ubuntu
-  * Dependency on webkit, qtwebkit, seed or libgoa-*
-  * Embedded source copies (this happens frequently with Go upstreams)
-  * If this is a scope for the Unity Dash, does it [[http://mhall119.com/2012/12/adding-privacy-setting-support-to-your-unity-lens/|honor the privacy settings]]?
-
-=== MIR review template ===
-
-MIR members should use this template for the MIR review.
-
-It helps to not miss any of the details mentioned above by processing them line by line.
 In a perfect world with a perfect package one would only remove ''TODO:'' prefixes and be done.
 In reality check them one by one and in case you can't just remove the ''TODO:'' prefix add an explanation as needed.
+In general the usage is the same as outlined for the reporter template in [[#Main_Inclusion_requirements|Ubuntu Main Inclusion RULEs and TODOs]].
 
-By default statements are in the ''OK'' section, issues that need to be addressed should go to the ''Problem:'' sections (and the summary at the top).
+By default statements are in the ''OK'' section, but issues that need to be addressed should go to the ''Problem:'' sections (and briefly the summary at the top).
 
 {{{
 [Summary]
@@ -442,6 +400,13 @@ TODO: - The package should get a team bug subscriber
 TODO: - TBD
 
 [Duplication]
+RULE: - One easy way to avoid the burden of maintaining the package is to not
+        use it in the first place!  If a package is pulling in some random jpeg
+        parsing library that needs a MIR, maybe it makes more sense to patch the
+        package to just use libjpeg instead.  Keep an eye out for duplicated
+        functionality in main, since that makes bug fixing and security
+        reviewing that much harder.
+
 TODO: There is no other package in main providing the same functionality.
 
 [Dependencies]
@@ -455,13 +420,100 @@ TODO:   more tests now?
 TODO: Problems:
 
 [Embedded sources and static linking]
+RULE: - Embedding a library source increases the maintenance burden of a package
+RULE:   since that source needs to be maintained separately from the source in
+RULE:   the Ubuntu archive. If a source embeds another package, in general the
+RULE:   embedded package should not be used and the packaging should be modified
+RULE:   to use the Ubuntu archive version. When this is not possible, the
+RULE:   security team must agree to using the embedded source.
+RULE: - Similarly, when a binary from one source package statically links to
+RULE:   libraries from another source package from the archive, when those
+RULE:   libraries are updated the statically linked binaries must be rebuilt
+RULE:   with the updated libraries to receive the fix, which increases the
+RULE:   maintenance burden. For this reason, static linking in archive builds
+RULE:   is discouraged unless static linking is required for the package in
+RULE:   question to function correctly (e.g. an integrity scanner).
+RULE: - Does debian/control use `Built-Using`? This may indicate static linking
+RULES:  which should be discouraged (excepting golang, see below)
+
 OK:
 TODO: - no embedded source present
 TODO: - no static linking
+TODO: - does not have odd Built-Using entries
+
+RULE: Golang
+RULE: - golang 1.4 packages and earlier could only statically compile their
+RULE:   binaries. golang 1.5 in Ubuntu 16.10 introduced `-buildmode=shared`
+RULE:   to build shared libraries and `-linkshared` to dynamically link against
+RULE:   shared libraries. In general, statically compiled binaries are not
+RULE:   suitable for the Ubuntu archive because they increase the maintenance
+RULE:   burden significantly. As such, from Ubuntu 16.10 and later, golang
+RULE:   packages packages in main were expected to be built with shared
+RULE:   libraries.
+RULE: - Evaluating cost/benefits while considering the ABI instability of golang
+RULE:   libraries during this period, the MIR team decided for 17.10 and later
+RULE:   to allow static builds of golang packages in main, so long as the number
+RULE:   of these packages remains low and they follow the guidelines below:
+RULE:   - golang applications in main are expected:
+RULE:       1. to build using `golang-*-dev` packages from the Ubuntu archive
+RULE:          with `Built-Using` in debian/control. This requirement ensures
+RULE:          that the security team is able to track security issues for all
+RULE:          affected static binary packages
+RULE:       2. not to build any vendored (i.e. embedded) code in the source
+RULE:          package whose binaries appear in the archive (e.g. test code is
+RULE:          ok) without clear justification from the requesting team and
+RULE:          approval from the security team. This requirement ensures that
+RULE:          the security team is able to track security issues for all
+RULE:          affected source packages.
+RULE:       3. only build against approved vendored sources (when applicable)
+RULE:          and not build against newly added vendored code in subsequent
+RULE:          Ubuntu uploads without approval from the security team. This
+RULE:          requirement ensures that the security team is able to track
+RULE:          security issues for all affected source packages.
+RULE: - The intended outcomes from the above requirements (if not vendored) are
+RULE:   for packages in main to standardize on particular versions of
+RULE:   `golang-*-dev` packages (when possible) with the requesting team
+RULE:    adjusting their packaging as necessary, all teams responsible for
+RULE:    golang packages coordinating on transitions and the requesting team
+RULE:    occasionally creating new `golang-*-dev` packages as agreed to in the
+RULE:    MIR bug (upstreaming to Debian whenever possible).
+RULE: - As a practical matter, golang source packages in main are not required
+RULE:   to remove unused embedded code copies.
+RULE: - If based on the above options it's a statically compiled golang package:
+RULE:   - Does the package use dh-golang (if not, suggest dh-make-golang to
+RULE:     create the package)?
+RULE:   - Does debian/control use `Built-Using: ${misc:Built-Using}` for each
+RULE:     non'-dev' binary package (importantly, golang-*-dev packages only
+RULE:     ship source files so don't need Built-Using)?
+RULE:   - Does the package follow
+RULE:     [[http://pkg-go.alioth.debian.org/packaging.html|Debian Go packaging]]
+RULE:     guidelines?
+RULE: - When it is infeasible to comply with this policy, the justification,
+RULE:   discussion and approval should all be clearly represented in the bug.
+
+OK:
+TODO: - not a go package, no extra constraints to consider in that regard
+TODO: - go package, extra constraints to consider
+TODO:   - Go Package that follows the Debian Go packaging guidelines
+TODO:   - vendoring is used, but the reasoning is sufficiently explained
+TODO:   - No vendoring used, all Built-Using are in main
+TODO:   - golang: shared builds
+TODO:   - golang: static builds are used, the team confirmed their commitment
+TODO:     to the additional responsibilities implied by static builds.
 
 TODO: Problems:
 
 [Security]
+RULE: - Determine if the package may have security implications (has a history
+RULE:   of CVEs, runs a daemon as root, uses webkit^1,2^, uses lib*v8 directly,
+RULE:   parses data formats, opens a port, processes arbitrary web content, uses
+RULE:   centralized online accounts, integrates arbitrary javascript into the
+RULE:   desktop, deals with system authentication (e.g. pam), etc).
+RULE:   Err on the side of caution.
+RULE: - If the package is security sensitive, you should review as much as you
+RULE:   can and then assign to the ubuntu-security team. The bug will then be
+RULE:   added to the prioritized list of MIR security reviews.
+
 OK:
 TODO: - history of CVEs does not look concerning
 TODO: - does not run a daemon as root
@@ -477,6 +529,15 @@ TODO: - does not deal with system authentication (eg, pam), etc)
 TODO: Problems:
 
 [Common blockers]
+RULE: - Does it FTBFS currently?
+RULE: - Plenty of testing requirements, see "Quality assurance" section of the
+RULE:   Main Inclusion requirements
+RULE: - Does it have a team bug subscriber? (This is not a blocker for a MIR
+RULE:   team ACK, but needs to be provided before the package can be promoted
+RULE:   by an AA)
+RULE: - If it's a Python package, does it use dh_python?
+RULE: - If it's a Python package on the CD/Image, will it pull in Python 2?
+
 OK:
 TODO: - does not FTBFS currently
 TODO: - does have a test suite that runs at build time
@@ -488,7 +549,6 @@ TODO: - if a non-trivial test on this level does not make sense (the lib alone
 TODO:   is only doing rather simple things), is the overall solution (app+libs)
 TODO:   extensively covered i.e. via end to end autopkgtest ?
 TODO: - no translation present, but none needed for this case (user visible)?
-TODO: - not a python/go package, no extra constraints to consider in that regard
 TODO: - no new python2 dependency
 TODO: - Python package that is using dh_python
 TODO: - Go package that uses dh-golang
@@ -496,6 +556,24 @@ TODO: - Go package that uses dh-golang
 TODO: Problems:
 
 [Packaging red flags]
+RULE: - Does Ubuntu carry a non necesary delta?
+RULE: - If it's a library, does it either have a symbols file or use an empty
+RULE:   argument to dh_makeshlibs -V?  (pass such a patch on to Debian, but
+RULE:   don't block on it).  Note that for C++, see [[DailyRelease/FAQ]] for a
+RULE:   method to demangle C++ symbols files.
+RULE: - Does it have a watch file? (If relevant, e.g. non-native)
+RULE: - Is its update history slow or sporadic?
+RULE: - Is the current release packaged?
+RULE: - Will entering main make it harder for the people currently keeping it
+RULE:   up to date?  (i.e. are they only MOTUs?)
+RULE: - Lintian warnings
+RULE: - Is debian/rules a mess?  Ideally it uses dh and overrides to make it as
+RULE:   tiny as possible.
+RULE: - If a package shall be promoted it should NOT be on the lto-disabled
+RULE:   list, but the fix, or the work-around should be directly in the package
+RULE:   to enforce maintainer awareness and make it more visible to anyone
+RULE:   looking at the package - see https://wiki.ubuntu.com/ToolChain/LTO.
+
 OK:
 TODO: - Ubuntu does not carry a delta
 TODO: - Ubuntu does carry a delta, but it is reasonable and maintenance under
@@ -510,9 +588,6 @@ TODO: - promoting this does not seem to cause issues for MOTUs that so far
 TODO:   maintained the package
 TODO: - no massive Lintian warnings
 TODO: - d/rules is rather clean
-TODO: - Does not have Built-Using
-TODO: - Go Package that follows the Debian Go packaging guidelines
-RULE:   (see https://go-team.pages.debian.net/packaging.html)
 TODO: - It is not on the lto-disabled list
 RULE:   (fix, or the work-around should be directly in the package,
 RULE:    see https://launchpad.net/ubuntu/+source/lto-disabled-list)
@@ -520,6 +595,19 @@ RULE:    see https://launchpad.net/ubuntu/+source/lto-disabled-list)
 TODO: Problems:
 
 [Upstream red flags]
+RULE: flag common issues like:
+RULE: - Errors/warnings during the build
+RULE: - Incautious use of malloc/sprintf
+RULE: - Uses of sudo, gksu, pkexec, or LD_LIBRARY_PATH (OK to be used in tests)
+RULE: - User nobody is strictly for NFS's use and must not be used by any
+RULE:   running processes on the system.
+RULE: - Use of setuid needs very careful design (prefer systemd to set those
+RULE:   for services)
+RULE: - Important bugs (crashers, etc) in Debian or Ubuntu
+RULE: - Dependency on webkit, qtwebkit, seed or libgoa-*
+RULE: - Embedded source copies (this happens frequently with Go upstreams)
+RULE: - if you see anything else odd, speak up and ask for clarification
+
 OK:
 TODO: - no Errors/warnings during the build
 TODO: - no incautious use of malloc/sprintf (as far as I can check it)
