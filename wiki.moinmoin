@@ -413,6 +413,10 @@ The Intent is to answer the primary decision '''"Will this package be well maint
 By default statements are in the ''OK'' section, but issues that need to be addressed should go to the ''Problem:'' sections (and briefly the summary at the top).
 
 {{{
+RULE: Since we sometimes have many such posts on one bug in case multiple
+RULE: packages are assocuated clearly state which one this is for.
+TODO: Review for Package: <TBD>
+
 [Summary]
 TODO: WRITE - <TBD> The essence of the review result from the MIR POV
 TODO-A: MIR team ACK
