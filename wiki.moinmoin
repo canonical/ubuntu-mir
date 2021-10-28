@@ -556,11 +556,12 @@ TODO: - does not run a daemon as root
 TODO: - does not use webkit1,2
 TODO: - does not use lib*v8 directly
 TODO: - does not parse data formats
-TODO: - does not open a port
+TODO: - does not open a port/socket
 TODO: - does not process arbitrary web content
 TODO: - does not use centralized online accounts
 TODO: - does not integrate arbitrary javascript into the desktop
 TODO: - does not deal with system authentication (eg, pam), etc)
+TODO: - does not deal with security attestation (secure boot, tpm, signatures)
 
 TODO-A: Problems:
 TODO-A: - <TBD>
