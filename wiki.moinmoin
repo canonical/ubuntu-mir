@@ -123,7 +123,7 @@ The reporter/reviewer is tasked to use the templates the following way:
   0. Some ''TODO'' lines can just be removed if they do not apply to the case, for example if you do not have "additional reasons" to state
   0. Sometimes mutually exclusive options are provided like "link to CVE" or "no security issues in the past", leave only those statements that apply.
    0. To assist the template-user those alternatives are marked like ''TODO-A:, TODO-B:, ...''. Of those one would usually expect only one to remain in the final content.
-  0. The MIR Team reviewer will have to judge, therefore all his statements start in an ''OK:'' section. But any time a violation is found the statement is moved to the ''Problems:'' area and flagged what is missing/expected. If no ''Problems:'' are present the header can be removed before posting.
+  0. The MIR Team reviewer will have to judge, therefore all his statements start in an ''OK:'' section. But any time a violation is found the statement is moved to the ''Problems:'' area and flagged what is missing/expected. If no ''Problems:'' are present leave just the alternative ''Problems: None'' for posting the review.
  0. Remove the lines starting with ''RULE'' after you have processed them
  0. Eventually all you will have left are the categories Availability, Rationale, ... and therin the answers that the MIR process expects
  0. You can and are encouraged to always add more details/background that make the case comprehensible
@@ -451,7 +451,9 @@ TODO: - no -dev/-debug/-doc packages that need exclusion
 TODO: - No dependencies in main that are only superficially tested requiring
 TODO:   more tests now.
 
-TODO: Problems:
+TODO-A: Problems:
+TODO-A: - <TBD>
+TODO-B: Problems: None
 
 [Embedded sources and static linking]
 RULE: - Embedding a library source increases the maintenance burden of a package
@@ -536,7 +538,9 @@ TODO-A:   - golang: shared builds
 TODO-B:   - golang: static builds are used, the team confirmed their commitment
 TODO-B:     to the additional responsibilities implied by static builds.
 
-TODO: Problems:
+TODO-A: Problems:
+TODO-A: - <TBD>
+TODO-B: Problems: None
 
 [Security]
 RULE: - Determine if the package may have security implications or history.
@@ -557,7 +561,9 @@ TODO: - does not use centralized online accounts
 TODO: - does not integrate arbitrary javascript into the desktop
 TODO: - does not deal with system authentication (eg, pam), etc)
 
-TODO: Problems:
+TODO-A: Problems:
+TODO-A: - <TBD>
+TODO-B: Problems: None
 
 [Common blockers]
 RULE: - There are plenty of testing requirements, hopefully already resolved
@@ -578,7 +584,9 @@ TODO: - no new python2 dependency
 TODO: - Python package, but using dh_python
 TODO: - Go package, but using dh-golang
 
-TODO: Problems:
+TODO-A: Problems:
+TODO-A: - <TBD>
+TODO-B: Problems: None
 
 [Packaging red flags]
 RULE: - Does Ubuntu carry a non necessary delta?
@@ -617,7 +625,9 @@ TODO: - It is not on the lto-disabled list
 RULE:   (fix, or the work-around should be directly in the package,
 RULE:    see https://launchpad.net/ubuntu/+source/lto-disabled-list)
 
-TODO: Problems:
+TODO-A: Problems:
+TODO-A: - <TBD>
+TODO-B: Problems: None
 
 [Upstream red flags]
 RULE: flag common issues:
@@ -639,7 +649,9 @@ TODO-B: - part of the UI, desktop file is ok
 TODO-A: - no translation present, but none needed for this case (user visible)?
 TODO-B: - translation present
 
-TODO: Problems:
+TODO-A: Problems:
+TODO-A: - <TBD>
+TODO-B: Problems: None
 }}}
 
 
