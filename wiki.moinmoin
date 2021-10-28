@@ -79,7 +79,7 @@ The MIR-bug reporter is expected to:
   1. use below template from [[#Main_Inclusion_requirements|Ubuntu Main Inclusion RULEs and TODOs]]
   1. For each rule include a positive or negative statment as confirmation that you checked each requirement carefully.
   1. For any rule violations ensure to explain why it should be ok for this case.
- 1. Subscribe `ubuntu-mir` to the bug report (do not assign it to anyone!), so that it appears in the [[https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir|MIR bug list]].
+ 1. Subscribe `ubuntu-mir` to the bug report (keep it in state "NEW" and do not assign it to anyone!), so that it appears in the [[https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir|MIR bug list]].
  1. The [[https://launchpad.net/~ubuntu-mir|MIR team]] reviews the reports, and sets acceptable ones to ''In Progress'' or ''Fix Committed''. They might also delegate portions of the review to other teams, by assigning it to them; common cases are getting a thorough security review from the [[https://launchpad.net/~ubuntu-security|security team]] (please see [[SecurityTeam/Auditing|SecurityTeam/Auditing]] for details on requesting an audit and the [[https://trello.com/b/HvFhIQpv/security-team|security team trello board]] (private board; Reviews lane) for prioritized list of MIR security reviews), or getting a sign-off from particular team leads about maintenance commitments.
   1. In the case where an MIR needs a security review, a normal MIR review will happen by a member of the MIR team and the security review by a member of the security team. Among these team members, whoever does the last review shall adjust the bug status accordingly. For instance, if MIR team says ok then security says ok, the security team member should mark the bug as Fix Committed (see above for other statuses).
   1. In case the MIR Team (or later other reviewers) identify tasks that need to be done the bug is set to "incomplete" to reflect that is back on the reporter to drive that forward before more progress can be made. Common Examples are "please add an automated test" or "this needs the new version"
@@ -96,34 +96,42 @@ Notes:
 === Templates and Rules ===
 
 It is the task of the reporter/reviewer to evaluate all the entries listed in
-''RULE'' sections and based on that to adapt all ''TODO'' entries to create
-the initial MIR request and/or the review feedback.
+''RULE'' sections and based on that to answer or adapt all ''TODO'' entries to
+create the content for the MIR request or the review feedback respectively.
 
 The sum of ''RULE'' sections is not meant to be complete without the ''TODO''
 entries. Only combined they define the full rules as that allows to avoid
 duplication.
+
 On one hand the ''TODO'' entries shall cover everything we expect from a report.
-These shall help to create a concise yet complete report/review.
+These shall help to create a concise yet complete content of each report/review.
+
 On the other hand the ''RULE'' entries provide additional background, details,
 options and interpretation help.
+
 In many cases where rules are rather simple they only appear as ''TODO'' as they
 do not need additional explanation.
 
-The reporter/reviewer is asked to use the templates the following way:
+The reporter/reviewer is tasked to use the templates the following way:
 
  0. Copy the full template below into an editor of your choice
  0. Read the lines starting with ''RULE'' for all aspects of the MIR
- 0. For each related line marked with ''TODO''
+ 0. For each line marked with ''TODO''
   0. Adapt the line to provide the correct answer matching the package(s) that you request.
   0. In some of those lines you'll need to replace placeholders '<TBD>' with whatever matches your request
-  0. Remove the ''TODO'' prefix
-  0. Sometimes mutually exclusive options are provided like "link to CVE" or "no security issues in the past", leave only those statements that apply
+  0. Remove the ''TODO'' prefix when you are sure you answered a statement
+  0. Some ''TODO'' lines can just be removed if they do not apply to the case, for example if you do not have "additional reasons" to state
+  0. Sometimes mutually exclusive options are provided like "link to CVE" or "no security issues in the past", leave only those statements that apply.
+   0. To assist the template-user those alternatives are marked like ''TODO-A:, TODO-B:, ...''. Of those one would usually expect only one to remain in the final content.
+  0. The MIR Team reviewer will have to judge, therefore all his statements start in an ''OK:'' section. But any time a violation is found the statement is moved to the ''Problems:'' area and flagged what is missing/expected. If no ''Problems:'' are present the header can be removed before posting.
  0. Remove the lines starting with ''RULE'' after you have processed them
  0. Eventually all you will have left are the categories Availability, Rationale, ... and therin the answers that the MIR process expects
  0. You can and are encouraged to always add more details/background that make the case comprehensible
- 0. Open the MIR Bug
+ 0. Update the MIR Bug
   0. Reporter: File the MIR bug based on the processed template as the bug description
+   0. In case of a single context/reasoning, but multiple packages to promote please provide the full content for each of them separated with ''---------------''. Be warned that Launchpad can only handle a certain amount of such tasks well, as a best practise if you have more than 10 packages consider splitting things into multiple bugs with one central one for tracking referencing all the others.
   0. MIR-Team: Review and add a comment to the bug that contains the review
+   0. In case of a single context/reasoning, but multiple packages MIR reviewers will do one review post per such package.
 
 
 === Main Inclusion requirements ===
@@ -144,8 +152,10 @@ TODO: Link to package [[https://launchpad.net/ubuntu/+source/<TBD>|<TBD>]]
 [Rationale]
 RULE: There must be a certain level of demand for the package
 TODO: - The package <TBD> is required in Ubuntu main for <TBD>
-TODO: - The package <TBD> is required in Ubuntu main being useful for a large
-TODO:   part of our user base
+TODO-A: - The package <TBD> will generally be useful for a large part of
+TODO-A:   our user base
+TODO-B: - The package <TBD> will not generally be useful for a large part of
+TODO-B:   our user base, but is important/helpful still because <TBD>
 TODO: - Additional reasons <TBD>
 TODO: - Additionally new use-cases enabled by this are <TBD>
 TODO: - Package <TBD> covers the same use case as <TBD>, but is better
@@ -166,17 +176,17 @@ RULE:   - Ubuntu CVE Tracker
 RULE:     - http://people.ubuntu.com/~ubuntu-security/cve/main.html
 RULE:     - http://people.ubuntu.com/~ubuntu-security/cve/universe.html
 RULE:     - http://people.ubuntu.com/~ubuntu-security/cve/partner.html
-TODO: - Had #<TBD> security issues in the past
-TODO:   - <TBD> links to such security issues in trackers
-TODO:   - <TBD> to any context that shows how these issues got handled in
-TODO:     the past
-TODO: - No CVEs in this software in the past
+TODO-A: - Had #<TBD> security issues in the past
+TODO-A:   - <TBD> links to such security issues in trackers
+TODO-A:   - <TBD> to any context that shows how these issues got handled in
+TODO-A:     the past
+TODO-B: - No CVEs/security issues in this software in the past
 
 RULE: - Check for security relevant binaries and behavior.
 RULE:   If any are present, this requires a more in-depth security review.
 TODO: - no `suid` or `sgid` binaries
-TODO: - no executables in `/sbin` and `/usr/sbin`
-TODO: - Binary <TBD> in sbin is no problem because <TBD>
+TODO-A: - no executables in `/sbin` and `/usr/sbin`
+TODO-B: - Binary <TBD> in sbin is no problem because <TBD>
 TODO: - Package does not install services
 TODO: - Package installs services, but they are safe because <TBD> (reduced
 TODO:   permissions, tmp env, restricted user, ...)
@@ -187,9 +197,9 @@ TODO:   (filters, scanners, plugins, UI skins, ...)
 [Quality assurance - function/usage]
 RULE: - After installing the package it must be possible to make it working with
 RULE:   a reasonable effort of configuration and documentation reading.
-TODO: - The package works well right after install
-TODO: - The package needs post install configuration or reading of
-TODO:   documentation, there isn't a safe default because <TBD>
+TODO-A: - The package works well right after install
+TODO-B: - The package needs post install configuration or reading of
+TODO-B:   documentation, there isn't a safe default because <TBD>
 
 [Quality assurance - maintenance]
 RULE: - To support a package, we must be reasonably convinced that upstream
@@ -201,24 +211,30 @@ TODO: - The package is maintained well in Debian/Ubuntu and has not too many
 TODO:   and long term critical bugs open
 TODO:   - Ubuntu https://bugs.launchpad.net/ubuntu/+source/<TBD>/+bug
 TODO:   - Debian https://bugs.debian.org/cgi-bin/pkgreport.cgi?src=<TBD>
-TODO: - Has important open bugs, listing them: <TBD>
-TODO: - The package does not deal with exotic hardware we cannot support
-TODO: - The package does deal with exotic hardware, it is present at <TBD>
-TODO:   to be able to test, fix and verify bugs
+TODO: - The package has important open bugs, listing them: <TBD>
+TODO-A: - The package does not deal with exotic hardware we cannot support
+TODO-B: - The package does deal with exotic hardware, it is present at <TBD>
+TODO-B:   to be able to test, fix and verify bugs
 
 [Quality assurance - testing]
 RULE: - The package must include a non-trivial test suite
 RULE:   - it should run at package build and fail the build if broken
+TODO-A: - The package runs a test suite on build time, if it fails
+TODO-A:   it makes the build fail, link to build log <TBD>
+TODO-B: - The package does not run a test at build time because <TBD>
+
 RULE:   - The package should, but is not required to, also contain
 RULE:     non-trivial autopkgtest(s).
+TODO-A: - The package runs an autopkgtest, and is currently passing on
+TODO-B:   this <TBD> list of architectures, link to test logs <TBD>
+TODO-B: - The package does not run an autopkgtest because <TBD>
+
 RULE: - existing but failing tests that shall be handled as "ok to fail"
 RULE:   need to be explained along the test logs below
-TODO: - The package runs a test suite on build time, if it fails
-TODO    it makes the build fail, link to build log <TBD>
-TODO: - The package does not run a test at build time because <TBD>
-TODO: - The package runs an autopkgtest, and is currently passing on
-TODO:   this <TBD> list of architectures, link to test logs <TBD>
-TODO: - The package does not run an autopkgtest because <TBD>
+TODO-A: - The package does have not failing autopkgtests right now
+TODO-B: - The package does have failing autopkgtests tests right now, but since
+TODO-B:   they always failed they are handled as "ignored failure", this is
+TODO-B:   ok because <TBD>
 
 RULE: - If no build tests nor autopkgtests are included, and/or if the package
 RULE:   requires specific hardware to perform testing, the subscribed team
@@ -255,9 +271,9 @@ RULE:   this is not possible (e.g. native packages), the package should either
 RULE:   provide a debian/README.source file or a debian/watch file (with
 RULE:   comments only) providing clear instructions on how to generate the
 RULE:   source tar file.
-TODO: - debian/watch is present and works
-TODO: - debian/watch is not present, instead it has <TBD>
-TODO: - debian/watch is not present because it is anative package
+TODO-A: - debian/watch is present and works
+TODO-B: - debian/watch is not present, instead it has <TBD>
+TODO-C: - debian/watch is not present because it is anative package
 
 RULE: - It is often useful to run `lintian --pedantic` on the package to spot
 RULE:   the most common packaging issues in advance
@@ -265,8 +281,8 @@ RULE: - Non-obvious or non-properly commented lintian overrides should be
 RULE:   explained
 TODO: - This package does not yield massive lintian Warnings, Errors
 TODO: - Link to recent build log including a lintian run <TBD>
-TODO: - Lintian overrides are present, but ok because <TBD>
-TODO: - Lintian overrides are not present
+TODO-A: - Lintian overrides are not present
+TODO-B: - Lintian overrides are present, but ok because <TBD>
 
 RULE: - The package should not rely on obsolete or about to be demoted packages.
 RULE:   That currently includes package dependencies on Python2 (without
@@ -275,39 +291,42 @@ TODO: - This package does not rely on obsolete or about to be demoted packages.
 TODO: - This package has no python2 or GTK2 dependencies
 
 RULE: - Debconf questions should not bother the default user too much
-TODO: - The package will be installed by default, but does not ask debconf
-TODO:   questions higher than medium
-TODO: - The package will not be installed by default
+TODO-A: - The package will be installed by default, but does not ask debconf
+TODO-A:   questions higher than medium
+TODO-B: - The package will not be installed by default
 
 RULE  - The source packaging (in debian/) should be reasonably easy to
 RULE:   understand and maintain.
-TODO: - Packaging and build is easy, link to d/rules <TBD>
-TODO: - Packaging is complex, but that is ok because <TBD>
+TODO-A: - Packaging and build is easy, link to d/rules <TBD>
+TODO-B: - Packaging is complex, but that is ok because <TBD>
 
 [UI standards]
-TODO: - Application is not end-user facing (does not need translation)
-TODO: - Application is end-user facing, Translation is present, via standard
-TODO:   intltool/gettext or similar build and runtime internationalization
-TODO:   system see <TBD>
-TODO: - End-user applications that ships a standard conformant desktop file,
-TODO:   see <TBD>
-TODO: - End-user applications without desktop file, not needed because <TBD>
+TODO-A: - Application is not end-user facing (does not need translation)
+TODO-B: - Application is end-user facing, Translation is present, via standard
+TODO-B:   intltool/gettext or similar build and runtime internationalization
+TODO-B:   system see <TBD>
+
+TODO-A: - End-user applications that ships a standard conformant desktop file,
+TODO-B:   see <TBD>
+TODO-B: - End-user applications without desktop file, not needed because <TBD>
 
 [Dependencies]
 RULE: - In case of alternative the preferred alternative must be in main.
 RULE: - Build(-only) dependencies can be in universe
 RULE: - If there are further dependencies they need a separate MIR discussion
 RULE:   (this can be a separate bug or another task on the main MIR bug)
-TODO: - No further depends or recommends dependencies that are not yet in main
-TODO: - There are further dependencies that are not yet in main, MIR for them is
-TODO:   at <TBD>
+TODO-A: - No further depends or recommends dependencies that are not yet in main
+TODO-B: - There are further dependencies that are not yet in main, MIR for them
+TODO-B:   is at <TBD>
+TODO-C: - There are further dependencies that are not yet in main, the MIR
+TODO-C:   process for them is handled as part of this bug here.
 
 [Standards compliance]
 RULE: - Major violations should be documented and justified.
 RULE:   - [[https://refspecs.linuxfoundation.org/fhs.shtml|FHS]]
 RULE:   - [[http://www.debian.org/doc/debian-policy/|Debian Policy]]
-TODO: - This package correctly follows FHS and Debian Policy
-TODO: - This package violates FHS or Debian Polciy, reasons for that are <TBD>
+TODO-A: - This package correctly follows FHS and Debian Policy
+TODO-B: - This package violates FHS or Debian Polciy, reasons for that are <TBD>
 
 [Maintenance/Owner]
 RULE: The package must have an acceptable level of maintenance corresponding
@@ -329,8 +348,8 @@ RULE:   or elsewhere (often Debian). Packages that deliver major new headline
 RULE:   features in Ubuntu need to have commitment from Ubuntu developers
 RULE:   willing to spend substantial time on them.
 TODO: - Owning Team will be <TBD>
-TODO: - Team is already subscribed to the package
-TODO: - Team is not yet, but will subscribe to the package before promotion
+TODO-A: - Team is already subscribed to the package
+TODO-B: - Team is not yet, but will subscribe to the package before promotion
 
 RULE: - Responsibilities implied by static builds promoted to main, which is
 RULE:   not a recommended but a common case with golang packages.
@@ -361,15 +380,15 @@ RULE:     - the owning team will provide timely, high quality updates for the
 RULE:       security team to sponsor to fix issues in the affected vendored code
 RULE:     - if subsequent uploads add new vendored components or dependencies
 RULE:       these have to be reviewed and agreed by the security team.
-TODO: - This does not use static builds
-TODO: - The team <TBD> is aware of the implications by a static build and
-TODO:   commits to test no-change-rebuilds and to fix any issues found for the
-TODO:   lifetime of the release (including ESM)
-TODO: - This does not use vendored code
-TODO: - The team <TBD> is aware of the implications of vendored code and (as
-TODO:   alerted by the security team) commits to provide updates to the security
-TODO:   team for any affected vendored code for the lifetime of the release
-TODO:   (including ESM).
+TODO-A: - This does not use static builds
+TODO-B: - The team <TBD> is aware of the implications by a static build and
+TODO-B:   commits to test no-change-rebuilds and to fix any issues found for the
+TODO-B:   lifetime of the release (including ESM)
+TODO-A: - This does not use vendored code
+TODO-B: - The team <TBD> is aware of the implications of vendored code and (as
+TODO-B:   alerted by the security team) commits to provide updates to the security
+TODO-B:   team for any affected vendored code for the lifetime of the release
+TODO-B:   (including ESM).
 
 [Background information]
 RULE: - The package descriptions should explain the general purpose and context
@@ -396,9 +415,10 @@ By default statements are in the ''OK'' section, but issues that need to be addr
 {{{
 [Summary]
 TODO: WRITE - <TBD> The essence of the review result from the MIR POV
-TODO: MIR team ACK
-TODO: MIR team NACK
-TODO: This does need a security review, so I'll assign ubuntu-security
+TODO-A: MIR team ACK
+TODO-B: MIR team NACK
+TODO-A: This does need a security review, so I'll assign ubuntu-security
+TODO-B: This does not need a security review
 TODO: List of specific binary packages to be promoted to main: <TBD>
 
 Notes:
@@ -429,7 +449,7 @@ TODO:   - not listed in seeded-in-ubuntu
 TODO:   - none of the built reverse-depends are in universe
 TODO: - no -dev/-debug/-doc packages that need exclusion
 TODO: - No dependencies in main that are only superficially tested requiring
-TODO:   more tests now?
+TODO:   more tests now.
 
 TODO: Problems:
 
@@ -506,14 +526,15 @@ RULE: - When it is infeasible to comply with this policy, the justification,
 RULE:   discussion and approval should all be clearly represented in the bug.
 
 OK:
-TODO: - not a go package, no extra constraints to consider in that regard
-TODO: - go package, extra constraints to consider
-TODO:   - Go Package that follows the Debian Go packaging guidelines
-TODO:   - vendoring is used, but the reasoning is sufficiently explained
-TODO:   - No vendoring used, all Built-Using are in main
-TODO:   - golang: shared builds
-TODO:   - golang: static builds are used, the team confirmed their commitment
-TODO:     to the additional responsibilities implied by static builds.
+TODO-A: - not a go package, no extra constraints to consider in that regard
+TODO-B: - Go Package that follows the Debian Go packaging guidelines
+
+TODO-A:   - vendoring is used, but the reasoning is sufficiently explained
+TODO-B:   - No vendoring used, all Built-Using are in main
+
+TODO-A:   - golang: shared builds
+TODO-B:   - golang: static builds are used, the team confirmed their commitment
+TODO-B:     to the additional responsibilities implied by static builds.
 
 TODO: Problems:
 
@@ -579,9 +600,9 @@ RULE:   to enforce maintainer awareness and make it more visible to anyone
 RULE:   looking at the package - see https://wiki.ubuntu.com/ToolChain/LTO.
 
 OK:
-TODO: - Ubuntu does not carry a delta
-TODO: - Ubuntu does carry a delta, but it is reasonable and maintenance under
-TODO:   control
+TODO-A: - Ubuntu does not carry a delta
+TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
+TODO-B:   control
 TODO: - symbols tracking is in place
 TODO: - symbols tracking not applicable for this kind of code.
 TODO: - d/watch is present and looks ok (if needed, e.g. non-native)
@@ -613,10 +634,10 @@ TODO: - use of setuid, but ok because <TBD> (prefer systemd to set those
 TODO:   for services)
 TODO: - no important open bugs (crashers, etc) in Debian or Ubuntu
 TODO: - no dependency on webkit, qtwebkit, seed or libgoa-*
-TODO: - not part of the UI for extra checks
-TODO: - part of the UI, desktop file is ok
-TODO: - no translation present, but none needed for this case (user visible)?
-TODO: - translation present
+TODO-A: - not part of the UI for extra checks
+TODO-B: - part of the UI, desktop file is ok
+TODO-A: - no translation present, but none needed for this case (user visible)?
+TODO-B: - translation present
 
 TODO: Problems:
 }}}
