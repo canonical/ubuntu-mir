@@ -421,6 +421,9 @@ TODO: Review for Package: <TBD>
 TODO: WRITE - <TBD> The essence of the review result from the MIR POV
 TODO-A: MIR team ACK
 TODO-B: MIR team NACK
+TODO-C: MIR team ACK under the constraint to resolve the below listed
+TODO-C: required TODOs and as much as possible having a look at the
+TODO-C: recommended TODOs.
 TODO-A: This does need a security review, so I'll assign ubuntu-security
 TODO-B: This does not need a security review
 TODO: List of specific binary packages to be promoted to main: <TBD>
