@@ -129,7 +129,7 @@ The reporter/reviewer is tasked to use the templates the following way:
  0. You can and are encouraged to always add more details/background that make the case comprehensible
  0. Update the MIR Bug
   0. Reporter: File the MIR bug based on the processed template as the bug description
-   0. In case of a single context/reasoning, but multiple packages to promote please provide the full content for each of them separated with ''---------------''. Be warned that Launchpad can only handle a certain amount of such tasks well, as a best practise if you have more than 10 packages consider splitting things into multiple bugs with one central one for tracking referencing all the others.
+   0. In case of a single context/reasoning, but multiple packages to promote please provide the full content for each of them separated with ''--- --- --- --- ---''. Be warned that Launchpad can only handle a certain amount of such tasks well, as a best practise if you have more than 10 packages consider splitting things into multiple bugs with one central one for tracking referencing all the others.
   0. MIR-Team: Review and add a comment to the bug that contains the review
    0. In case of a single context/reasoning, but multiple packages MIR reviewers will do one review post per such package.
 
