@@ -399,8 +399,8 @@ TODO-A: - Team is already subscribed to the package
 TODO-B: - Team is not yet, but will subscribe to the package before promotion
 
 RULE: - Responsibilities implied by static builds promoted to main, which is
-RULE:   not a recommended but a common case with golang packages.
-RULE:   - the security team will track CVEs for all golang packages in main
+RULE:   not a recommended but a common case with golang and rust packages.
+RULE:   - the security team will track CVEs for all vendored packages in main
 RULE:   - the security team will provide updates to main for all `golang-*-dev`
 RULE:     packages
 RULE:   - the security team will provide updates to main for non-vendored
@@ -536,7 +536,7 @@ RULE:   maintenance burden. For this reason, static linking in archive builds
 RULE:   is discouraged unless static linking is required for the package in
 RULE:   question to function correctly (e.g. an integrity scanner).
 RULE: - Does debian/control use `Built-Using`? This may indicate static linking
-RULE:   which should be discouraged (except golang, see below)
+RULE:   which should be discouraged (except golang/rust, see below)
 
 OK:
 TODO: - no embedded source present
@@ -579,8 +579,8 @@ RULE:    adjusting their packaging as necessary, all teams responsible for
 RULE:    golang packages coordinating on transitions and the requesting team
 RULE:    occasionally creating new `golang-*-dev` packages as agreed to in the
 RULE:    MIR bug (upstreaming to Debian whenever possible).
-RULE: - As a practical matter, golang source packages in main are not required
-RULE:   to remove unused embedded code copies.
+RULE: - As a practical matter, golang/rust source packages in main are not
+RULE    required to remove unused embedded code copies.
 RULE: - If based on the above options it's a statically compiled golang package:
 RULE:   - Does the package use dh-golang (if not, suggest dh-make-golang to
 RULE:     create the package)?
