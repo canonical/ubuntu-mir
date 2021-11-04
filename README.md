@@ -403,13 +403,12 @@ RULE:   not a recommended but a common case with golang packages.
 RULE:   - the security team will track CVEs for all golang packages in main
 RULE:   - the security team will provide updates to main for all `golang-*-dev`
 RULE:     packages
-RULE:   - the security team will provide updates to main for golang applications
-RULE:     whose non-vendored source code is affected as per normal procedures
-RULE:     (including e.g., sponsoring/coordinating uploads from teams/upstream
-RULE:     projects, etc)
+RULE:   - the security team will provide updates to main for non-vendored
+RULE:     dependencies as per normal procedures (including e.g.,
+RULE:     sponsoring/coordinating uploads from teams/upstream projects, etc)
 RULE:   - the security team will perform no-change-rebuilds for all packages
-RULE:     Built-Using `golang-*-dev` packages it has provided, and coordinate
-RULE:     testing with the owning teams responsible for the rebuilt packages
+RULE:     listing an CVE-fixed package as Built-Using and coordinate testing
+RULE:     with the owning teams responsible for the rebuilt packages
 RULE:   - for packages that build using any `golang-*-dev` packages:
 RULE:     - the owning team must state their commitment to test
 RULE:       no-change-rebuilds triggered by a dependent library/compiler and to
@@ -542,7 +541,7 @@ RULE:   which should be discouraged (except golang, see below)
 OK:
 TODO: - no embedded source present
 TODO: - no static linking
-TODO: - does not have odd Built-Using entries
+TODO: - does not have unexpected Built-Using entries
 
 RULE: Golang
 RULE: - golang 1.4 packages and earlier could only statically compile their
@@ -558,8 +557,8 @@ RULE:   libraries during this period, the MIR team decided for 17.10 and later
 RULE:   to allow static builds of golang packages in main, so long as the number
 RULE:   of these packages remains low and they follow the guidelines below:
 RULE:   - golang applications in main are expected:
-RULE:       1. to build using `golang-*-dev` packages from the Ubuntu archive
-RULE:          with `Built-Using` in debian/control. This requirement ensures
+RULE:       1. to build golang use `golang-*-dev` packages creating
+RULE:          `Built-Using` in debian/control. This requirement ensures
 RULE:          that the security team is able to track security issues for all
 RULE:          affected static binary packages
 RULE:       2. not to build any vendored (i.e. embedded) code in the source
