@@ -426,15 +426,39 @@ RULE:     - the owning team will provide timely, high quality updates for the
 RULE:       security team to sponsor to fix issues in the affected vendored code
 RULE:     - if subsequent uploads add new vendored components or dependencies
 RULE:       these have to be reviewed and agreed by the security team.
+RULE: - The rust ecosystem currently isn't yet considered stable enough for
+RULE:   classic lib dependencies and transitions in main; therefore the
+RULE:   expectation for those packages is to vendor (and own/test) all
+RULE:   dependencies (except those provided by the rust runtime itself).
+RULE:   This implies that all the rules for vendored builds always
+RULE:   apply to them. In addition
+RULE:   - Rust builds using librust-*-dev packges will populate the attribute
+RULE:     `X-Cargo-Built-Using`, right now this is expected not to be present.
+RULE:   - It is expected rust builds will use dh-cargo so that a later switch
+RULE:     to proper package dependencies isn't too hard (e.g. it is likely
+RULE:     that over time some more common/stable libs shall come from proper
+RULE:     archive packages).
+RULE: - All vendored dependencies (no matter what language) shall have a
+RULE:   way to be refreshed (recommended is a documentation README.source and
+RULE:   scripts in debian/
 TODO-A: - This does not use static builds
 TODO-B: - The team TBD is aware of the implications by a static build and
 TODO-B:   commits to test no-change-rebuilds and to fix any issues found for the
 TODO-B:   lifetime of the release (including ESM)
+
 TODO-A: - This does not use vendored code
 TODO-B: - The team TBD is aware of the implications of vendored code and (as
 TODO-B:   alerted by the security team) commits to provide updates to the security
 TODO-B:   team for any affected vendored code for the lifetime of the release
 TODO-B:   (including ESM).
+
+TODO-A: - This package is not rust based
+TODO-B: - This package is rust based and vendors all non language-runtime
+TODO-B:   dependencies
+
+TODO-A: - This package is not rust based
+TODO-B: - This package is rust based, refreshing vendored code is outlined
+TODO-B:   in <TBD>
 
 RULE: - if there has been an archive test rebuild that has occurred more recently
 RULE:   than the last upload, the package must have rebuilt successfully
@@ -603,6 +627,15 @@ TODO-B:   - No vendoring used, all Built-Using are in main
 TODO-A:   - golang: shared builds
 TODO-B:   - golang: static builds are used, the team confirmed their commitment
 TODO-B:     to the additional responsibilities implied by static builds.
+
+TODO-A: - not a rust package, no extra constraints to consider in that regard
+TODO-B: - rust package that has all dependencies vendored
+TODO-B: - rust package does not have X-Cargo-Built-Using (after build)
+TODO-B: - rust package does use dh_cargo (dh ... --buildsystem cargo)
+
+TODO-A: - Includes vendored code, the package has documented how to refresh this
+TODO-A:   code at <TBD>
+TODO-B: - Does not include vendored code
 
 TODO-A: Problems:
 TODO-A: - TBD
