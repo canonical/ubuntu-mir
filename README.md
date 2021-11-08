@@ -400,7 +400,7 @@ TODO-B: - Team is not yet, but will subscribe to the package before promotion
 
 RULE: - Responsibilities implied by static builds promoted to main, which is
 RULE:   not a recommended but a common case with golang and rust packages.
-RULE:   - the security team will track CVEs for all vendored packages in main
+RULE:   - the security team will track CVEs for all vendored/embedded sources in main
 RULE:   - the security team will provide updates to main for all `golang-*-dev`
 RULE:     packages
 RULE:   - the security team will provide updates to main for non-vendored
