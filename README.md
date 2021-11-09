@@ -426,6 +426,18 @@ RULE:     - the owning team will provide timely, high quality updates for the
 RULE:       security team to sponsor to fix issues in the affected vendored code
 RULE:     - if subsequent uploads add new vendored components or dependencies
 RULE:       these have to be reviewed and agreed by the security team.
+RULE:     - Such updates in the project might be trivial, but imply that a
+RULE:       dependency for e.g. a CVE fix will be moved to a new major version.
+RULE:       Being vendored that does gladly at least not imply incompatibility
+RULE:       issues with other packages or the SRU policy. But it might happen
+RULE:       that this triggers either:
+RULE:       a) The need to adapt the current version of the main package and/or
+RULE:          other vendored dependencies to work with the new dependency
+RULE:       b) The need to backport the fix in the dependency as the main
+RULE:          package will functionally only work well with the older version
+RULE:       c) The need to backport the fix in the dependency, as it would imply
+RULE:          requiring a newer toolchain to be buildable that isn't available
+RULE:          in the target release.
 RULE: - The rust ecosystem currently isn't yet considered stable enough for
 RULE:   classic lib dependencies and transitions in main; therefore the
 RULE:   expectation for those packages is to vendor (and own/test) all
@@ -448,9 +460,9 @@ TODO-B:   lifetime of the release (including ESM)
 
 TODO-A: - This does not use vendored code
 TODO-B: - The team TBD is aware of the implications of vendored code and (as
-TODO-B:   alerted by the security team) commits to provide updates to the security
-TODO-B:   team for any affected vendored code for the lifetime of the release
-TODO-B:   (including ESM).
+TODO-B:   alerted by the security team) commits to provide updates and backports
+TODO-B:   to the security team for any affected vendored code for the lifetime
+TODO-B:   of the release (including ESM).
 
 TODO-A: - This package is not rust based
 TODO-B: - This package is rust based and vendors all non language-runtime
