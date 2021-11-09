@@ -612,7 +612,7 @@ RULE:   - Does debian/control use `Built-Using: ${misc:Built-Using}` for each
 RULE:     non'-dev' binary package (importantly, golang-*-dev packages only
 RULE:     ship source files so don't need Built-Using)?
 RULE:   - Does the package follow
-RULE:     [[http://pkg-go.alioth.debian.org/packaging.html|Debian Go packaging]]
+RULE:     [[https://go-team.pages.debian.net/packaging.html|Debian Go packaging]]
 RULE:     guidelines?
 RULE: - When it is infeasible to comply with this policy, the justification,
 RULE:   discussion and approval should all be clearly represented in the bug.
