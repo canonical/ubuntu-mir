@@ -447,9 +447,9 @@ RULE:   apply to them. In addition
 RULE:   - Rust builds using librust-*-dev packges will populate the attribute
 RULE:     `X-Cargo-Built-Using`, right now this is expected not to be present.
 RULE:   - It is expected rust builds will use dh-cargo so that a later switch
-RULE:     to proper package dependencies isn't too hard (e.g. it is likely
-RULE:     that over time some more common/stable libs shall come from proper
-RULE:     archive packages).
+RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
+RULE:     that over time more common libs shall become stable and then archive
+RULE:     packages will be used to build).
 RULE: - All vendored dependencies (no matter what language) shall have a
 RULE:   way to be refreshed (recommended is a documentation README.source and
 RULE:   scripts in debian/
