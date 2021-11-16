@@ -451,8 +451,7 @@ RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
 RULE:     that over time more common libs shall become stable and then archive
 RULE:     packages will be used to build).
 RULE: - All vendored dependencies (no matter what language) shall have a
-RULE:   way to be refreshed (recommended is a documentation README.source and
-RULE:   scripts in debian/
+RULE:   way to be refreshed
 TODO-A: - This does not use static builds
 TODO-B: - The team TBD is aware of the implications by a static build and
 TODO-B:   commits to test no-change-rebuilds and to fix any issues found for the
@@ -464,13 +463,17 @@ TODO-B:   alerted by the security team) commits to provide updates and backports
 TODO-B:   to the security team for any affected vendored code for the lifetime
 TODO-B:   of the release (including ESM).
 
+TODO-A: - This does not use vendored code
+TODO-B: - This package uses vendored go code tracked in go.mod as shiped in the
+TODO-B:   package, refreshing that code works via `go mod ...`.
+TODO-C: - This package uses vendored rust code tracked in Cargo.lock as shipped,
+TODO-C:   in the package, refreshing that code works via `cargo update ...`.
+TODO-D: - This package uses vendored code, refreshing that code is outlined
+TODO-D:   in debian/README.source
+
 TODO-A: - This package is not rust based
 TODO-B: - This package is rust based and vendors all non language-runtime
 TODO-B:   dependencies
-
-TODO-A: - This package is not rust based
-TODO-B: - This package is rust based, refreshing vendored code is outlined
-TODO-B:   in <TBD>
 
 RULE: - if there has been an archive test rebuild that has occurred more recently
 RULE:   than the last upload, the package must have rebuilt successfully
