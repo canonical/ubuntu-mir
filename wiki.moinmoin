@@ -454,7 +454,8 @@ OK:
 TODO: - no other Dependencies to MIR due to this
 TODO:   - checked with check-mir
 TODO:   - not listed in seeded-in-ubuntu
-TODO:   - none of the built reverse-depends are in universe
+TODO:   - none of the (potentially auto-generated) dependencies (Depends
+TODO:     and Recommends) that are present after build are not in main
 TODO: - no -dev/-debug/-doc packages that need exclusion
 TODO: - No dependencies in main that are only superficially tested requiring
 TODO:   more tests now.
