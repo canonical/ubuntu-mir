@@ -187,9 +187,14 @@ RULE:   If any are present, this requires a more in-depth security review.
 TODO: - no `suid` or `sgid` binaries
 TODO-A: - no executables in `/sbin` and `/usr/sbin`
 TODO-B: - Binary <TBD> in sbin is no problem because <TBD>
-TODO: - Package does not install services
-TODO: - Package installs services, but they are safe because <TBD> (reduced
-TODO:   permissions, tmp env, restricted user, ...)
+TODO-A: - Package does not install services, timers or recurring jobs
+TODO-B: - Package does install services, timers or recurring jobs
+TODO-B:   <TBD> (list services, timers, jobs)
+TODO-C: - Package does install services, timers or recurring jobs
+TODO-C:   <TBD> (list services, timers, jobs)
+TODO-C:   Those have the following security features: <TBD> (add details like
+TODO-C:   reduced permissions, temp envronment, restricted users/groups,
+TODO-C:   seccomp, apparmor, ...)
 TODO: - Packages does not open privileged ports (ports < 1024)
 TODO: - Packages does not contain extensions to security-sensitive software
 TODO:   (filters, scanners, plugins, UI skins, ...)
