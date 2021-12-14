@@ -443,9 +443,13 @@ RULE:   classic lib dependencies and transitions in main; therefore the
 RULE:   expectation for those packages is to vendor (and own/test) all
 RULE:   dependencies (except those provided by the rust runtime itself).
 RULE:   This implies that all the rules for vendored builds always
-RULE:   apply to them. In addition
+RULE:   apply to them. In addition:
+RULE:   - The rules and checks for rust based packges are preliminary and might
+RULE:     change while finalizing the rust toolchain in main and while
+RULE:     processing the first few rust based packages.
 RULE:   - Rust builds using librust-*-dev packges will populate the attribute
-RULE:     `X-Cargo-Built-Using`, right now this is expected not to be present.
+RULE:     `Built-Using`, right now this is expected not to be present as
+RULE:      - for now - all rust dependencies shall be vendored.
 RULE:   - It is expected rust builds will use dh-cargo so that a later switch
 RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
 RULE:     that over time more common libs shall become stable and then archive
@@ -576,6 +580,10 @@ RULE:   is discouraged unless static linking is required for the package in
 RULE:   question to function correctly (e.g. an integrity scanner).
 RULE: - Does debian/control use `Built-Using`? This may indicate static linking
 RULE:   which should be discouraged (except golang/rust, see below)
+RULE:   - Especially for rust - where toolchain and dh tools are new and still
+RULE:     changing a lot - please double check to not only have no Built-Using
+RULE:     entry, but also that there is no code of librust-*-dev used that just
+RULE:     happened to be missed while generating Built-Using.
 
 OK:
 TODO: - no embedded source present
@@ -644,9 +652,11 @@ TODO-B:   - golang: static builds are used, the team confirmed their commitment
 TODO-B:     to the additional responsibilities implied by static builds.
 
 TODO-A: - not a rust package, no extra constraints to consider in that regard
-TODO-B: - rust package that has all dependencies vendored
-TODO-B: - rust package does not have X-Cargo-Built-Using (after build)
-TODO-B: - rust package does use dh_cargo (dh ... --buildsystem cargo)
+TODO-B: - Rust package that has all dependencies vendored. It does neither
+TODO-B:   have *Built-Using (after build). Nor does the biuld log indicate
+TODO-B:   built-in sources that are missed to be reported as Built-Using.
+
+TODO: - rust package using dh_cargo (dh ... --buildsystem cargo)
 
 TODO-A: - Includes vendored code, the package has documented how to refresh this
 TODO-A:   code at <TBD>
