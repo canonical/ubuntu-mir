@@ -163,6 +163,18 @@ TODO:   because <TBD>, thereby we want to replace it.
 TODO: - The package <TBD> is a new runtime dependency of package <TBD> that
 TODO:   we already support
 
+RULE: Reviews will take some time. Also the potential extra work out of review
+RULE: feedback from either MIR-team and/or security-team will take time.
+RULE: For better priorization it is quite helpful to clearly state the
+RULE: target release and set a milestone to the bug task.
+RULE: When doing so do not describe what you "wish" or "would like to have".
+RULE: Only milestones that are sufficiently well-founded and related to
+RULE: major releases will be considerd
+TODO-A: - The package <TBD> is required in Ubuntu main no later than <TBD>
+TODO-A:   due to <TBD>
+TODO-B: - It would be great and useful to community/processes to have the
+TODO-B:   package <TBD> in Ubuntu main, but there is no definitive deadline.
+
 [Security]
 RULE: The security history and the current state of security issues in the
 RULE: package must allow us to support the package for at least 9 months (120
