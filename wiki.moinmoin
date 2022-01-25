@@ -169,7 +169,7 @@ RULE: For better priorization it is quite helpful to clearly state the
 RULE: target release and set a milestone to the bug task.
 RULE: When doing so do not describe what you "wish" or "would like to have".
 RULE: Only milestones that are sufficiently well-founded and related to
-RULE: major releases will be considerd
+RULE: major releases will be considered
 TODO-A: - The package <TBD> is required in Ubuntu main no later than <TBD>
 TODO-A:   due to <TBD>
 TODO-B: - It would be great and useful to community/processes to have the
