@@ -118,7 +118,7 @@ The reporter/reviewer is tasked to use the templates the following way:
  0. Read the lines starting with ''RULE'' for all aspects of the MIR
  0. For each line marked with ''TODO''
   0. Adapt the line to provide the correct answer matching the package(s) that you request.
-  0. In some of those lines you'll need to replace placeholders '<TBD>' with whatever matches your request
+  0. In some of those lines you'll need to replace placeholders 'TBD' and 'TBDSRC' with whatever matches your request
   0. Remove the ''TODO'' prefix when you are sure you answered a statement
   0. Some ''TODO'' lines can just be removed if they do not apply to the case, for example if you do not have "additional reasons" to state
   0. Sometimes mutually exclusive options are provided like "link to CVE" or "no security issues in the past", leave only those statements that apply.
@@ -144,23 +144,23 @@ The package must fulfill the following requirements.
 
 {{{
 [Availability]
-TODO: The package <TBD> is already in Ubuntu universe.
-TODO: The package <TBD> build for the architectures it is designed to work on.
-TODO: It currently builds and works for architetcures: <TBD>
-TODO: Link to package [[https://launchpad.net/ubuntu/+source/<TBD>|<TBD>]]
+TODO: The package TBDSRC is already in Ubuntu universe.
+TODO: The package TBDSRC build for the architectures it is designed to work on.
+TODO: It currently builds and works for architetcures: TBD
+TODO: Link to package [[https://launchpad.net/ubuntu/+source/TBDSRC|TBDSRC]]
 
 [Rationale]
 RULE: There must be a certain level of demand for the package
-TODO: - The package <TBD> is required in Ubuntu main for <TBD>
-TODO-A: - The package <TBD> will generally be useful for a large part of
+TODO: - The package TBDSRC is required in Ubuntu main for TBD
+TODO-A: - The package TBDSRC will generally be useful for a large part of
 TODO-A:   our user base
-TODO-B: - The package <TBD> will not generally be useful for a large part of
-TODO-B:   our user base, but is important/helpful still because <TBD>
-TODO: - Additional reasons <TBD>
-TODO: - Additionally new use-cases enabled by this are <TBD>
-TODO: - Package <TBD> covers the same use case as <TBD>, but is better
-TODO:   because <TBD>, thereby we want to replace it.
-TODO: - The package <TBD> is a new runtime dependency of package <TBD> that
+TODO-B: - The package TBDSRC will not generally be useful for a large part of
+TODO-B:   our user base, but is important/helpful still because TBD
+TODO: - Additional reasons TBD
+TODO: - Additionally new use-cases enabled by this are TBD
+TODO: - Package TBDSRC covers the same use case as TBD, but is better
+TODO:   because TBD, thereby we want to replace it.
+TODO: - The package TBDSRC is a new runtime dependency of package TBD that
 TODO:   we already support
 
 RULE: Reviews will take some time. Also the potential extra work out of review
@@ -185,9 +185,9 @@ RULE:     http://cve.mitre.org/cve/search_cve_list.html
 RULE:   - check OSS security mailing list (feed into search engine
 RULE:     'site:www.openwall.com/lists/oss-security <pkgname>')
 RULE:   - Ubuntu CVE Tracker:  https://ubuntu.com/security/cve?package=<source-package-name>
-TODO-A: - Had #<TBD> security issues in the past
-TODO-A:   - <TBD> links to such security issues in trackers
-TODO-A:   - <TBD> to any context that shows how these issues got handled in
+TODO-A: - Had #TBD security issues in the past
+TODO-A:   - TBD links to such security issues in trackers
+TODO-A:   - TBD to any context that shows how these issues got handled in
 TODO-A:     the past
 TODO-B: - No CVEs/security issues in this software in the past
 
@@ -195,13 +195,13 @@ RULE: - Check for security relevant binaries and behavior.
 RULE:   If any are present, this requires a more in-depth security review.
 TODO: - no `suid` or `sgid` binaries
 TODO-A: - no executables in `/sbin` and `/usr/sbin`
-TODO-B: - Binary <TBD> in sbin is no problem because <TBD>
+TODO-B: - Binary TBD in sbin is no problem because TBD
 TODO-A: - Package does not install services, timers or recurring jobs
 TODO-B: - Package does install services, timers or recurring jobs
-TODO-B:   <TBD> (list services, timers, jobs)
+TODO-B:   TBD (list services, timers, jobs)
 TODO-C: - Package does install services, timers or recurring jobs
-TODO-C:   <TBD> (list services, timers, jobs)
-TODO-C:   Those have the following security features: <TBD> (add details like
+TODO-C:   TBD (list services, timers, jobs)
+TODO-C:   Those have the following security features: TBD (add details like
 TODO-C:   reduced permissions, temp envronment, restricted users/groups,
 TODO-C:   seccomp, apparmor, ...)
 TODO: - Packages does not open privileged ports (ports < 1024)
@@ -213,7 +213,7 @@ RULE: - After installing the package it must be possible to make it working with
 RULE:   a reasonable effort of configuration and documentation reading.
 TODO-A: - The package works well right after install
 TODO-B: - The package needs post install configuration or reading of
-TODO-B:   documentation, there isn't a safe default because <TBD>
+TODO-B:   documentation, there isn't a safe default because TBD
 
 [Quality assurance - maintenance]
 RULE: - To support a package, we must be reasonably convinced that upstream
@@ -223,32 +223,32 @@ RULE:   tracking systems must be evaluated. Important bugs must be pointed out
 RULE:   and discussed in the MIR report.
 TODO: - The package is maintained well in Debian/Ubuntu and has not too many
 TODO:   and long term critical bugs open
-TODO:   - Ubuntu https://bugs.launchpad.net/ubuntu/+source/<TBD>/+bug
-TODO:   - Debian https://bugs.debian.org/cgi-bin/pkgreport.cgi?src=<TBD>
-TODO: - The package has important open bugs, listing them: <TBD>
+TODO:   - Ubuntu https://bugs.launchpad.net/ubuntu/+source/TBDSRC/+bug
+TODO:   - Debian https://bugs.debian.org/cgi-bin/pkgreport.cgi?src=TBDSRC
+TODO: - The package has important open bugs, listing them: TBD
 TODO-A: - The package does not deal with exotic hardware we cannot support
-TODO-B: - The package does deal with exotic hardware, it is present at <TBD>
+TODO-B: - The package does deal with exotic hardware, it is present at TBD
 TODO-B:   to be able to test, fix and verify bugs
 
 [Quality assurance - testing]
 RULE: - The package must include a non-trivial test suite
 RULE:   - it should run at package build and fail the build if broken
 TODO-A: - The package runs a test suite on build time, if it fails
-TODO-A:   it makes the build fail, link to build log <TBD>
-TODO-B: - The package does not run a test at build time because <TBD>
+TODO-A:   it makes the build fail, link to build log TBD
+TODO-B: - The package does not run a test at build time because TBD
 
 RULE:   - The package should, but is not required to, also contain
 RULE:     non-trivial autopkgtest(s).
 TODO-A: - The package runs an autopkgtest, and is currently passing on
-TODO-B:   this <TBD> list of architectures, link to test logs <TBD>
-TODO-B: - The package does not run an autopkgtest because <TBD>
+TODO-B:   this TBD list of architectures, link to test logs TBD
+TODO-B: - The package does not run an autopkgtest because TBD
 
 RULE: - existing but failing tests that shall be handled as "ok to fail"
 RULE:   need to be explained along the test logs below
 TODO-A: - The package does have not failing autopkgtests right now
 TODO-B: - The package does have failing autopkgtests tests right now, but since
 TODO-B:   they always failed they are handled as "ignored failure", this is
-TODO-B:   ok because <TBD>
+TODO-B:   ok because TBD
 
 RULE: - If no build tests nor autopkgtests are included, and/or if the package
 RULE:   requires specific hardware to perform testing, the subscribed team
@@ -258,9 +258,9 @@ RULE:   at least once each release cycle. In the comment to the MIR bug,
 RULE:   please link to the codebase of these tests (scripts or doc of manual
 RULE:   steps) and attach a full log of these test runs. This is meant to
 RULE:   assess their validity (e.g. not just superficial)
-TODO: - The package can not be tested at build or autopktest time because <TBD>
-TODO:   to make up for that here <TBD> is a test plan/automation and example
-TODO:   test <TBD> (logs/scripts)
+TODO: - The package can not be tested at build or autopktest time because TBD
+TODO:   to make up for that here TBD is a test plan/automation and example
+TODO:   test TBD (logs/scripts)
 
 RULE: - In some cases a solution that is about to be promoted consists of
 RULE:   several very small libraries and one actual application uniting them
@@ -277,7 +277,7 @@ RULE:   - Since this might promote micro-lib packages to main with less than
 RULE:     the common level of QA any further MIRed program using them will have
 RULE:     to provide the same amount of increased testing.
 TODO: - This package is minimal and will be tested in a more wide reaching
-TODO:   solution context <TBD>, details about this testing are here <TBD>
+TODO:   solution context TBD, details about this testing are here TBD
 
 [Quality assurance - packaging]
 RULE: - The package uses a debian/watch file whenever possible. In cases where
@@ -286,7 +286,7 @@ RULE:   provide a debian/README.source file or a debian/watch file (with
 RULE:   comments only) providing clear instructions on how to generate the
 RULE:   source tar file.
 TODO-A: - debian/watch is present and works
-TODO-B: - debian/watch is not present, instead it has <TBD>
+TODO-B: - debian/watch is not present, instead it has TBD
 TODO-C: - debian/watch is not present because it is anative package
 
 RULE: - It is often useful to run `lintian --pedantic` on the package to spot
@@ -294,9 +294,9 @@ RULE:   the most common packaging issues in advance
 RULE: - Non-obvious or non-properly commented lintian overrides should be
 RULE:   explained
 TODO: - This package does not yield massive lintian Warnings, Errors
-TODO: - Link to recent build log including a lintian run <TBD>
+TODO: - Link to recent build log including a lintian run TBD
 TODO-A: - Lintian overrides are not present
-TODO-B: - Lintian overrides are present, but ok because <TBD>
+TODO-B: - Lintian overrides are present, but ok because TBD
 
 RULE: - The package should not rely on obsolete or about to be demoted packages.
 RULE:   That currently includes package dependencies on Python2 (without
@@ -311,18 +311,18 @@ TODO-B: - The package will not be installed by default
 
 RULE  - The source packaging (in debian/) should be reasonably easy to
 RULE:   understand and maintain.
-TODO-A: - Packaging and build is easy, link to d/rules <TBD>
-TODO-B: - Packaging is complex, but that is ok because <TBD>
+TODO-A: - Packaging and build is easy, link to d/rules TBD
+TODO-B: - Packaging is complex, but that is ok because TBD
 
 [UI standards]
 TODO-A: - Application is not end-user facing (does not need translation)
 TODO-B: - Application is end-user facing, Translation is present, via standard
 TODO-B:   intltool/gettext or similar build and runtime internationalization
-TODO-B:   system see <TBD>
+TODO-B:   system see TBD
 
 TODO-A: - End-user applications that ships a standard conformant desktop file,
-TODO-B:   see <TBD>
-TODO-B: - End-user applications without desktop file, not needed because <TBD>
+TODO-B:   see TBD
+TODO-B: - End-user applications without desktop file, not needed because TBD
 
 [Dependencies]
 RULE: - In case of alternative the preferred alternative must be in main.
@@ -331,7 +331,7 @@ RULE: - If there are further dependencies they need a separate MIR discussion
 RULE:   (this can be a separate bug or another task on the main MIR bug)
 TODO-A: - No further depends or recommends dependencies that are not yet in main
 TODO-B: - There are further dependencies that are not yet in main, MIR for them
-TODO-B:   is at <TBD>
+TODO-B:   is at TBD
 TODO-C: - There are further dependencies that are not yet in main, the MIR
 TODO-C:   process for them is handled as part of this bug here.
 
@@ -340,7 +340,7 @@ RULE: - Major violations should be documented and justified.
 RULE:   - [[https://refspecs.linuxfoundation.org/fhs.shtml|FHS]]
 RULE:   - [[http://www.debian.org/doc/debian-policy/|Debian Policy]]
 TODO-A: - This package correctly follows FHS and Debian Policy
-TODO-B: - This package violates FHS or Debian Polciy, reasons for that are <TBD>
+TODO-B: - This package violates FHS or Debian Polciy, reasons for that are TBD
 
 [Maintenance/Owner]
 RULE: The package must have an acceptable level of maintenance corresponding
@@ -361,7 +361,7 @@ RULE:   developers paying attention to their bugs, whether that be in Ubuntu
 RULE:   or elsewhere (often Debian). Packages that deliver major new headline
 RULE:   features in Ubuntu need to have commitment from Ubuntu developers
 RULE:   willing to spend substantial time on them.
-TODO: - Owning Team will be <TBD>
+TODO: - Owning Team will be TBD
 TODO-A: - Team is already subscribed to the package
 TODO-B: - Team is not yet, but will subscribe to the package before promotion
 
@@ -395,11 +395,11 @@ RULE:       security team to sponsor to fix issues in the affected vendored code
 RULE:     - if subsequent uploads add new vendored components or dependencies
 RULE:       these have to be reviewed and agreed by the security team.
 TODO-A: - This does not use static builds
-TODO-B: - The team <TBD> is aware of the implications by a static build and
+TODO-B: - The team TBD is aware of the implications by a static build and
 TODO-B:   commits to test no-change-rebuilds and to fix any issues found for the
 TODO-B:   lifetime of the release (including ESM)
 TODO-A: - This does not use vendored code
-TODO-B: - The team <TBD> is aware of the implications of vendored code and (as
+TODO-B: - The team TBD is aware of the implications of vendored code and (as
 TODO-B:   alerted by the security team) commits to provide updates to the security
 TODO-B:   team for any affected vendored code for the lifetime of the release
 TODO-B:   (including ESM).
@@ -411,9 +411,9 @@ RULE:   the MIR report.
 RULE: - If the package was renamed recently, or has a different upstream name,
 RULE:   this needs to be explained in the MIR report.
 TODO: The Package description explains the package well
-TODO: Upstream Name is <TBD>
-TODO: Link to upstream project <TBD>
-TODO: <TBD> (any further background that might be helpful
+TODO: Upstream Name is TBD
+TODO: Link to upstream project TBD
+TODO: TBD (any further background that might be helpful
 }}}
 
 == Reviewing a bug ==
@@ -429,10 +429,10 @@ By default statements are in the ''OK'' section, but issues that need to be addr
 {{{
 RULE: Since we sometimes have many such posts on one bug in case multiple
 RULE: packages are assocuated clearly state which one this is for.
-TODO: Review for Package: <TBD>
+TODO: Review for Package: TBDSRC
 
 [Summary]
-TODO: WRITE - <TBD> The essence of the review result from the MIR POV
+TODO: WRITE - TBD The essence of the review result from the MIR POV
 TODO-A: MIR team ACK
 TODO-B: MIR team NACK
 TODO-C: MIR team ACK under the constraint to resolve the below listed
@@ -440,19 +440,19 @@ TODO-C: required TODOs and as much as possible having a look at the
 TODO-C: recommended TODOs.
 TODO-A: This does need a security review, so I'll assign ubuntu-security
 TODO-B: This does not need a security review
-TODO: List of specific binary packages to be promoted to main: <TBD>
-TODO: Specific binary packages built, but NOT to be promoted to main: <TBD>
+TODO: List of specific binary packages to be promoted to main: TBD
+TODO: Specific binary packages built, but NOT to be promoted to main: TBD
 
 Notes:
 TODO: - add todos, issues or special cases to discuss
 Required TODOs:
-TODO: - <TBD>
+TODO: - TBD
 Recommended TODOs:
 RULE: - Does it have a team bug subscriber? (This is not a blocker for a MIR
 RULE:   team ACK, but needs to be provided before the package can be promoted
 RULE:   by an AA)
 TODO: - The package should get a team bug subscriber before being promoted
-TODO: - <TBD>
+TODO: - TBD
 
 [Duplication]
 RULE: One easy way to avoid the burden of maintaining the package is to not
@@ -475,7 +475,7 @@ TODO: - No dependencies in main that are only superficially tested requiring
 TODO:   more tests now.
 
 TODO-A: Problems:
-TODO-A: - <TBD>
+TODO-A: - TBD
 TODO-B: Problems: None
 
 [Embedded sources and static linking]
@@ -562,7 +562,7 @@ TODO-B:   - golang: static builds are used, the team confirmed their commitment
 TODO-B:     to the additional responsibilities implied by static builds.
 
 TODO-A: Problems:
-TODO-A: - <TBD>
+TODO-A: - TBD
 TODO-B: Problems: None
 
 [Security]
@@ -586,7 +586,7 @@ TODO: - does not deal with system authentication (eg, pam), etc)
 TODO: - does not deal with security attestation (secure boot, tpm, signatures)
 
 TODO-A: Problems:
-TODO-A: - <TBD>
+TODO-A: - TBD
 TODO-B: Problems: None
 
 [Common blockers]
@@ -609,7 +609,7 @@ TODO: - Python package, but using dh_python
 TODO: - Go package, but using dh-golang
 
 TODO-A: Problems:
-TODO-A: - <TBD>
+TODO-A: - TBD
 TODO-B: Problems: None
 
 [Packaging red flags]
@@ -650,7 +650,7 @@ RULE:   (fix, or the work-around should be directly in the package,
 RULE:    see https://launchpad.net/ubuntu/+source/lto-disabled-list)
 
 TODO-A: Problems:
-TODO-A: - <TBD>
+TODO-A: - TBD
 TODO-B: Problems: None
 
 [Upstream red flags]
@@ -664,7 +664,7 @@ TODO: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside
 TODO:   tests)
 TODO: - no use of user nobody
 TODO: - no use of setuid
-TODO: - use of setuid, but ok because <TBD> (prefer systemd to set those
+TODO: - use of setuid, but ok because TBD (prefer systemd to set those
 TODO:   for services)
 TODO: - no important open bugs (crashers, etc) in Debian or Ubuntu
 TODO: - no dependency on webkit, qtwebkit, seed or libgoa-*
@@ -674,7 +674,7 @@ TODO-A: - no translation present, but none needed for this case (user visible)?
 TODO-B: - translation present
 
 TODO-A: Problems:
-TODO-A: - <TBD>
+TODO-A: - TBD
 TODO-B: Problems: None
 }}}
 
