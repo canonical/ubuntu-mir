@@ -170,10 +170,10 @@ RULE: target release and set a milestone to the bug task.
 RULE: When doing so do not describe what you "wish" or "would like to have".
 RULE: Only milestones that are sufficiently well-founded and related to
 RULE: major releases will be considered
-TODO-A: - The package <TBD> is required in Ubuntu main no later than <TBD>
-TODO-A:   due to <TBD>
+TODO-A: - The package TBDSRC is required in Ubuntu main no later than TBD
+TODO-A:   due to TBD
 TODO-B: - It would be great and useful to community/processes to have the
-TODO-B:   package <TBD> in Ubuntu main, but there is no definitive deadline.
+TODO-B:   package TBD in Ubuntu main, but there is no definitive deadline.
 
 [Security]
 RULE: The security history and the current state of security issues in the
@@ -240,7 +240,7 @@ TODO-B: - The package does not run a test at build time because TBD
 RULE:   - The package should, but is not required to, also contain
 RULE:     non-trivial autopkgtest(s).
 TODO-A: - The package runs an autopkgtest, and is currently passing on
-TODO-B:   this TBD list of architectures, link to test logs TBD
+TODO-A:   this TBD list of architectures, link to test logs TBD
 TODO-B: - The package does not run an autopkgtest because TBD
 
 RULE: - existing but failing tests that shall be handled as "ok to fail"
@@ -404,6 +404,13 @@ TODO-B:   alerted by the security team) commits to provide updates to the securi
 TODO-B:   team for any affected vendored code for the lifetime of the release
 TODO-B:   (including ESM).
 
+RULE: - if there has been an archive test rebuild that has occurred more recently
+RULE:   than the last upload, the package must have rebuilt successfully
+TODO-A: - The package has been built in the archive more recently than the last
+TODO-A:   test rebuild
+TODO-B: - The package successfully built during the most recent test rebuild
+TODO-C: - The package was test rebuilt in PPA or sbuild recently (provide link/logs)
+
 [Background information]
 RULE: - The package descriptions should explain the general purpose and context
 RULE:   of the package. Additional explanations/justifications should be done in
@@ -446,13 +453,13 @@ TODO: Specific binary packages built, but NOT to be promoted to main: TBD
 Notes:
 TODO: - add todos, issues or special cases to discuss
 Required TODOs:
-TODO: - TBD
+TODO: - TBD (Please add them numbered for later reference)
 Recommended TODOs:
 RULE: - Does it have a team bug subscriber? (This is not a blocker for a MIR
 RULE:   team ACK, but needs to be provided before the package can be promoted
 RULE:   by an AA)
 TODO: - The package should get a team bug subscriber before being promoted
-TODO: - TBD
+TODO: - TBD (Please add them numbered for later reference)
 
 [Duplication]
 RULE: One easy way to avoid the burden of maintaining the package is to not
@@ -699,7 +706,7 @@ Mission: Identify required actions and spread the load among the teams
 #link https://people.canonical.com/~ubuntu-archive/component-mismatches.svg
 
 #topic New MIRs
-Mission: ensure to assign all incoming reviews for fast processing
+Mission: ensure to assign all incoming reviews for fast processing	
 
 #link https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir
 
