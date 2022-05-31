@@ -481,8 +481,8 @@ TODO: There is no other package in main providing the same functionality.
 [Dependencies]
 OK:
 TODO: - no other Dependencies to MIR due to this
-TODO:   - checked with check-mir
-TODO:   - not listed in seeded-in-ubuntu
+TODO:   - SRCPKG checked with `check-mir`
+TODO:   - all dependencies can be found in `seeded-in-ubuntu` (already in main)
 TODO:   - none of the (potentially auto-generated) dependencies (Depends
 TODO:     and Recommends) that are present after build are not in main
 TODO: - no -dev/-debug/-doc packages that need exclusion
