@@ -287,7 +287,7 @@ RULE:   comments only) providing clear instructions on how to generate the
 RULE:   source tar file.
 TODO-A: - debian/watch is present and works
 TODO-B: - debian/watch is not present, instead it has TBD
-TODO-C: - debian/watch is not present because it is anative package
+TODO-C: - debian/watch is not present because it is a native package
 
 RULE: - The package should define the correct "Maintainer:" field in
 RULE:   debian/control. This needs to be updated, using `update-maintainer`
@@ -300,7 +300,9 @@ RULE:   the most common packaging issues in advance
 RULE: - Non-obvious or non-properly commented lintian overrides should be
 RULE:   explained
 TODO: - This package does not yield massive lintian Warnings, Errors
-TODO: - Link to recent build log including a lintian run TBD
+TODO: - Please link to a recent build log of the package <TBD>
+TODO: - Please attach the full output you have got from
+TODO:   `lintian --pedantic` as an extra post to this bug.
 TODO-A: - Lintian overrides are not present
 TODO-B: - Lintian overrides are present, but ok because TBD
 
@@ -648,8 +650,6 @@ OK:
 TODO-A: - Ubuntu does not carry a delta
 TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
 TODO-B:   control
-TODO-B: - The Maintainer field in debian/control has been adopted correctly,
-TODO-B:   using `update-maintainer`
 TODO: - symbols tracking is in place
 TODO: - symbols tracking not applicable for this kind of code.
 TODO: - d/watch is present and looks ok (if needed, e.g. non-native)
