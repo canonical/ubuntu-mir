@@ -289,6 +289,12 @@ TODO-A: - debian/watch is present and works
 TODO-B: - debian/watch is not present, instead it has TBD
 TODO-C: - debian/watch is not present because it is anative package
 
+RULE: - The package should define the correct "Maintainer:" field in
+RULE:   debian/control. This needs to be updated, using `update-maintainer`
+RULE:   whenever any Ubuntu delta is applied to the package, as suggested by
+RULE:   dpkg (LP: #1951988)
+TODO: - debian/control defines a correct Maintainer field
+
 RULE: - It is often useful to run `lintian --pedantic` on the package to spot
 RULE:   the most common packaging issues in advance
 RULE: - Non-obvious or non-properly commented lintian overrides should be
@@ -642,6 +648,8 @@ OK:
 TODO-A: - Ubuntu does not carry a delta
 TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
 TODO-B:   control
+TODO-B: - The Maintainer field in debian/control has been adopted correctly,
+TODO-B:   using `update-maintainer`
 TODO: - symbols tracking is in place
 TODO: - symbols tracking not applicable for this kind of code.
 TODO: - d/watch is present and looks ok (if needed, e.g. non-native)
