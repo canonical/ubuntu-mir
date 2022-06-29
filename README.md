@@ -12,7 +12,7 @@ promotion from universe to main.
 
 That is the *Main Inclusion Review* =\> MIR
 
-## Process states {#process_states}
+## Process states
 
 This is supposed to be an overview of MIR bug status (as there was
 enough confusion in the past). Especially to make clear who\'s turn it
@@ -69,7 +69,7 @@ one of the defined states
 # Exceptions
 
 
-## Font Packages {#font_packages}
+## Font Packages
 
 Fonts packages given that fonts are just data, there\'s no way for them
 to trip any of the problems that would cause us to not want to support
@@ -86,7 +86,7 @@ come up later. The MIR Team should try to clarify that with the Team
 that owns the depending package to own the font as well (read: without
 the overhead of a full MIR process).
 
-# Filing a MIR bug {#filing_a_mir_bug}
+# Filing a MIR bug
 
 The steps of the MIR process require a reporter (the one who wants a
 package promoted) a MIR team member (who does the review) and
@@ -94,11 +94,11 @@ potentially a Security team member (for an extra review).
 
 The MIR-bug reporter is expected to:
 
- 1. Thoroughly go through TODO/RULE entries in [Ubuntu Main Inclusion RULEs and TODOs](#main_inclusion_requirements), check that the package meets all the points there. If this package has nontrivial problems, it is not eligible for main inclusion, and needs to be fixed first.
+ 1. Thoroughly go through TODO/RULE entries in [Ubuntu Main Inclusion RULEs and TODOs](#main-inclusion-requirements), check that the package meets all the points there. If this package has nontrivial problems, it is not eligible for main inclusion, and needs to be fixed first.
     1. Write down issues that violate the requirements and list them in the MIR bug
     1. Write down all positive checks that you did as well (not only the issues)
  1. File a bug report about the package, titled "[MIR] sourcepackagename".
-    1. use below template from [Ubuntu Main Inclusion RULEs and TODOs](#main_inclusion_requirements)
+    1. use below template from [Ubuntu Main Inclusion RULEs and TODOs](#main-inclusion-requirements)
     1. For each rule include a positive or negative statment as confirmation that you checked each requirement carefully.
     1. For any rule violations ensure to explain why it should be ok for this case.
  1. Subscribe `ubuntu-mir` to the bug report (keep it in state "NEW" and do not assign it to anyone!), so that it appears in the  [MIR bug list](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir).
@@ -118,7 +118,7 @@ Notes:
  * New binary packages from existing source packages, where the source package is already in main, do not require MIR bugs.
  * If a new source package contains only code which is already in main (e.g. the result of a source package split or rename, or source packages with a version in the name), it may not need a full review. Submitting a MIR bug with an explanation (but without the full template) or updating/extending on the existing old MIR bug and re-opening it by setting it to "NEW" is sufficient.
 
-## Templates and Rules {#templates_and_rules}
+## Templates and Rules
 
 It is the task of the reporter/reviewer to evaluate all the entries
 listed in *RULE* sections and based on that to answer or adapt all
@@ -160,11 +160,11 @@ The reporter/reviewer is tasked to use the templates the following way:
     1. MIR-Team: Review and add a comment to the bug that contains the review
         1. In case of a single context/reasoning, but multiple packages MIR reviewers will do one review post per such package.`
 
-## Main Inclusion requirements {#main_inclusion_requirements}
+## Main Inclusion requirements
 
 Use this template for the MIR bug report that you will file.
 
-Usage follows [Templates and Rules](#templates_and_rules).
+Usage follows [Templates and Rules](#templates-and-rules).
 
 The package must fulfill the following requirements.
 
@@ -457,12 +457,12 @@ TODO: Link to upstream project TBD
 TODO: TBD (any further background that might be helpful
 ```
 
-# Reviewing a bug {#reviewing_a_bug}
+# Reviewing a bug
 
 This section is a guideline for the review by the [MIR
 Team](https://launchpad.net/~ubuntu-mir).
 
-Usage follows [Templates and Rules](#templates_and_rules).
+Usage follows [Templates and Rules](#templates-and-rules).
 
 The Intent is to answer the primary decision **\"Will this package be
 well maintained in main?\"**
@@ -726,7 +726,7 @@ TODO-A: - TBD
 TODO-B: Problems: None
 ```
 
-# MIR Team weekly status meeting {#mir_team_weekly_status_meeting}
+# MIR Team weekly status meeting
 
 
 The MIR Team holds weekly meetings on Tuesdays, at 4.30 PM CET, in
@@ -791,7 +791,7 @@ Internal link
 
 
 
-# MIR related helpers {#mir_related_helpers}
+# MIR related helpers
 
 ## Tools
 
@@ -800,7 +800,7 @@ Internal link
  * `reverse-depends` can tell you reverse source or binary depends, per component
  * The [component mismatches](http://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
 
-## Making Life Easier for Archive Team Members {#making_life_easier_for_archive_team_members}
+## Making Life Easier for Archive Team Members
 
 To help prevent promotion of packages that cause component mismatches,
 we can do two things:
@@ -809,7 +809,7 @@ we can do two things:
  1. List all distinct binary packages that should be promoted.  Often a source package will have binary packages that aren't actually needed in main.  Things like `-doc`, `-autopilot` or `-dbgsym`.  These can stay in universe, and it is a kindness to list only the packages we need for the archive team member that does the promotion.
  1. Recommend the owning team to add their corresponding team bug subscriber during the MIR process.
 
-## Bug Lists {#bug_lists}
+## Bug Lists
 
 * [All MIR bugs](https://bugs.launchpad.net/~ubuntu-mir)
 * [All open MIR bugs](https://bugs.launchpad.net/~ubuntu-mir/+bugs?field.searchtext=&orderby=-importance&search=Search&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED&field.status%3Alist=INPROGRESS&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE)
