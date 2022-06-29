@@ -104,12 +104,12 @@ The MIR-bug reporter is expected to:
 1. Subscribe `ubuntu-mir` to the bug report (keep it in state "NEW" and do not assign it to anyone!), so that it appears in the  [MIR bug list](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir).
 1. The [MIR team](https://launchpad.net/~ubuntu-mir) reviews the reports, and sets acceptable ones to *In Progress* or *Fix Committed*. They might also delegate portions of the review to other teams, by assigning it to them; common cases are getting a thorough security review from the [security team](https://launchpad.net/~ubuntu-security) (please see [SecurityTeam/Auditing](https://wiki.ubuntu.com/SecurityTeam/Auditing) for details on requesting an audit and the [security team Jira board](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594)` (private board) for prioritized list of MIR security reviews), or getting a sign-off from particular team leads about maintenance commitments.
    1. In the case where an MIR needs a security review, a normal MIR review will happen by a member of the MIR team and the security review by a member of the security team. Among these team members, whoever does the last review shall adjust the bug status accordingly. For instance, if MIR team says ok then security says ok, the security team member should mark the bug as Fix Committed (see above for other statuses).
-   1. In case the MIR Team (or later other reviewers) identify tasks that need to be done the bug is set to "incomplete" to reflect that is back on the reporter to drive that forward before more progress can be made. Common Examples are "please add an automated test" or "this needs the new version"`
+   1. In case the MIR Team (or later other reviewers) identify tasks that need to be done the bug is set to "incomplete" to reflect that is back on the reporter to drive that forward before more progress can be made. Common Examples are "please add an automated test" or "this needs the new version"
 
 1. The submitter should then take responsibility for adding the package to the seeds as per SeedManagement or adding a dependency to it from another package that already is in `main`. The package will not be moved to main automatically, but will show up in the [component-mismatches](http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)
 list, or if the dependency is only in proposed, the [component-mismatches-proposed](http://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.txt) list.
    1. Archive administrators will review the component-mismatches output, and for each package waiting to move into `main`, look for a corresponding [bug](https://bugs.launchpad.net/~ubuntu-mir/+subscribedbugs).
-   1. The archive administrators will promote approved packages to `main` if some other package or the seeds want it (see  [component-mismatches output](http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)) and the package in question has an owning team subscribed to it.`
+   1. The archive administrators will promote approved packages to `main` if some other package or the seeds want it (see  [component-mismatches output](http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)) and the package in question has an owning team subscribed to it.
 
 Notes:
 
@@ -157,7 +157,7 @@ The reporter/reviewer is tasked to use the templates the following way:
    1. Reporter: File the MIR bug based on the processed template as the bug description
       - In case of a single context/reasoning, but multiple packages to promote please provide the full content for each of them separated with *--- --- --- --- ---* in the description. Be warned that Launchpad can only handle a certain amount of such tasks well, as a best practise if you have more than 10 packages consider splitting things into multiple bugs with one central one for tracking referencing all the others.
    1. MIR-Team: Review and add a comment to the bug that contains the review
-      - In case of a single context/reasoning, but multiple packages MIR reviewers will do one review post per such package.`
+      - In case of a single context/reasoning, but multiple packages MIR reviewers will do one review post per such package.
 
 ## Main Inclusion requirements
 
