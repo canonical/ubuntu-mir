@@ -703,7 +703,7 @@ If you're chairing the meeting, you can the following meetingology template:
 {{{
 #startmeeting Weekly Main Inclusion Requests status
 
-Use the #action command to note something for someone to do (optional)
+Ping for MIR meeting - didrocks joalif slyon sarnold cpaelzer jamespage
 
 #topic Review of previous action items
 
@@ -727,6 +727,11 @@ Mission: Identify required actions and spread the load among the teams
 Mission: Check on progress, do deadlines seem doable?
 
 #link https://bugs.launchpad.net/~ubuntu-security/+bugs?field.searchtext=%5BMIR%5D&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir
+
+Internal link
+- ensure your teams items are prioritized among each other as you'd expect
+- ensure community requests do not get stomped by teams calling for favors too much
+#link https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594
 
 #topic Any other business?
 
