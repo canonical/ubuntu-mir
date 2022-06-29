@@ -1,30 +1,36 @@
-||<tablestyle="float:right; font-size: 0.9em; width:30%; background:#F1F1ED; background-repeat: no-repeat; background-position:  98% 0.5ex; margin: 0 0 1em 1em; padding: 0.5em;"><<TableOfContents>>||
+# Introduction
 
-== Introduction ==
+Packages in Ubuntu main (and restricted) are officially maintained,
+supported and recommended by the Ubuntu project. Security updates are
+provided for them as necessary by Canonical, and Canonical\'s standard
+support services apply to these packages.
 
-Packages in Ubuntu main (and restricted) are officially maintained, supported and recommended by the Ubuntu project. Security updates are provided for them as necessary by Canonical, and Canonical's standard support services apply to these packages.
+Therefore, special consideration is necessary before adding new packages
+to these components. The [Ubuntu MIR
+Team](https://launchpad.net/~ubuntu-mir) reviews packages for
+promotion from universe to main.
 
-Therefore, special consideration is necessary before adding new packages to these components.
-The [[https://launchpad.net/~ubuntu-mir|Ubuntu MIR Team]] reviews packages for promotion from universe to main.
+That is the *Main Inclusion Review* =\> MIR
 
-That is the ''Main Inclusion Review'' => MIR
+## Process states {#process_states}
 
-=== Process states ===
+This is supposed to be an overview of MIR bug status (as there was
+enough confusion in the past). Especially to make clear who\'s turn it
+is to act next on a MIR bug.
 
-This is supposed to be an overview of MIR bug status (as there was enough confusion in the past).
-Especially to make clear who's turn it is to act next on a MIR bug.
+| State                                   | Explanation |
+| -----                                   | ------- |
+| 1. New/Confirmed (unassigned)           | Bug is new for the MIR team to dispatch it to a MIR Team member |
+| 2. New/Confirmed (assigned)             | on the TODO list of the assigned MIR team member |
+| 3. New/Confirmed (assigned to Security) | on the TODO list of the Security Team |
+| 4. In Progress (any)                    | MIR team ack (and if needed Security Team ack) done, but now needs the Dependency/Seed change to happen to pull it into Main |
+| 5. Fix Committed (any)                  | All of the above done, waiting for an AA to promote the packages |
+| 6. Fix Released (any)                   | Case resolved by an AA |
+| 7. Incomplete (any)                     | Questions/Requests were raised for the bug reporter to resolve/clarify |
+| 8. Won\'t Fix (any)                     | Final Nack or given up by the bug reporter |
+| 9. Invalid (any)                        | No Feedback for a while when in incomplete status |
 
-|| 1. New/Confirmed (unassigned)|| Bug is new for the MIR team to dispatch it to a MIR Team member||
-|| 2. New/Confirmed (assigned)|| on the TODO list of the assigned MIR team member||
-|| 3. New/Confirmed (assigned to Security)|| on the TODO list of the Security Team||
-|| 4. In Progress (any)|| MIR team ack (and if needed Security Team ack) done, but now needs the Dependency/Seed change to happen to pull it into Main||
-|| 5. Fix Committed (any)|| All of the above done, waiting for an AA to promote the packages||
-|| 6. Fix Released (any)|| Case resolved by an AA||
-|| 7. Incomplete (any)|| Questions/Requests were raised for the bug reporter to resolve/clarify||
-|| 8. Won't Fix (any)|| Final Nack or given up by the bug reporter||
-|| 9. Invalid (any)|| No Feedback for a while when in incomplete status||
-
-{{{
+```
           Answered       +-7----------+     No feedback        +-9-------+
       +------------------+ Incomplete +------------------------> Invalid |
       |   old assign can | any        <--------------------+   | any     |
@@ -50,99 +56,119 @@ Especially to make clear who's turn it is to act next on a MIR bug.
 | Fix Released |           +---------> Fix Committed <---------+
 | any          <---------------------+ any           |
 +--------------+  AA promotes        +---------------+
-}}}
+```
 
-Note1: Since many people set things to confirmed once they are sure it "exists" all too often bugs get set to confirmed. Since confirmed does not have any meaning for our process we will handle new<->confirmed as if the'y be the same.
+Note1: Since many people set things to confirmed once they are sure it
+\"exists\" all too often bugs get set to confirmed. Since confirmed does
+not have any meaning for our process we will handle new\<-\>confirmed as
+if the\'y be the same.
 
-Note2: All other combinations are undefined and should be fixed up to one of the defined states
+Note2: All other combinations are undefined and should be fixed up to
+one of the defined states
 
-== Exceptions ==
+# Exceptions
 
-=== Font Packages ===
 
-Fonts packages given that fonts are just data, there's no way for them to trip any of the problems that would cause us to not want to support it. Therefore not all of the process has to be followed for these.
-Unfortunately there were cases where src:font-* packages contained way more than just a font - due to that either the MIR Team (if a MIR bug was filed) or the Ubuntu-Archive team (on promoting it) has to do a spot check that neither the source nor the created binary packages violate these assumptions.
+## Font Packages {#font_packages}
 
-The only limitation is that the package needs a valid team subscriber before being promoted by an archive admin - just in case anything might come up later.
-The MIR Team should try to clarify that with the Team that owns the depending package to own the font as well (read: without the overhead of a full MIR process).
+Fonts packages given that fonts are just data, there\'s no way for them
+to trip any of the problems that would cause us to not want to support
+it. Therefore not all of the process has to be followed for these.
+Unfortunately there were cases where src:font-\* packages contained way
+more than just a font - due to that either the MIR Team (if a MIR bug
+was filed) or the Ubuntu-Archive team (on promoting it) has to do a spot
+check that neither the source nor the created binary packages violate
+these assumptions.
 
-== Filing a MIR bug ==
+The only limitation is that the package needs a valid team subscriber
+before being promoted by an archive admin - just in case anything might
+come up later. The MIR Team should try to clarify that with the Team
+that owns the depending package to own the font as well (read: without
+the overhead of a full MIR process).
 
-The steps of the MIR process require a reporter (the one who wants a package promoted) a MIR team member (who does the review) and potentially a Security team member (for an extra review).
+# Filing a MIR bug {#filing_a_mir_bug}
+
+The steps of the MIR process require a reporter (the one who wants a
+package promoted) a MIR team member (who does the review) and
+potentially a Security team member (for an extra review).
 
 The MIR-bug reporter is expected to:
 
- 1. Thoroughly go through TODO/RULE entries in [[#Main_Inclusion_requirements|Ubuntu Main Inclusion RULEs and TODOs]], check that the package meets all the points there. If this package has nontrivial problems, it is not eligible for main inclusion, and needs to be fixed first.
-  1. Write down issues that violate the requirements and list them in the MIR bug
-  1. Write down all positive checks that you did as well (not only the issues)
- 1. File a bug report about the package, titled "[MIR] sourcepackagename".
-  1. use below template from [[#Main_Inclusion_requirements|Ubuntu Main Inclusion RULEs and TODOs]]
-  1. For each rule include a positive or negative statment as confirmation that you checked each requirement carefully.
-  1. For any rule violations ensure to explain why it should be ok for this case.
- 1. Subscribe `ubuntu-mir` to the bug report (keep it in state "NEW" and do not assign it to anyone!), so that it appears in the [[https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir|MIR bug list]].
- 1. The [[https://launchpad.net/~ubuntu-mir|MIR team]] reviews the reports, and sets acceptable ones to ''In Progress'' or ''Fix Committed''. They might also delegate portions of the review to other teams, by assigning it to them; common cases are getting a thorough security review from the [[https://launchpad.net/~ubuntu-security|security team]] (please see [[SecurityTeam/Auditing|SecurityTeam/Auditing]] for details on requesting an audit and the [[https://trello.com/b/HvFhIQpv/security-team|security team trello board]] (private board; Reviews lane) for prioritized list of MIR security reviews), or getting a sign-off from particular team leads about maintenance commitments.
-  1. In the case where an MIR needs a security review, a normal MIR review will happen by a member of the MIR team and the security review by a member of the security team. Among these team members, whoever does the last review shall adjust the bug status accordingly. For instance, if MIR team says ok then security says ok, the security team member should mark the bug as Fix Committed (see above for other statuses).
-  1. In case the MIR Team (or later other reviewers) identify tasks that need to be done the bug is set to "incomplete" to reflect that is back on the reporter to drive that forward before more progress can be made. Common Examples are "please add an automated test" or "this needs the new version"
-1. The submitter should then take responsibility for adding the package to the seeds as per SeedManagement or adding a dependency to it from another package that already is in `main`. The package will not be moved to main automatically, but will show up in the [[http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt|component-mismatches]] list, or if the dependency is only in proposed, the [[http://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.txt|component-mismatches-proposed]] list.
- 1. Archive administrators will review the component-mismatches output, and for each package waiting to move into `main`, look for a corresponding [[https://bugs.launchpad.net/~ubuntu-mir/+subscribedbugs|bug]].
- 1. The archive administrators will promote approved packages to `main` if some other package or the seeds want it (see [[http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt|component-mismatches output]]) and the package in question has an owning team subscribed to it.
+ 1. Thoroughly go through TODO/RULE entries in [Ubuntu Main Inclusion RULEs and TODOs](#main_inclusion_requirements), check that the package meets all the points there. If this package has nontrivial problems, it is not eligible for main inclusion, and needs to be fixed first.
+    1. Write down issues that violate the requirements and list them in the MIR bug
+    1. Write down all positive checks that you did as well (not only the issues)
+ 1. File a bug report about the package, titled "[MIR] sourcepackagename".
+    1. use below template from [Ubuntu Main Inclusion RULEs and TODOs](#main_inclusion_requirements)
+    1. For each rule include a positive or negative statment as confirmation that you checked each requirement carefully.
+    1. For any rule violations ensure to explain why it should be ok for this case.
+ 1. Subscribe `ubuntu-mir` to the bug report (keep it in state "NEW" and do not assign it to anyone!), so that it appears in the  [MIR bug list](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir).
+ 1. The [MIR team](https://launchpad.net/~ubuntu-mir) reviews the reports, and sets acceptable ones to *In Progress* or *Fix Committed*. They might also delegate portions of the review to other teams, by assigning it to them; common cases are getting a thorough security review from the [security team](https://launchpad.net/~ubuntu-security) (please see [SecurityTeam/Auditing](https://wiki.ubuntu.com/SecurityTeam/Auditing) for details on requesting an audit and the [security team Jira board](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594)` (private board) for prioritized list of MIR security reviews), or getting a sign-off from particular team leads about maintenance commitments.
+    1. In the case where an MIR needs a security review, a normal MIR review will happen by a member of the MIR team and the security review by a member of the security team. Among these team members, whoever does the last review shall adjust the bug status accordingly. For instance, if MIR team says ok then security says ok, the security team member should mark the bug as Fix Committed (see above for other statuses).
+    1. In case the MIR Team (or later other reviewers) identify tasks that need to be done the bug is set to "incomplete" to reflect that is back on the reporter to drive that forward before more progress can be made. Common Examples are "please add an automated test" or "this needs the new version"`
+
+ 1. The submitter should then take responsibility for adding the package to the seeds as per SeedManagement or adding a dependency to it from another package that already is in `main`. The package will not be moved to main automatically, but will show up in the [component-mismatches](http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)
+list, or if the dependency is only in proposed, the [component-mismatches-proposed](http://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.txt) list.
+
+    1. Archive administrators will review the component-mismatches output, and for each package waiting to move into `main`, look for a corresponding [bug](https://bugs.launchpad.net/~ubuntu-mir/+subscribedbugs).
+    1. The archive administrators will promote approved packages to `main` if some other package or the seeds want it (see  [component-mismatches output](http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)) and the package in question has an owning team subscribed to it.`
 
 Notes:
 
- * MIR bugs should always be named for SOURCE packages, not binary packages
- * New binary packages from existing source packages, where the source package is already in main, do not require MIR bugs.
- * If a new source package contains only code which is already in main (e.g. the result of a source package split or rename, or source packages with a version in the name), it may not need a full review. Submitting a MIR bug with an explanation (but without the full template) or updating/extending on the existing old MIR bug and re-opening it by setting it to "NEW" is sufficient.
+ * MIR bugs should always be named for SOURCE packages, not binary packages
+ * New binary packages from existing source packages, where the source package is already in main, do not require MIR bugs.
+ * If a new source package contains only code which is already in main (e.g. the result of a source package split or rename, or source packages with a version in the name), it may not need a full review. Submitting a MIR bug with an explanation (but without the full template) or updating/extending on the existing old MIR bug and re-opening it by setting it to "NEW" is sufficient.
 
-=== Templates and Rules ===
+## Templates and Rules {#templates_and_rules}
 
-It is the task of the reporter/reviewer to evaluate all the entries listed in
-''RULE'' sections and based on that to answer or adapt all ''TODO'' entries to
-create the content for the MIR request or the review feedback respectively.
+It is the task of the reporter/reviewer to evaluate all the entries
+listed in *RULE* sections and based on that to answer or adapt all
+*TODO* entries to create the content for the MIR request or the review
+feedback respectively.
 
-The sum of ''RULE'' sections is not meant to be complete without the ''TODO''
-entries. Only combined they define the full rules as that allows to avoid
-duplication.
+The sum of *RULE* sections is not meant to be complete without the
+*TODO* entries. Only combined they define the full rules as that allows
+to avoid duplication.
 
-On one hand the ''TODO'' entries shall cover everything we expect from a report.
-These shall help to create a concise yet complete content of each report/review.
+On one hand the *TODO* entries shall cover everything we expect from a
+report. These shall help to create a concise yet complete content of
+each report/review.
 
-On the other hand the ''RULE'' entries provide additional background, details,
-options and interpretation help.
+On the other hand the *RULE* entries provide additional background,
+details, options and interpretation help.
 
-In many cases where rules are rather simple they only appear as ''TODO'' as they
-do not need additional explanation.
+In many cases where rules are rather simple they only appear as *TODO*
+as they do not need additional explanation.
 
 The reporter/reviewer is tasked to use the templates the following way:
 
- 0. Copy the full template below into an editor of your choice
- 0. Read the lines starting with ''RULE'' for all aspects of the MIR
- 0. For each line marked with ''TODO''
-  0. Adapt the line to provide the correct answer matching the package(s) that you request.
-  0. In some of those lines you'll need to replace placeholders 'TBD' and 'TBDSRC' with whatever matches your request
-  0. Remove the ''TODO'' prefix when you are sure you answered a statement
-  0. Some ''TODO'' lines can just be removed if they do not apply to the case, for example if you do not have "additional reasons" to state
-  0. Sometimes mutually exclusive options are provided like "link to CVE" or "no security issues in the past", leave only those statements that apply.
-   0. To assist the template-user those alternatives are marked like ''TODO-A:, TODO-B:, ...''. Of those one would usually expect only one to remain in the final content.
-  0. The MIR Team reviewer will have to judge, therefore all his statements start in an ''OK:'' section. But any time a violation is found the statement is moved to the ''Problems:'' area and flagged what is missing/expected. If no ''Problems:'' are present leave just the alternative ''Problems: None'' for posting the review.
- 0. Remove the lines starting with ''RULE'' after you have processed them
- 0. Eventually all you will have left are the categories Availability, Rationale, ... and therin the answers that the MIR process expects
- 0. You can and are encouraged to always add more details/background that make the case comprehensible
- 0. Update the MIR Bug
-  0. Reporter: File the MIR bug based on the processed template as the bug description
-   0. In case of a single context/reasoning, but multiple packages to promote please provide the full content for each of them separated with ''--- --- --- --- ---''. Be warned that Launchpad can only handle a certain amount of such tasks well, as a best practise if you have more than 10 packages consider splitting things into multiple bugs with one central one for tracking referencing all the others.
-  0. MIR-Team: Review and add a comment to the bug that contains the review
-   0. In case of a single context/reasoning, but multiple packages MIR reviewers will do one review post per such package.
+ 1. Copy the full template below into an editor of your choice
+ 1. Read the lines starting with *RULE* for all aspects of the MIR
+ 1. For each line marked with *TODO*
+    1. Adapt the line to provide the correct answer matching the package(s) that you request.
+    1. In some of those lines you'll need to replace placeholders 'TBD' and 'TBDSRC' with whatever matches your request
+    1. Remove the *TODO* prefix when you are sure you answered a statement
+    1. Some *TODO* lines can just be removed if they do not apply to the case, for example if you do not have "additional reasons" to state
+    1. Sometimes mutually exclusive options are provided like "link to CVE" or "no security issues in the past", leave only those statements that apply.
+        1. To assist the template-user those alternatives are marked like *TODO-A:, TODO-B:, ...*. Of those one would usually expect only one to remain in the final content.
+    1. The MIR Team reviewer will have to judge, therefore all his statements start in an *OK:* section. But any time a violation is found the statement is moved to the *Problems:* area and flagged what is missing/expected. If no *Problems:* are present leave just the alternative *Problems: None* for posting the review.
+ 1. Remove the lines starting with *RULE* after you have processed them
+ 1. Eventually all you will have left are the categories Availability, Rationale, ... and therin the answers that the MIR process expects
+ 1. You can and are encouraged to always add more details/background that make the case comprehensible
+ 1. Update the MIR Bug
+    1. Reporter: File the MIR bug based on the processed template as the bug description
+        1. In case of a single context/reasoning, but multiple packages to promote please provide the full content for each of them separated with *--- --- --- --- ---* in the description. Be warned that Launchpad can only handle a certain amount of such tasks well, as a best practise if you have more than 10 packages consider splitting things into multiple bugs with one central one for tracking referencing all the others.
+    1. MIR-Team: Review and add a comment to the bug that contains the review
+        1. In case of a single context/reasoning, but multiple packages MIR reviewers will do one review post per such package.`
 
-
-=== Main Inclusion requirements ===
+## Main Inclusion requirements {#main_inclusion_requirements}
 
 Use this template for the MIR bug report that you will file.
 
-Usage follows [[#Templates_and_Rules|Templates and Rules]].
+Usage follows [Templates and Rules](#templates_and_rules).
 
 The package must fulfill the following requirements.
 
-{{{
+```
 [Availability]
 TODO: The package TBDSRC is already in Ubuntu universe.
 TODO: The package TBDSRC build for the architectures it is designed to work on.
@@ -429,19 +455,23 @@ TODO: The Package description explains the package well
 TODO: Upstream Name is TBD
 TODO: Link to upstream project TBD
 TODO: TBD (any further background that might be helpful
-}}}
+```
 
-== Reviewing a bug ==
+# Reviewing a bug {#reviewing_a_bug}
 
-This section is a guideline for the review by the [[https://launchpad.net/~ubuntu-mir|MIR Team]].
+This section is a guideline for the review by the [MIR
+Team](https://launchpad.net/~ubuntu-mir).
 
-Usage follows [[#Templates_and_Rules|Templates and Rules]].
+Usage follows [Templates and Rules](#templates_and_rules).
 
-The Intent is to answer the primary decision '''"Will this package be well maintained in main?"'''
+The Intent is to answer the primary decision **\"Will this package be
+well maintained in main?\"**
 
-By default statements are in the ''OK'' section, but issues that need to be addressed should go to the ''Problem:'' sections (and briefly the summary at the top).
+By default statements are in the *OK* section, but issues that need to
+be addressed should go to the *Problem:* sections (and briefly the
+summary at the top).
 
-{{{
+```
 RULE: Since we sometimes have many such posts on one bug in case multiple
 RULE: packages are assocuated clearly state which one this is for.
 TODO: Review for Package: TBDSRC
@@ -694,16 +724,36 @@ TODO-B: - translation present
 TODO-A: Problems:
 TODO-A: - TBD
 TODO-B: Problems: None
-}}}
+```
+
+# MIR Team weekly status meeting {#mir_team_weekly_status_meeting}
 
 
-== MIR Team weekly status meeting ==
+The MIR Team holds weekly meetings on Tuesdays, at 4.30 PM CET, in
+libera.chat #ubuntu-meeting.
 
-The MIR Team holds weekly meetings on Tuesdays, at 4.30 PM CET, in #ubuntu-meeting.
+The meeting is meant to help to facilitate
 
-If you're chairing the meeting, you can the following meetingology template:
+`* a fair share of work for each of us
+`* a timely response to reporters of MIR requests
+`* detection and discussion of any current or complex cases`
 
-{{{
+Due to the nature of this process there are times when this is very busy
+and the meeting is strongly needed. But there are other times (e.g. at
+the beginning of a new release) where not a lot is happening. In such
+\"idle\" phases the leader of the meeting can pre-check the links we
+usually check together and skip steps of the agenda quoting that a
+pre-check has not shown anything worth to discuss.
+
+From there we can then go rather directly to \"Any other business?\"
+which serves as a catch all for all attendees. By that we can make the
+meeting more efficient in those times, instead of filing a monologue-log
+every week.
+
+If you're chairing the meeting, you can the following meetingology
+template:
+
+```
 #startmeeting Weekly Main Inclusion Requests status
 
 Ping for MIR meeting - didrocks joalif slyon sarnold cpaelzer jamespage
@@ -715,7 +765,7 @@ Mission: Identify required actions and spread the load among the teams
 #link https://people.canonical.com/~ubuntu-archive/component-mismatches.svg
 
 #topic New MIRs
-Mission: ensure to assign all incoming reviews for fast processing	
+Mission: ensure to assign all incoming reviews for fast processing  
 
 #link https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir
 
@@ -737,50 +787,33 @@ Internal link
 #topic Any other business?
 
 #endmeeting
-}}}
+```
 
-The meeting is meant to help to facilitate
 
- * a fair share of work for each of us
- * a timely response to reporters of MIR requests
- * detection and discussion of any current or complex cases
 
-Due to the nature of this process there are times when this is very
-busy and the meeting is strongly needed.
-But there are other times (e.g. at the beginning of a new release)
-where not a lot is happening.
-In such "idle" phases the leader of the meeting can pre-check the
-links we usually check together and skip steps of the agenda quoting
-that a pre-check has not shown anything worth to discuss.
+# MIR related helpers {#mir_related_helpers}
 
-From there we can then go rather directly to "Any other business?"
-which serves as a catch all for all attendees.
-By that we can make the meeting more efficient in those times, instead
-of filing a monologue-log every week.
+## Tools
 
-== MIR related helpers ==
+ * `check-mir` can be run from a checked out source and tell you which dependencies are in universe.
+ * `seeded-in-ubuntu PACKAGE` can tell you whether and how a given PACKAGE is seeded
+ * `reverse-depends` can tell you reverse source or binary depends, per component
+ * The [component mismatches](http://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
 
-=== Tools ===
+## Making Life Easier for Archive Team Members {#making_life_easier_for_archive_team_members}
 
- * `check-mir` can be run from a checked out source and tell you which dependencies are in universe.
- * `seeded-in-ubuntu PACKAGE` can tell you whether and how a given PACKAGE is seeded
- * `reverse-depends` can tell you reverse source or binary depends, per component
- * The [[http://people.canonical.com/~ubuntu-archive/component-mismatches.svg|component mismatch map]]
+To help prevent promotion of packages that cause component mismatches,
+we can do two things:
 
-=== Making Life Easier for Archive Team Members ===
+ 1. Run `check-mir` and make sure that all dependencies have a MIR.  We don't want to be surprised by a dependency after a package is promoted.
+ 1. List all distinct binary packages that should be promoted.  Often a source package will have binary packages that aren't actually needed in main.  Things like `-doc`, `-autopilot` or `-dbgsym`.  These can stay in universe, and it is a kindness to list only the packages we need for the archive team member that does the promotion.
+ 1. Recommend the owning team to add their corresponding team bug subscriber during the MIR process.
 
-To help prevent promotion of packages that cause component mismatches, we can do two things:
+## Bug Lists {#bug_lists}
 
- 1. Run `check-mir` and make sure that all dependencies have a MIR.  We don't want to be surprised by a dependency after a package is promoted.
- 1. List all distinct binary packages that should be promoted.  Often a source package will have binary packages that aren't actually needed in main.  Things like `-doc`, `-autopilot` or `-dbgsym`.  These can stay in universe, and it is a kindness to list only the packages we need for the archive team member that does the promotion. 
- 1. Recommend the owning team to add their corresponding team bug subscriber during the MIR process.
-
-=== Bug Lists ===
-
- * [[https://bugs.launchpad.net/~ubuntu-mir|All MIR bugs]]
- * [[https://bugs.launchpad.net/~ubuntu-mir/+bugs?field.searchtext=&orderby=-importance&search=Search&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED&field.status%3Alist=INPROGRESS&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE|All open MIR bugs]]
- * [[https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir|All open unclaimed MIR bugs]]
- * [[https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-importance&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&assignee_option=any&field.assignee=&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir&field.structural_subscriber=&field.component-empty-marker=1&field.tag=&field.tags_combinator=ANY&field.status_upstream-empty-marker=1|All incomplete MIR bugs]]
- * [[https://bugs.launchpad.net/%7Eubuntu-mir/+bugs?field.searchtext=&orderby=-importance&search=Search&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED&field.status%3Alist=INPROGRESS&field.status%3Alist=FIXCOMMITTED&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir&field.structural_subscriber=&field.tag=&field.tags_combinator=ANY&field.status_upstream-empty-marker=1&field.has_cve.used=&field.omit_dupes.used=&field.omit_dupes=on&field.affects_me.used=&field.has_patch.used=&field.has_branches.used=&field.has_branches=on&field.has_no_branches.used=&field.has_no_branches=on&field.has_blueprints.used=&field.has_blueprints=on&field.has_no_blueprints.used=&field.has_no_blueprints=on|All MIR bugs where the security team is assigned]]
- * [[https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594 | Security team MIR JIRA board]]
-
+* [All MIR bugs](https://bugs.launchpad.net/~ubuntu-mir)
+* [All open MIR bugs](https://bugs.launchpad.net/~ubuntu-mir/+bugs?field.searchtext=&orderby=-importance&search=Search&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED&field.status%3Alist=INPROGRESS&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE)
+* [All open unclaimed MIR bugs](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir)
+* [All incomplete MIR bugs](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-importance&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&assignee_option=any&field.assignee=&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir&field.structural_subscriber=&field.component-empty-marker=1&field.tag=&field.tags_combinator=ANY&field.status_upstream-empty-marker=1)
+* [All MIR bugs where the security team is assigned](https://bugs.launchpad.net/%7Eubuntu-mir/+bugs?field.searchtext=&orderby=-importance&search=Search&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED&field.status%3Alist=INPROGRESS&field.status%3Alist=FIXCOMMITTED&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir&field.structural_subscriber=&field.tag=&field.tags_combinator=ANY&field.status_upstream-empty-marker=1&field.has_cve.used=&field.omit_dupes.used=&field.omit_dupes=on&field.affects_me.used=&field.has_patch.used=&field.has_branches.used=&field.has_branches=on&field.has_no_branches.used=&field.has_no_branches=on&field.has_blueprints.used=&field.has_blueprints=on&field.has_no_blueprints.used=&field.has_no_blueprints=on)
+* [Security team MIR JIRA board](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594)
