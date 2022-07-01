@@ -447,9 +447,6 @@ RULE:   apply to them. In addition:
 RULE:   - The rules and checks for rust based packages are preliminary and might
 RULE:     change over time as the ecosytem matures and while
 RULE:     processing the first few rust based packages.
-RULE:   - Rust builds using librust-*-dev packges will populate the attribute
-RULE:     `Built-Using`, right now this is expected not to be present as
-RULE:      - for now - all rust dependencies shall be vendored.
 RULE:   - It is expected rust builds will use dh-cargo so that a later switch
 RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
 RULE:     that over time more common libs shall become stable and then archive
@@ -578,12 +575,15 @@ RULE:   with the updated libraries to receive the fix, which increases the
 RULE:   maintenance burden. For this reason, static linking in archive builds
 RULE:   is discouraged unless static linking is required for the package in
 RULE:   question to function correctly (e.g. an integrity scanner).
-RULE: - Does debian/control use `Built-Using`? This may indicate static linking
+RULE: - If debian/control uses `Built-Using` it may indicate static linking
 RULE:   which should be discouraged (except golang/rust, see below)
-RULE:   - Especially for rust - where toolchain and dh tools are new and still
-RULE:     changing a lot - please double check to not only have no Built-Using
-RULE:     entry, but also that there is no code of librust-*-dev used that just
-RULE:     happened to be missed while generating Built-Using.
+RULE:   - Rust - toolchain and dh tools are still changing a lot. Currently it
+RULE:     is expected to only list the rust toolchain in `Built-Using`.
+RULE:     the remaining (currently vendored) dependencies shall be tracked
+RULE:     in a cargo.lock file
+RULE:   - Go - here `Built-Using` is expected to only contain the go
+RULE:     toolchain used to build it. Additional dependencies shall be
+RULE:     tracked in a go.mod file
 
 OK:
 TODO: - no embedded source present
