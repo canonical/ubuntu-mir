@@ -451,6 +451,10 @@ RULE:   - It is expected rust builds will use dh-cargo so that a later switch
 RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
 RULE:     that over time more common libs shall become stable and then archive
 RULE:     packages will be used to build).
+RULE:   - the rust tooling e.g. dh-cargo can not yet automatically provide
+RULE:     all that we require - for example Cargo.lock - until it does the
+RULE:     package build shall be adapted in a way to provide that without
+RULE:     dh* tooling support.
 RULE: - All vendored dependencies (no matter what language) shall have a
 RULE:   way to be refreshed
 TODO-A: - This does not use static builds
