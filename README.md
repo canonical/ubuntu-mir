@@ -472,8 +472,8 @@ TODO-A: - This does not use vendored code
 TODO-B: - This package uses vendored go code tracked in go.mod as shiped in the
 TODO-B:   package, refreshing that code is outlined in debian/README.source
 TODO-C: - This package uses vendored rust code tracked in Cargo.lock as shipped,
-TODO-C:   in the package, refreshing that code is outlined in
-TODO-C:   debian/README.source
+TODO-C:   in the package (at /usr/share/doc/<pkgname>/Cargo.lock - might be
+TODO-C:   compressed), refreshing that code is outlined in debian/README.source
 TODO-D: - This package uses vendored code, refreshing that code is outlined
 TODO-D:   in debian/README.source
 
