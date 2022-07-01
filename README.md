@@ -444,8 +444,8 @@ RULE:   expectation for those packages is to vendor (and own/test) all
 RULE:   dependencies (except those provided by the rust runtime itself).
 RULE:   This implies that all the rules for vendored builds always
 RULE:   apply to them. In addition:
-RULE:   - The rules and checks for rust based packges are preliminary and might
-RULE:     change while finalizing the rust toolchain in main and while
+RULE:   - The rules and checks for rust based packages are preliminary and might
+RULE:     change over time as the ecosytem matures and while
 RULE:     processing the first few rust based packages.
 RULE:   - Rust builds using librust-*-dev packges will populate the attribute
 RULE:     `Built-Using`, right now this is expected not to be present as
