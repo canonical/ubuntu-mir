@@ -609,8 +609,8 @@ RULE:   libraries during this period, the MIR team decided for 17.10 and later
 RULE:   to allow static builds of golang packages in main, so long as the number
 RULE:   of these packages remains low and they follow the guidelines below:
 RULE:   - golang applications in main are expected:
-RULE:       1. to build golang use `golang-*-dev` packages creating
-RULE:          `Built-Using` in debian/control. This requirement ensures
+RULE:       1. to build using `golang-*-dev` packages from the Ubuntu archive
+RULE:          creating `Built-Using` in debian/control. This requirement ensures
 RULE:          that the security team is able to track security issues for all
 RULE:          affected static binary packages
 RULE:       2. not to build any vendored (i.e. embedded) code in the source
