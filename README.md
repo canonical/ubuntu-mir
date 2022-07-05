@@ -658,7 +658,7 @@ TODO-B:     to the additional responsibilities implied by static builds.
 
 TODO-A: - not a rust package, no extra constraints to consider in that regard
 TODO-B: - Rust package that has all dependencies vendored. It does neither
-TODO-B:   have *Built-Using (after build). Nor does the biuld log indicate
+TODO-B:   have *Built-Using (after build). Nor does the build log indicate
 TODO-B:   built-in sources that are missed to be reported as Built-Using.
 
 TODO: - rust package using dh_cargo (dh ... --buildsystem cargo)
