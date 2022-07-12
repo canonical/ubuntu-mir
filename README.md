@@ -342,7 +342,7 @@ TODO-A: - The package will be installed by default, but does not ask debconf
 TODO-A:   questions higher than medium
 TODO-B: - The package will not be installed by default
 
-RULE  - The source packaging (in debian/) should be reasonably easy to
+RULE:  - The source packaging (in debian/) should be reasonably easy to
 RULE:   understand and maintain.
 TODO-A: - Packaging and build is easy, link to d/rules TBD
 TODO-B: - Packaging is complex, but that is ok because TBD
@@ -381,7 +381,7 @@ RULE: to its complexity:
 RULE: - All packages must have a designated "owning" team, regardless of
 RULE:   complexity, which is set as a package bug contact. This is not a
 RULE:   requirement for the MIR team ACK, but for the package to be promoted
-RULE    by an archive admin. Still, it is strongly suggested to subscribe,
+RULE:   by an archive admin. Still, it is strongly suggested to subscribe,
 RULE:   as the owning team will get a preview of the to-be-expected incoming
 RULE:   bugs later on.
 RULE: - Simple packages (e.g. language bindings, simple Perl modules, small
@@ -635,7 +635,7 @@ RULE:    golang packages coordinating on transitions and the requesting team
 RULE:    occasionally creating new `golang-*-dev` packages as agreed to in the
 RULE:    MIR bug (upstreaming to Debian whenever possible).
 RULE: - As a practical matter, golang/rust source packages in main are not
-RULE    required to remove unused embedded code copies.
+RULE:   required to remove unused embedded code copies.
 RULE: - If based on the above options it's a statically compiled golang package:
 RULE:   - Does the package use dh-golang (if not, suggest dh-make-golang to
 RULE:     create the package)?
