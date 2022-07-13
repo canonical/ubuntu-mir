@@ -452,9 +452,9 @@ RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
 RULE:     that over time more common libs shall become stable and then archive
 RULE:     packages will be used to build).
 RULE:   - the rust tooling e.g. dh-cargo can not yet automatically provide
-RULE:     all that we require - for example Cargo.lock - until it does the
-RULE:     package build shall be adapted in a way to provide that without
-RULE:     dh* tooling support.
+RULE:     all that we require - for example Cargo.lock - but that will be
+RULE:     required to track dependencies. Until available in e.g. dh-cargo
+RULE:     a package can not yet get fully compliant.
 RULE: - All vendored dependencies (no matter what language) shall have a
 RULE:   way to be refreshed
 TODO-A: - This does not use static builds
@@ -580,18 +580,29 @@ RULE:   with the updated libraries to receive the fix, which increases the
 RULE:   maintenance burden. For this reason, static linking in archive builds
 RULE:   is discouraged unless static linking is required for the package in
 RULE:   question to function correctly (e.g. an integrity scanner).
-RULE: - If debian/control uses `Built-Using` it may indicate static linking
+RULE: - If debian/control uses `Built-Using` or `Static-Built-Using:` it may
+RULE:   indicate static linking
 RULE:   which should be discouraged (except golang/rust, see below)
 RULE:   - Rust - toolchain and dh tools are still changing a lot. Currently it
 RULE:     is expected to only list the rust toolchain in `Built-Using`.
 RULE:     the remaining (currently vendored) dependencies shall be tracked
 RULE:     in a cargo.lock file
+RULE:     Right now that tooling to get a cargo.lock that will include internal
+RULE:     packaged (if any) and used vendored dependencies isn't in place.
+RULE:     So right now due to the lack of that for example in dh-cargo one
+RULE:     can not yet get a package fully compliant.
 RULE:   - Go - here `Built-Using` is expected to only contain the go
-RULE:     toolchain used to build it. Additional dependencies shall be
+RULE:     toolchain used to build it. Additional packaged dependencies
+RULE:     will be tracked in `Static-Built-Using:` automatically.
+RULE:     The superset of packaged and vendored (if used) dependencies shall be
 RULE:     tracked in a go.sum file (go.mod are direct dependencies, go.sum
 RULE:     covers checksum content for direct and indirect dependencies. This
 RULE:     should be present for reproducible builds already which involve
 RULE:     having a go.sum.
+RULE:     We have let go packages into main before this existed, so we have
+RULE:     sub-optimal prior-art. But down the road - if vendoring is used - we
+RULE:     want to switch to require that once the toolchain is ready to
+RULE:     create it accordingly.
 
 OK:
 TODO: - no embedded source present
