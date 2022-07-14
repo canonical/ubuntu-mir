@@ -451,10 +451,26 @@ RULE:   - It is expected rust builds will use dh-cargo so that a later switch
 RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
 RULE:     that over time more common libs shall become stable and then archive
 RULE:     packages will be used to build).
-RULE:   - the rust tooling e.g. dh-cargo can not yet automatically provide
-RULE:     all that we require - for example Cargo.lock - but that will be
-RULE:     required to track dependencies. Until available in e.g. dh-cargo
-RULE:     a package can not yet get fully compliant.
+RULE:   - Right now that tooling to get a Cargo.lock that will include internal
+RULE:     vendored dependencies isn't in place yet (expect a dh-cargo change
+RULE:     later). Until it is available, as a fallback one can scan the
+RULE:     directory at build time and let it be generated in debian/rules.
+RULE:     An example might look like:
+RULE:       d/rules:
+RULE:         override_dh_auto_test:
+RULE:             CARGO_HOME=debian /usr/share/cargo/bin/cargo test --offline
+RULE:       d/<pkg>.install:
+RULE:         Cargo.lock /usr/share/doc/<pkg>
+RULE:       d/config.toml
+RULE:         # Use the vendorized sources to produce the Cargo.lock file. This
+RULE:         # can be performed by pointing $CARGO_HOME to the path containing
+RULE:         # this file.
+RULE:         [source]
+RULE:         [source.my-vendor-source]
+RULE:         directory = "vendor"
+RULE:         [source.crates-io]
+RULE:         replace-with = "my-vendor-source"
+
 RULE: - All vendored dependencies (no matter what language) shall have a
 RULE:   way to be refreshed
 TODO-A: - This does not use static builds
@@ -587,10 +603,10 @@ RULE:   - Rust - toolchain and dh tools are still changing a lot. Currently it
 RULE:     is expected to only list the rust toolchain in `Built-Using`.
 RULE:     the remaining (currently vendored) dependencies shall be tracked
 RULE:     in a cargo.lock file
-RULE:     Right now that tooling to get a cargo.lock that will include internal
-RULE:     packaged (if any) and used vendored dependencies isn't in place.
-RULE:     So right now due to the lack of that for example in dh-cargo one
-RULE:     can not yet get a package fully compliant.
+RULE:     - The rust tooling can not yet automatically provide all we require.
+RULE:       For example Cargo.lock - until available a package is at least
+RULE:       expected to generate this file itself at build time - an example
+RULE:       how to do so is shown above in the template for the reporter.
 RULE:   - Go - here `Built-Using` is expected to only contain the go
 RULE:     toolchain used to build it. Additional packaged dependencies
 RULE:     will be tracked in `Static-Built-Using:` automatically.
