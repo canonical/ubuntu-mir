@@ -342,7 +342,7 @@ TODO-A: - The package will be installed by default, but does not ask debconf
 TODO-A:   questions higher than medium
 TODO-B: - The package will not be installed by default
 
-RULE  - The source packaging (in debian/) should be reasonably easy to
+RULE:  - The source packaging (in debian/) should be reasonably easy to
 RULE:   understand and maintain.
 TODO-A: - Packaging and build is easy, link to d/rules TBD
 TODO-B: - Packaging is complex, but that is ok because TBD
@@ -381,7 +381,7 @@ RULE: to its complexity:
 RULE: - All packages must have a designated "owning" team, regardless of
 RULE:   complexity, which is set as a package bug contact. This is not a
 RULE:   requirement for the MIR team ACK, but for the package to be promoted
-RULE    by an archive admin. Still, it is strongly suggested to subscribe,
+RULE:   by an archive admin. Still, it is strongly suggested to subscribe,
 RULE:   as the owning team will get a preview of the to-be-expected incoming
 RULE:   bugs later on.
 RULE: - Simple packages (e.g. language bindings, simple Perl modules, small
@@ -399,17 +399,16 @@ TODO-A: - Team is already subscribed to the package
 TODO-B: - Team is not yet, but will subscribe to the package before promotion
 
 RULE: - Responsibilities implied by static builds promoted to main, which is
-RULE:   not a recommended but a common case with golang packages.
-RULE:   - the security team will track CVEs for all golang packages in main
+RULE:   not a recommended but a common case with golang and rust packages.
+RULE:   - the security team will track CVEs for all vendored/embedded sources in main
 RULE:   - the security team will provide updates to main for all `golang-*-dev`
 RULE:     packages
-RULE:   - the security team will provide updates to main for golang applications
-RULE:     whose non-vendored source code is affected as per normal procedures
-RULE:     (including e.g., sponsoring/coordinating uploads from teams/upstream
-RULE:     projects, etc)
+RULE:   - the security team will provide updates to main for non-vendored
+RULE:     dependencies as per normal procedures (including e.g.,
+RULE:     sponsoring/coordinating uploads from teams/upstream projects, etc)
 RULE:   - the security team will perform no-change-rebuilds for all packages
-RULE:     Built-Using `golang-*-dev` packages it has provided, and coordinate
-RULE:     testing with the owning teams responsible for the rebuilt packages
+RULE:     listing an CVE-fixed package as Built-Using and coordinate testing
+RULE:     with the owning teams responsible for the rebuilt packages
 RULE:   - for packages that build using any `golang-*-dev` packages:
 RULE:     - the owning team must state their commitment to test
 RULE:       no-change-rebuilds triggered by a dependent library/compiler and to
@@ -427,15 +426,76 @@ RULE:     - the owning team will provide timely, high quality updates for the
 RULE:       security team to sponsor to fix issues in the affected vendored code
 RULE:     - if subsequent uploads add new vendored components or dependencies
 RULE:       these have to be reviewed and agreed by the security team.
+RULE:     - Such updates in the project might be trivial, but imply that a
+RULE:       dependency for e.g. a CVE fix will be moved to a new major version.
+RULE:       Being vendored that does gladly at least not imply incompatibility
+RULE:       issues with other packages or the SRU policy. But it might happen
+RULE:       that this triggers either:
+RULE:       a) The need to adapt the current version of the main package and/or
+RULE:          other vendored dependencies to work with the new dependency
+RULE:       b) The need to backport the fix in the dependency as the main
+RULE:          package will functionally only work well with the older version
+RULE:       c) The need to backport the fix in the dependency, as it would imply
+RULE:          requiring a newer toolchain to be buildable that isn't available
+RULE:          in the target release.
+RULE: - The rust ecosystem currently isn't yet considered stable enough for
+RULE:   classic lib dependencies and transitions in main; therefore the
+RULE:   expectation for those packages is to vendor (and own/test) all
+RULE:   dependencies (except those provided by the rust runtime itself).
+RULE:   This implies that all the rules for vendored builds always
+RULE:   apply to them. In addition:
+RULE:   - The rules and checks for rust based packages are preliminary and might
+RULE:     change over time as the ecosytem matures and while
+RULE:     processing the first few rust based packages.
+RULE:   - It is expected rust builds will use dh-cargo so that a later switch
+RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
+RULE:     that over time more common libs shall become stable and then archive
+RULE:     packages will be used to build).
+RULE:   - Right now that tooling to get a Cargo.lock that will include internal
+RULE:     vendored dependencies isn't in place yet (expect a dh-cargo change
+RULE:     later). Until it is available, as a fallback one can scan the
+RULE:     directory at build time and let it be generated in debian/rules.
+RULE:     An example might look like:
+RULE:       d/rules:
+RULE:         override_dh_auto_test:
+RULE:             CARGO_HOME=debian /usr/share/cargo/bin/cargo test --offline
+RULE:       d/<pkg>.install:
+RULE:         Cargo.lock /usr/share/doc/<pkg>
+RULE:       d/config.toml
+RULE:         # Use the vendorized sources to produce the Cargo.lock file. This
+RULE:         # can be performed by pointing $CARGO_HOME to the path containing
+RULE:         # this file.
+RULE:         [source]
+RULE:         [source.my-vendor-source]
+RULE:         directory = "vendor"
+RULE:         [source.crates-io]
+RULE:         replace-with = "my-vendor-source"
+
+RULE: - All vendored dependencies (no matter what language) shall have a
+RULE:   way to be refreshed
 TODO-A: - This does not use static builds
 TODO-B: - The team TBD is aware of the implications by a static build and
 TODO-B:   commits to test no-change-rebuilds and to fix any issues found for the
 TODO-B:   lifetime of the release (including ESM)
+
 TODO-A: - This does not use vendored code
 TODO-B: - The team TBD is aware of the implications of vendored code and (as
-TODO-B:   alerted by the security team) commits to provide updates to the security
-TODO-B:   team for any affected vendored code for the lifetime of the release
-TODO-B:   (including ESM).
+TODO-B:   alerted by the security team) commits to provide updates and backports
+TODO-B:   to the security team for any affected vendored code for the lifetime
+TODO-B:   of the release (including ESM).
+
+TODO-A: - This does not use vendored code
+TODO-B: - This package uses vendored go code tracked in go.sum as shiped in the
+TODO-B:   package, refreshing that code is outlined in debian/README.source
+TODO-C: - This package uses vendored rust code tracked in Cargo.lock as shipped,
+TODO-C:   in the package (at /usr/share/doc/<pkgname>/Cargo.lock - might be
+TODO-C:   compressed), refreshing that code is outlined in debian/README.source
+TODO-D: - This package uses vendored code, refreshing that code is outlined
+TODO-D:   in debian/README.source
+
+TODO-A: - This package is not rust based
+TODO-B: - This package is rust based and vendors all non language-runtime
+TODO-B:   dependencies
 
 RULE: - if there has been an archive test rebuild that has occurred more recently
 RULE:   than the last upload, the package must have rebuilt successfully
@@ -536,13 +596,34 @@ RULE:   with the updated libraries to receive the fix, which increases the
 RULE:   maintenance burden. For this reason, static linking in archive builds
 RULE:   is discouraged unless static linking is required for the package in
 RULE:   question to function correctly (e.g. an integrity scanner).
-RULE: - Does debian/control use `Built-Using`? This may indicate static linking
-RULE:   which should be discouraged (except golang, see below)
+RULE: - If debian/control uses `Built-Using` or `Static-Built-Using:` it may
+RULE:   indicate static linking
+RULE:   which should be discouraged (except golang/rust, see below)
+RULE:   - Rust - toolchain and dh tools are still changing a lot. Currently it
+RULE:     is expected to only list the rust toolchain in `Built-Using`.
+RULE:     the remaining (currently vendored) dependencies shall be tracked
+RULE:     in a cargo.lock file
+RULE:     - The rust tooling can not yet automatically provide all we require.
+RULE:       For example Cargo.lock - until available a package is at least
+RULE:       expected to generate this file itself at build time - an example
+RULE:       how to do so is shown above in the template for the reporter.
+RULE:   - Go - here `Built-Using` is expected to only contain the go
+RULE:     toolchain used to build it. Additional packaged dependencies
+RULE:     will be tracked in `Static-Built-Using:` automatically.
+RULE:     The superset of packaged and vendored (if used) dependencies shall be
+RULE:     tracked in a go.sum file (go.mod are direct dependencies, go.sum
+RULE:     covers checksum content for direct and indirect dependencies. This
+RULE:     should be present for reproducible builds already which involve
+RULE:     having a go.sum.
+RULE:     We have let go packages into main before this existed, so we have
+RULE:     sub-optimal prior-art. But down the road - if vendoring is used - we
+RULE:     want to switch to require that once the toolchain is ready to
+RULE:     create it accordingly.
 
 OK:
 TODO: - no embedded source present
 TODO: - no static linking
-TODO: - does not have odd Built-Using entries
+TODO: - does not have unexpected Built-Using entries
 
 RULE: Golang
 RULE: - golang 1.4 packages and earlier could only statically compile their
@@ -559,7 +640,7 @@ RULE:   to allow static builds of golang packages in main, so long as the number
 RULE:   of these packages remains low and they follow the guidelines below:
 RULE:   - golang applications in main are expected:
 RULE:       1. to build using `golang-*-dev` packages from the Ubuntu archive
-RULE:          with `Built-Using` in debian/control. This requirement ensures
+RULE:          creating `Built-Using` in debian/control. This requirement ensures
 RULE:          that the security team is able to track security issues for all
 RULE:          affected static binary packages
 RULE:       2. not to build any vendored (i.e. embedded) code in the source
@@ -580,8 +661,8 @@ RULE:    adjusting their packaging as necessary, all teams responsible for
 RULE:    golang packages coordinating on transitions and the requesting team
 RULE:    occasionally creating new `golang-*-dev` packages as agreed to in the
 RULE:    MIR bug (upstreaming to Debian whenever possible).
-RULE: - As a practical matter, golang source packages in main are not required
-RULE:   to remove unused embedded code copies.
+RULE: - As a practical matter, golang/rust source packages in main are not
+RULE:   required to remove unused embedded code copies.
 RULE: - If based on the above options it's a statically compiled golang package:
 RULE:   - Does the package use dh-golang (if not, suggest dh-make-golang to
 RULE:     create the package)?
@@ -589,7 +670,7 @@ RULE:   - Does debian/control use `Built-Using: ${misc:Built-Using}` for each
 RULE:     non'-dev' binary package (importantly, golang-*-dev packages only
 RULE:     ship source files so don't need Built-Using)?
 RULE:   - Does the package follow
-RULE:     [[http://pkg-go.alioth.debian.org/packaging.html|Debian Go packaging]]
+RULE:     [[https://go-team.pages.debian.net/packaging.html|Debian Go packaging]]
 RULE:     guidelines?
 RULE: - When it is infeasible to comply with this policy, the justification,
 RULE:   discussion and approval should all be clearly represented in the bug.
@@ -604,6 +685,17 @@ TODO-B:   - No vendoring used, all Built-Using are in main
 TODO-A:   - golang: shared builds
 TODO-B:   - golang: static builds are used, the team confirmed their commitment
 TODO-B:     to the additional responsibilities implied by static builds.
+
+TODO-A: - not a rust package, no extra constraints to consider in that regard
+TODO-B: - Rust package that has all dependencies vendored. It does neither
+TODO-B:   have *Built-Using (after build). Nor does the build log indicate
+TODO-B:   built-in sources that are missed to be reported as Built-Using.
+
+TODO: - rust package using dh_cargo (dh ... --buildsystem cargo)
+
+TODO-A: - Includes vendored code, the package has documented how to refresh this
+TODO-A:   code at <TBD>
+TODO-B: - Does not include vendored code
 
 TODO-A: Problems:
 TODO-A: - TBD
