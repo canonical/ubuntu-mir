@@ -738,8 +738,11 @@ TODO: - does not FTBFS currently
 TODO: - does have a test suite that runs at build time
 TODO:   - test suite fails will fail the build upon error.
 TODO: - does have a non-trivial test suite that runs as autopkgtest
-TODO: - if special HW does prevent build/autopkgtest is there a test plan, code,
-TODO:   log provided?
+TODO-A: - This does seem to need special HW for build or test so it can't be
+TODO-A:   automatic. Is there a test plan, code, hardware available and
+TODO-A:   committment to cover that continuously?
+TODO-A:   Please outline in detail and provide a sample log of a successful run.
+TODO-B: - This does not need special HW for build or test
 TODO: - if a non-trivial test on this level does not make sense (the lib alone
 TODO:   is only doing rather simple things), is the overall solution (app+libs)
 TODO:   extensively covered i.e. via end to end autopkgtest ?
