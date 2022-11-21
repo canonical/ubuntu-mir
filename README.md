@@ -802,7 +802,8 @@ RULE: - if you see anything else odd, speak up and ask for clarification
 
 OK:
 TODO: - no Errors/warnings during the build
-TODO: - no incautious use of malloc/sprintf (as far as we can check it)
+TODO-A: - no incautious use of malloc/sprintf (as far as we can check it)
+TODO-B: - no incautious use of malloc/sprintf (the language has no direct MM)
 TODO: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside
 TODO:   tests)
 TODO: - no use of user nobody
