@@ -738,8 +738,11 @@ TODO: - does not FTBFS currently
 TODO: - does have a test suite that runs at build time
 TODO:   - test suite fails will fail the build upon error.
 TODO: - does have a non-trivial test suite that runs as autopkgtest
-TODO: - if special HW does prevent build/autopkgtest is there a test plan, code,
-TODO:   log provided?
+TODO-A: - This does seem to need special HW for build or test so it can't be
+TODO-A:   automatic. Is there a test plan, code, hardware available and
+TODO-A:   committment to cover that continuously?
+TODO-A:   Please outline in detail and provide a sample log of a successful run.
+TODO-B: - This does not need special HW for build or test
 TODO: - if a non-trivial test on this level does not make sense (the lib alone
 TODO:   is only doing rather simple things), is the overall solution (app+libs)
 TODO:   extensively covered i.e. via end to end autopkgtest ?
@@ -776,7 +779,8 @@ TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
 TODO-B:   control
 TODO: - symbols tracking is in place
 TODO: - symbols tracking not applicable for this kind of code.
-TODO: - d/watch is present and looks ok (if needed, e.g. non-native)
+TODO-A: - d/watch is present and looks ok (if needed, e.g. non-native)
+TODO-B: - d/watch is not present but also not needed (e.g. native)
 TODO: - Upstream update history is (good/slow/sporadic)
 TODO: - Debian/Ubuntu update history is (good/slow/sporadic)
 TODO: - the current release is packaged
@@ -798,7 +802,8 @@ RULE: - if you see anything else odd, speak up and ask for clarification
 
 OK:
 TODO: - no Errors/warnings during the build
-TODO: - no incautious use of malloc/sprintf (as far as we can check it)
+TODO-A: - no incautious use of malloc/sprintf (as far as we can check it)
+TODO-B: - no incautious use of malloc/sprintf (the language has no direct MM)
 TODO: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside
 TODO:   tests)
 TODO: - no use of user nobody
