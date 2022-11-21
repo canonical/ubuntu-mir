@@ -779,7 +779,8 @@ TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
 TODO-B:   control
 TODO: - symbols tracking is in place
 TODO: - symbols tracking not applicable for this kind of code.
-TODO: - d/watch is present and looks ok (if needed, e.g. non-native)
+TODO-A: - d/watch is present and looks ok (if needed, e.g. non-native)
+TODO-B: - d/watch is not present but also not needed (e.g. native)
 TODO: - Upstream update history is (good/slow/sporadic)
 TODO: - Debian/Ubuntu update history is (good/slow/sporadic)
 TODO: - the current release is packaged
