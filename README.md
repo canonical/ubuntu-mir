@@ -106,10 +106,10 @@ The MIR-bug reporter is expected to:
    1. In the case where an MIR needs a security review, a normal MIR review will happen by a member of the MIR team and the security review by a member of the security team. Among these team members, whoever does the last review shall adjust the bug status accordingly. For instance, if MIR team says ok then security says ok, the security team member should mark the bug as Fix Committed (see above for other statuses).
    1. In case the MIR Team (or later other reviewers) identify tasks that need to be done the bug is set to "incomplete" to reflect that is back on the reporter to drive that forward before more progress can be made. Common Examples are "please add an automated test" or "this needs the new version"
 
-1. The submitter should then take responsibility for adding the package to the seeds as per SeedManagement or adding a dependency to it from another package that already is in `main`. The package will not be moved to main automatically, but will show up in the [component-mismatches](http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)
-list, or if the dependency is only in proposed, the [component-mismatches-proposed](http://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.txt) list.
+1. The submitter should then take responsibility for adding the package to the seeds as per SeedManagement or adding a dependency to it from another package that already is in `main`. The package will not be moved to main automatically, but will show up in the [component-mismatches](https://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)
+list, or if the dependency is only in proposed, the [component-mismatches-proposed](https://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.txt) list.
    1. Archive administrators will review the component-mismatches output, and for each package waiting to move into `main`, look for a corresponding [bug](https://bugs.launchpad.net/~ubuntu-mir/+subscribedbugs).
-   1. The archive administrators will promote approved packages to `main` if some other package or the seeds want it (see  [component-mismatches output](http://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)) and the package in question has an owning team subscribed to it.
+   1. The archive administrators will promote approved packages to `main` if some other package or the seeds want it (see  [component-mismatches output](https://people.ubuntu.com/~ubuntu-archive/component-mismatches.txt)) and the package in question has an owning team subscribed to it.
 
 Notes:
 
@@ -206,7 +206,7 @@ RULE: package must allow us to support the package for at least 9 months (120
 RULE: for LTS+ESM support) without exposing its users to an inappropriate level
 RULE: of security risks. This requires checking of several things:
 RULE:   - Search in the National Vulnerability Database using the PKG as keyword
-RULE:     http://cve.mitre.org/cve/search_cve_list.html
+RULE:     https://cve.mitre.org/cve/search_cve_list.html
 RULE:   - check OSS security mailing list (feed into search engine
 RULE:     'site:www.openwall.com/lists/oss-security <pkgname>')
 RULE:   - Ubuntu CVE Tracker:  https://ubuntu.com/security/cve?package=<source-package-name>
@@ -371,7 +371,7 @@ TODO-C:   process for them is handled as part of this bug here.
 [Standards compliance]
 RULE: - Major violations should be documented and justified.
 RULE:   - [[https://refspecs.linuxfoundation.org/fhs.shtml|FHS]]
-RULE:   - [[http://www.debian.org/doc/debian-policy/|Debian Policy]]
+RULE:   - [[https://www.debian.org/doc/debian-policy/|Debian Policy]]
 TODO-A: - This package correctly follows FHS and Debian Policy
 TODO-B: - This package violates FHS or Debian Polciy, reasons for that are TBD
 
@@ -894,7 +894,7 @@ Internal link
 * `check-mir` can be run from a checked out source and tell you which dependencies are in universe.
 * `seeded-in-ubuntu PACKAGE` can tell you whether and how a given PACKAGE is seeded
 * `reverse-depends` can tell you reverse source or binary depends, per component
-* The [component mismatches](http://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
+* The [component mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
 
 ## Making Life Easier for Archive Team Members
 
