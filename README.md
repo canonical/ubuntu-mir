@@ -246,10 +246,11 @@ RULE:   supports and cares for the package.
 RULE: - The status of important bugs in Debian, Ubuntu and upstream's bug
 RULE:   tracking systems must be evaluated. Important bugs must be pointed out
 RULE:   and discussed in the MIR report.
-TODO: - The package is maintained well in Debian/Ubuntu and has not too many
-TODO:   and long term critical bugs open
+TODO: - The package is maintained well in Debian/Ubuntu/Upstream and does
+TODO:   not have too many, long-term & critical, open bugs
 TODO:   - Ubuntu https://bugs.launchpad.net/ubuntu/+source/TBDSRC/+bug
 TODO:   - Debian https://bugs.debian.org/cgi-bin/pkgreport.cgi?src=TBDSRC
+TODO:   - Upstream's bug tracker, e.g., GitHub Issues
 TODO: - The package has important open bugs, listing them: TBD
 TODO-A: - The package does not deal with exotic hardware we cannot support
 TODO-B: - The package does deal with exotic hardware, it is present at TBD
