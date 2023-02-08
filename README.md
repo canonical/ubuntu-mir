@@ -209,7 +209,10 @@ RULE:   - Search in the National Vulnerability Database using the PKG as keyword
 RULE:     http://cve.mitre.org/cve/search_cve_list.html
 RULE:   - check OSS security mailing list (feed into search engine
 RULE:     'site:www.openwall.com/lists/oss-security <pkgname>')
-RULE:   - Ubuntu CVE Tracker:  https://ubuntu.com/security/cve?package=<source-package-name>
+RULE:   - Ubuntu CVE Tracker
+RULE:     https://ubuntu.com/security/cve?package=<source-package-name>
+RULE:   - Debian Security Tracker
+RULE:     https://security-tracker.debian.org/tracker/source-package/<source-package-name>
 TODO-A: - Had #TBD security issues in the past
 TODO-A:   - TBD links to such security issues in trackers
 TODO-A:   - TBD to any context that shows how these issues got handled in
