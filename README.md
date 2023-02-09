@@ -23,6 +23,7 @@ is to act next on a MIR bug.
 | 1. New/Confirmed (unassigned)           | Bug is new for the MIR team to dispatch it to a MIR Team member |
 | 2. New/Confirmed (assigned)             | on the TODO list of the assigned MIR team member |
 | 3. New/Confirmed (assigned to Security) | on the TODO list of the Security Team |
+| Hint: from #2/#3 to #4/#5/#8 | The successor of these states depends (as seen by multiple potential arrows in the infographic) on the packages current state in the archive. #8 Nack is set to Won\'t Fix and the former reviewer unassigned - if there is context to believe that there might be a follow up by the reporter it might be assigned to them. In case of an Ack it depends on the state of the package - if the package is already tried to be pulled into main (seen in component mismatches) then the next state is #5 (Fix Committed), otherwise the next state is #4 (In Progress) |
 | 4. In Progress (any)                    | MIR team ack (and if needed Security Team ack) done, but now needs the Dependency/Seed change to happen to pull it into Main |
 | 5. Fix Committed (any)                  | All of the above done, waiting for an AA to promote the packages |
 | 6. Fix Released (any)                   | Case resolved by an AA |
