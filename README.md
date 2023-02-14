@@ -579,11 +579,11 @@ RULE: searching through full descriptions, provides and all that. If the above
 RULE: check didn't already find a duplicate then this check can be done via the
 RULE: following steps:
 RULE:   $ apt-cache search  <SEARCH_TERM>
-RULE: In the returned list pick anything that looks suspicious and check if any
-RULE: is in main:
+RULE: In the returned list pick anything that looks suspicious by name or
+RULE: description and check if any of them is in main:
 RULE:   $ rmadison -c main {all,packages,that,look,like,duplicates}
 RULE: If any of them are reported to be in main check in detail if they cover
-RULE: indeed the same.
+RULE: indeed the same use case as the package this MIR is about.
 TODO: There is no other package in main providing the same functionality.
 
 [Dependencies]
