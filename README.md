@@ -570,6 +570,20 @@ RULE: parsing library that needs a MIR, maybe it makes more sense to patch the
 RULE: package to just use libjpeg instead. Keep an eye out for duplicated
 RULE: functionality in main, since that makes bug fixing and security
 RULE: reviewing that much harder.
+RULE: Duplicates can be found by searching packages in "main", e.g. using:
+RULE: $ apt list "?not(?section(/))" | grep <SEARCH_TERM>
+RULE: and/or by checking for alternatives on https://www.libhunt.com/ or
+RULE: similar databases.
+RULE: Sometimes duplicates are not too obvious, but can often be found by
+RULE: searching through full descriptions, provides and all that. If the above
+RULE: check didn't already find a duplicate then this check can be done via the
+RULE: following steps:
+RULE:   $ apt-cache search  <SEARCH_TERM>
+RULE: In the returned list pick anything that looks suspicious and check if any
+RULE: is in main:
+RULE:   $ rmadison -c main {all,packages,that,look,like,duplicates}
+RULE: If any of them are reported to be in main check in detail if they cover
+RULE: indeed the same.
 TODO: There is no other package in main providing the same functionality.
 
 [Dependencies]
