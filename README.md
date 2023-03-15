@@ -932,3 +932,15 @@ we can do two things:
 * [All incomplete MIR bugs](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-importance&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&assignee_option=any&field.assignee=&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir&field.structural_subscriber=&field.component-empty-marker=1&field.tag=&field.tags_combinator=ANY&field.status_upstream-empty-marker=1)
 * [All MIR bugs where the security team is assigned](https://bugs.launchpad.net/%7Eubuntu-mir/+bugs?field.searchtext=&orderby=-importance&search=Search&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&field.status%3Alist=TRIAGED&field.status%3Alist=INPROGRESS&field.status%3Alist=FIXCOMMITTED&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir&field.structural_subscriber=&field.tag=&field.tags_combinator=ANY&field.status_upstream-empty-marker=1&field.has_cve.used=&field.omit_dupes.used=&field.omit_dupes=on&field.affects_me.used=&field.has_patch.used=&field.has_branches.used=&field.has_branches=on&field.has_no_branches.used=&field.has_no_branches=on&field.has_blueprints.used=&field.has_blueprints=on&field.has_no_blueprints.used=&field.has_no_blueprints=on)
 * [Security team MIR JIRA board](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594)
+
+## Contributing
+
+We welcome everyone who wants to improve the Ubuntu documentation! Whether you've found a typo, have a suggestion for improving existing content, or want to add new content, we'd love to hear from you.
+
+To contribute, simply submit a pull request with your changes or create an issue. Please also attend the weekly MIR Team meeting (Tuesdays 15:30-16:00 GMT) on our [IRC](https://wiki.ubuntu.com/IRC/ChannelList) in the [#ubuntu-meeting](https://wiki.ubuntu.com/BeginnersTeam/Meetings) channel to discuss your issue with the MIR Team.
+
+### Code of Conduct
+
+Please note that we have a code of conduct in place for all contributors to this repository. By contributing, you agree to abide by the [Ubuntu Code of Conduct](https://launchpad.net/codeofconduct)
+
+Thank you for considering contributing to the Ubuntu documentation!
