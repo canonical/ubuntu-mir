@@ -359,7 +359,7 @@ TODO-B:   intltool/gettext or similar build and runtime internationalization
 TODO-B:   system see TBD
 
 TODO-A: - End-user applications that ships a standard conformant desktop file,
-TODO-B:   see TBD
+TODO-A:   see TBD
 TODO-B: - End-user applications without desktop file, not needed because TBD
 
 [Dependencies]
