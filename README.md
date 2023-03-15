@@ -349,7 +349,7 @@ TODO-B: - The package will not be installed by default
 
 RULE:  - The source packaging (in debian/) should be reasonably easy to
 RULE:   understand and maintain.
-TODO-A: - Packaging and build is easy, link to d/rules TBD
+TODO-A: - Packaging and build is easy, link to debian/rules TBD
 TODO-B: - Packaging is complex, but that is ok because TBD
 
 [UI standards]
@@ -461,12 +461,12 @@ RULE:     vendored dependencies isn't in place yet (expect a dh-cargo change
 RULE:     later). Until it is available, as a fallback one can scan the
 RULE:     directory at build time and let it be generated in debian/rules.
 RULE:     An example might look like:
-RULE:       d/rules:
+RULE:       debian/rules:
 RULE:         override_dh_auto_test:
 RULE:             CARGO_HOME=debian /usr/share/cargo/bin/cargo test --offline
-RULE:       d/<pkg>.install:
+RULE:       debian/<pkg>.install:
 RULE:         Cargo.lock /usr/share/doc/<pkg>
-RULE:       d/config.toml
+RULE:       debian/config.toml
 RULE:         # Use the vendorized sources to produce the Cargo.lock file. This
 RULE:         # can be performed by pointing $CARGO_HOME to the path containing
 RULE:         # this file.
@@ -798,15 +798,15 @@ TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
 TODO-B:   control
 TODO: - symbols tracking is in place
 TODO: - symbols tracking not applicable for this kind of code.
-TODO-A: - d/watch is present and looks ok (if needed, e.g. non-native)
-TODO-B: - d/watch is not present but also not needed (e.g. native)
+TODO-A: - debian/watch is present and looks ok (if needed, e.g. non-native)
+TODO-B: - debian/watch is not present but also not needed (e.g. native)
 TODO: - Upstream update history is (good/slow/sporadic)
 TODO: - Debian/Ubuntu update history is (good/slow/sporadic)
 TODO: - the current release is packaged
 TODO: - promoting this does not seem to cause issues for MOTUs that so far
 TODO:   maintained the package
 TODO: - no massive Lintian warnings
-TODO: - d/rules is rather clean
+TODO: - debian/rules is rather clean
 TODO: - It is not on the lto-disabled list
 RULE:   (fix, or the work-around should be directly in the package,
 RULE:    see https://launchpad.net/ubuntu/+source/lto-disabled-list)
