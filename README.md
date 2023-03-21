@@ -198,7 +198,7 @@ RULE: spent elsewhere.
 RULE: If there are other packages in the archive that are close, but unable to
 RULE: address the problem you might spend some time explaining what exists and
 RULE: why it isn't a sufficient alternative.
-TODO: - There is not other/better way to solve this that is alredy in main or
+TODO: - There is no other/better way to solve this that is already in main or
 TODO:   should go universe->main instead of this.
 
 RULE: Reviews will take some time. Also the potential extra work out of review
