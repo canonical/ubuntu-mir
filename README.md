@@ -188,6 +188,18 @@ TODO: - Package TBDSRC covers the same use case as TBD, but is better
 TODO:   because TBD, thereby we want to replace it.
 TODO: - The package TBDSRC is a new runtime dependency of package TBD that
 TODO:   we already support
+RULE: Sometimes there are other/better ways, often are achieved by using a
+RULE: library with similar functionality that is more commonly used and
+RULE: thereby already in main or a better candidate to promote.
+RULE: Reducing the set of supported software in Ubuntu helps to focus on the
+RULE: right things, otherwise Ubuntu developers will be consumed by updating
+RULE: many variations of the same - wasting valuable time that could be better
+RULE: spent elsewhere.
+RULE: If there are other packages in the archive that are close, but unable to
+RULE: address the problem you might spend some time explaining what exists and
+RULE: why it isn't a sufficient alternative.
+TODO: - There is no other/better way to solve this that is already in main or
+TODO:   should go universe->main instead of this.
 
 RULE: Reviews will take some time. Also the potential extra work out of review
 RULE: feedback from either MIR-team and/or security-team will take time.
