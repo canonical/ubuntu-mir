@@ -892,7 +892,7 @@ Mission: Identify required actions and spread the load among the teams
 #link https://people.canonical.com/~ubuntu-archive/component-mismatches.svg
 
 #topic New MIRs
-Mission: ensure to assign all incoming reviews for fast processing  
+Mission: ensure to assign all incoming reviews for fast processing
 
 #link https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir
 
