@@ -935,7 +935,7 @@ we can do two things:
 
 ## Contributing
 
-We welcome everyone who wants to improve the Ubuntu documentation! Whether you've found a typo, have a suggestion for improving existing content, or want to add new content, we'd love to hear from you.
+We welcome everyone who wants to improve the Ubuntu MIR documentation! Whether you've found a typo, have a suggestion for improving existing content, or want to add new content, we'd love to hear from you.
 
 To contribute, simply submit a pull request with your changes or create an issue. Please also attend the weekly MIR Team meeting (Tuesdays 15:30-16:00 GMT) on our [IRC](https://wiki.ubuntu.com/IRC/ChannelList) in the [#ubuntu-meeting](https://wiki.ubuntu.com/BeginnersTeam/Meetings) channel to discuss your issue with the MIR Team.
 
