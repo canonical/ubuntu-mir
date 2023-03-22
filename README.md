@@ -941,6 +941,6 @@ To contribute, simply submit a pull request with your changes or create an issue
 
 ### Code of Conduct
 
-Please note that we have a code of conduct in place for all contributors to this repository. By contributing, you agree to abide by the [Ubuntu Code of Conduct](https://launchpad.net/codeofconduct)
+Please note that we have a code of conduct in place for all contributors to this repository. By contributing, you agree to abide by the [Ubuntu Code of Conduct](https://launchpad.net/codeofconduct).
 
 Thank you for considering contributing to the Ubuntu documentation!
