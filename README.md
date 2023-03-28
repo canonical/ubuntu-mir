@@ -902,9 +902,10 @@ Mission: Identify required actions and spread the load among the teams
 #link https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&field.subscriber=ubuntu-mir
 
 #topic Process/Documentation improvements
-Mission: Review pending process/documentation pull-requests
+Mission: Review pending process/documentation pull-requests or issues
 
 #link https://github.com/canonical/ubuntu-mir/pulls
+#link https://github.com/canonical/ubuntu-mir/issues
 
 #topic MIR related Security Review Queue
 Mission: Check on progress, do deadlines seem doable?
