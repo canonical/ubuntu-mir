@@ -155,6 +155,7 @@ The reporter/reviewer is tasked to use the templates the following way:
 1. You can and are encouraged to always add more details/background that make the case comprehensible
 1. Update the MIR Bug
    1. Reporter: File the MIR bug based on the processed template as the bug description
+      - In case of a single context/reasoning, but multiple packages to promote please make a Launchpad bug for each package. One central package may be chosen to maintain the shared context of related packages. Other packages must be tracked by and link to the central package. See the [central Pacemaker MIR](https://bugs.launchpad.net/ubuntu/+source/pcs/+bug/1953341) as an example.
    1. MIR-Team: Review and add a comment to the bug that contains the review
 
 ## Main Inclusion requirements
