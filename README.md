@@ -852,6 +852,150 @@ TODO-A: - TBD
 TODO-B: Problems: None
 ```
 
+
+# Re-Reviewing an approved package
+
+Right now this is **not active**, it is - so far - a documentation of the intent to do so helping all involved parties to better understand what this would mean.
+
+The MIR team and thereby in extension Ubuntu continuously evolves the MIR ruling, for example we add rules based on painful lessons learned to avoid the same to happen again. In that regard some asks for testing, quality and such might be best practise now, but have not been fulfilled by packages that are in main for a long time.
+
+The proposed approach would be to:
+
+1. The MIR team would aim for a constant demand of e.g. "1 review per week per MIR member"
+   1. On one hand that means if new requests are assigned in a week that we make no progress on the backlog, but OTOH this keeps effort plannable)
+2. We'd run a trimmed down check which is a subset of our usual check (see below)
+3. As on the initial MIR review we might end up recommending a security (re-)review which goes into their queue at low prio
+
+## Special cases
+Special case - packges in main without an launchpad bug based MIR process.
+Some older cases do not have anything for auditability, for those we'll reach out to the [owning team](http://reqorts.qa.ubuntu.com/reports/m-r-package-team-mapping.html) and ask to file an MIR as they should ask (and answer) themselfe the same questions we do on a modern MIR.
+
+## Progress
+
+We do not expect this to be quick, there are so many old packages in main that do not even have any trace how they got promoted.
+But if we never start it will never be better. So instead of holding back, we need to just start at some point.
+
+## Process
+
+We'd add (doing so is a TODO) a query that helps us to spot packages in main for the longest time without having a recent update on their MIR bugs - out of that pool we'd then assign in each weekly team meeting.
+
+
+```
+TODO: Re-review for Package: TBDSRC
+
+[Summary]
+TODO: WRITE - TBD The essence of the review result from the MIR POV
+TODO-A: MIR team ACK - no extra work needed
+TODO-B: MIR team NACK - this needs to get out of main
+TODO-C: MIR team ACK under the constraint to resolve the below listed
+TODO-C: required TODOs and as much as possible having a look at the
+TODO-C: recommended TODOs.
+
+TODO-A: This does need a security re-review, so I'll assign ubuntu-security
+TODO-B: This does not need a security re-review
+
+Required TODOs:
+TODO: - TBD (Please add them numbered for later reference)
+Recommended TODOs:
+TODO: - TBD (Please add them numbered for later reference)
+
+[Duplication]
+RULE: It might have been unique back when added, but no more these days
+TODO: There is no other package in main providing the same functionality.
+
+RULE: none of these section matters for things already in main
+RULE: [Dependencies]
+RULE: [Embedded sources and static linking]
+
+[Security]
+RULE: - Determine if the package may have security implications or history.
+RULE:   Err on the side of caution and let security review it as well if in doubt.
+
+OK:
+TODO: - history of CVEs does still not look too concerning
+TODO: - does not run a daemon as root
+TODO: - does not use webkit1,2
+TODO: - does not use lib*v8 directly
+TODO: - does not parse data formats (files [images, video, audio,
+TODO:   xml, json, asn.1], network packets, structures, ...) from
+TODO:   an untrusted source.
+TODO: - does not open a port/socket
+TODO: - does not process arbitrary web content
+TODO: - does not use centralized online accounts
+TODO: - does not integrate arbitrary javascript into the desktop
+TODO: - does not deal with system authentication (eg, pam), etc)
+TODO: - does not deal with security attestation (secure boot, tpm, signatures)
+TODO: - does not deal with cryptography (en-/decryption, certificates, signing, ...)
+TODO: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside
+TODO:   tests)
+TODO: - no use of user nobody
+TODO: - no use of setuid
+TODO: - use of setuid, but ok because TBD (prefer systemd to set those
+TODO:   for services)
+
+
+TODO-A: Problems:
+TODO-A: - TBD
+TODO-B: Problems: None
+
+[Common blockers]
+RULE: - There are plenty of testing requirements, hopefully already resolved
+RULE:   by the reporter upfront, see "Quality assurance - testing" section of
+RULE:   the Main Inclusion requirements
+
+OK:
+TODO-A: - d/copyright still reasonable for todays code?
+TODO-B: - The code has changed a lot since d/copyright was written, please adapt
+TODO: - does have a test suite that runs at build time
+TODO:   - test suite fails will fail the build upon error.
+TODO: - does have a non-trivial test suite that runs as autopkgtest
+TODO: - This does needs special HW or process for testing as documented,
+TODO    have those been followed correctly?
+
+TODO-A: Problems:
+TODO-A: - TBD
+TODO-B: Problems: None
+
+[Packaging red flags]
+RULE: - Does Ubuntu carry a non necessary delta?
+RULE: - If it's a library, does it either have a symbols file or use an empty
+RULE:   argument to dh_makeshlibs -V? (pass such a patch on to Debian, but
+RULE:   don't block on it).
+RULE:   Note that for C++, see https://wiki.ubuntu.com/DailyRelease/FAQ
+RULE:   for a method to demangle C++ symbols files.
+RULE: - Does it have a watch file? (If relevant, e.g. non-native)
+RULE: - Is its update history slow or sporadic?
+RULE: - Is the current release packaged?
+RULE: - Will entering main make it harder for the people currently keeping it
+RULE:   up to date? (i.e. are they only MOTUs?)
+RULE: - Lintian warnings
+RULE: - Is debian/rules a mess? Ideally it uses dh and overrides to make it as
+RULE:   tiny as possible.
+RULE: - If a package shall be promoted it should NOT be on the lto-disabled
+RULE:   list, but the fix, or the work-around should be directly in the package
+RULE:   to enforce maintainer awareness and make it more visible to anyone
+RULE:   looking at the package - see https://wiki.ubuntu.com/ToolChain/LTO.
+
+OK:
+TODO-A: - Ubuntu does not carry a delta
+TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
+TODO-B:   control
+TODO-C: - Ubuntu does carry delta and it seems it could be simplified or upstreamed
+TODO-A: - debian/watch is present and looks ok
+TODO-B: - debian/watch is not present but also not needed in this case
+TODO: - Upstream update history is (good/slow/sporadic)
+TODO: - Debian/Ubuntu update history is (good/slow/sporadic)
+TODO: - the current release is packaged
+TODO: - no massive Lintian warnings
+TODO: - no Errors/warnings during the build
+TODO: - no important open bugs (crashers, etc) in Debian or Ubuntu
+TODO: - no dependency on webkit, qtwebkit, seed or libgoa-*
+
+TODO-A: Problems:
+TODO-A: - TBD
+TODO-B: Problems: None
+```
+
 # MIR Team weekly status meeting
 
 
