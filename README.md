@@ -164,7 +164,7 @@ re-check everything (they could, but they do not have to) while other
 things only are important on a re-check.
 For that there is a section *[Re-Review]* which has entries only needed for
 that.
-Furthermore any `TODO:` entry that shall be re-checked ona re-review has
+Furthermore any `TODO:` entry that shall be re-checked on a re-review has
 a `*` added before the colon. So it would appear as `TODO*:` or `TODO-A*:`
 respectively.
 That allows for easy filtering while not having redundant rules.
@@ -559,10 +559,10 @@ summary at the top).
 # Re-Reviewing an approved package
 
 The MIR team and thereby in extension Ubuntu continuously evolves the MIR
-ruling. For example, we add rules based on painful lessons learned to avoid
-the same from happening again. In that regard the demand for testing, quality
-and so on might be best practice now, but have not been fulfilled by packages
-that are in main for a long time.
+expectations and guidelines. For example, we add rules based on painful lessons
+learned to avoid the same from happening again. In that regard the demand for
+testing, quality and so on might be best practice now, but have not been
+fulfilled by packages that are in main for a long time.
 
 The proposed approach would be to:
 
@@ -578,7 +578,7 @@ The proposed approach would be to:
 ## Packages without a MIR bug
 
 This is a special case for things that are in main for quite some time.
-Those packages are in main without an launchpad bug based MIR process.
+Those packages are in main without a launchpad bug based MIR process.
 Some have mailing list posts which can serve as a base, but some have
 nothing at all for auditability.
 
@@ -589,7 +589,7 @@ creating a MIR bug for this package with this being the initial input.
 Then we will reach out to the [owning team](http://reqorts.qa.ubuntu.com/reports/m-r-package-team-mapping.html)
 and ask them to look at what we found and also ask them to reply on the bug
 with a full new `MIR` template. That shall help to ensure the owning teams
-point of view is documented as they should ask (and answer) themselfe
+point of view is documented as they should ask (and answer) themselves
 the same questions we expect them to do on any modern MIR.
 
 ## Progress and Expectations
@@ -668,8 +668,8 @@ RULE:   $ rmadison -c main {all,packages,that,look,like,duplicates}
 RULE: If any of them are reported to be in main check in detail if they cover
 RULE: indeed the same use case as the package this MIR is about.
 RULE: On re-review finding duplication might lead to considerations to drop
-RULE: one of the two. They might not have been unifiably back then, but might
-RULE: be nowadays
+RULE: one of the two. back in the day it might have been impossible to pick
+RULE: and support just one, but that might have changed since then.
 TODO*: There is no other package in main providing the same functionality.
 
 [Dependencies]
@@ -894,6 +894,10 @@ TODO*: - symbols tracking is in place
 TODO*: - symbols tracking not applicable for this kind of code.
 TODO-A*: - debian/watch is present and works well
 TODO-B*: - debian/watch is not present but also not needed (e.g. native)
+RULE: - On a re-review the bug history will be interesting again, it might show
+RULE:   that this was abandoned by upstream, Debian or even Ubuntu. While on the
+RULE:   other hand an insight might be that a package is more costly to maintain
+RULE:   than everyone assumed.
 TODO*: - Upstream update history is (good/slow/sporadic)
 TODO*: - Debian/Ubuntu update history is (good/slow/sporadic)
 TODO*: - the current release is packaged
