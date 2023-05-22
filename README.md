@@ -299,7 +299,7 @@ RULE:   at least once each release cycle. In the comment to the MIR bug,
 RULE:   please link to the codebase of these tests (scripts or doc of manual
 RULE:   steps) and attach a full log of these test runs. This is meant to
 RULE:   assess their validity (e.g. not just superficial)
-TODO: - The package can not be tested at build or autopktest time because TBD
+TODO: - The package can not be tested at build or autopkgtest time because TBD
 TODO:   to make up for that here TBD is a test plan/automation and example
 TODO:   test TBD (logs/scripts)
 
