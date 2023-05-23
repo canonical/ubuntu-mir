@@ -21,11 +21,8 @@ mail
 media
 mnt
 opt
-opt
 proc
 root
-root
-run
 run
 rw
 sbin
