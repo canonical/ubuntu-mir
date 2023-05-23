@@ -662,7 +662,7 @@ RULE:   to build shared libraries and `-linkshared` to dynamically link against
 RULE:   shared libraries. In general, statically compiled binaries are not
 RULE:   suitable for the Ubuntu archive because they increase the maintenance
 RULE:   burden significantly. As such, from Ubuntu 16.10 and later, golang
-RULE:   packages packages in main were expected to be built with shared
+RULE:   packages in main were expected to be built with shared
 RULE:   libraries.
 RULE: - Evaluating cost/benefits while considering the ABI instability of golang
 RULE:   libraries during this period, the MIR team decided for 17.10 and later
