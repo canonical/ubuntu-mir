@@ -36,6 +36,7 @@ src
 srv
 sys
 tmp
+uefi
 uid
 unix
 usr

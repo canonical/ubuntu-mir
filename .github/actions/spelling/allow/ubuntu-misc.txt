@@ -15,6 +15,5 @@ nbs
 restricted
 sru
 triaged
-uife
 universe
 wontfix
