@@ -461,7 +461,7 @@ RULE:   dependencies (except those provided by the rust runtime itself).
 RULE:   This implies that all the rules for vendored builds always
 RULE:   apply to them. In addition:
 RULE:   - The rules and checks for rust based packages are preliminary and might
-RULE:     change over time as the ecosytem matures and while
+RULE:     change over time as the ecosystem matures and while
 RULE:     processing the first few rust based packages.
 RULE:   - It is expected rust builds will use dh-cargo so that a later switch
 RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
