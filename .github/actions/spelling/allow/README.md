@@ -8,7 +8,7 @@ if you come up with a better system.
 
 ## Files
 
-**Note:** the file entries are all in lower case and sorted alphabetically
+**Note:** The file entries are sorted alphabetically (this makes it easier to see if an entry is present/missing). The default minimum word size is 3 characters and since version `0.0.21` the only characters it considers are `a-z` and `'` (as a regular expression `^[a-z']{3,}$`).
 
 | File | Description |
 | ---- | ----------- |
