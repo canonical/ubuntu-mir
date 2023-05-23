@@ -242,7 +242,7 @@ TODO-B:   TBD (list services, timers, jobs)
 TODO-C: - Package does install services, timers or recurring jobs
 TODO-C:   TBD (list services, timers, jobs)
 TODO-C:   Those have the following security features: TBD (add details like
-TODO-C:   reduced permissions, temp envronment, restricted users/groups,
+TODO-C:   reduced permissions, temp environment, restricted users/groups,
 TODO-C:   seccomp, apparmor, ...)
 TODO: - Packages does not open privileged ports (ports < 1024)
 TODO: - Packages does not contain extensions to security-sensitive software
