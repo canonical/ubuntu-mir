@@ -12,9 +12,8 @@ intel
 powerpc
 powerpc64
 ppc64el
-risc-v 
+riscv 
 riscv64
 s390x
 x64
 x86
-x86-64

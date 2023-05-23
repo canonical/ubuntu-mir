@@ -4,9 +4,6 @@ asn
 assembly
 bash
 basic
-c
-c#
-c++
 clojure
 csharp
 css
@@ -14,10 +11,8 @@ cypher
 dart
 delphi
 erlang
-f#
 fortran
 fsharp
-go
 golang
 haskell
 htm
@@ -28,7 +23,6 @@ java
 javascript
 jpeg
 jpg
-js
 json
 julia
 latex
@@ -37,7 +31,7 @@ lua
 markdown
 matlab
 object
-objective-c
+objective
 pascal
 perl
 php
@@ -46,7 +40,6 @@ prolog
 python
 python2
 python3
-qt
 restructuredtext
 rst
 ruby
@@ -60,9 +53,7 @@ sql
 svg
 tex
 toml
-ts
 typescript
-vb
 visual
 webassembly
 xhtml
