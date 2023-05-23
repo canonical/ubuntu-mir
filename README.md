@@ -389,7 +389,7 @@ RULE: - Major violations should be documented and justified.
 RULE:   - FHS: https://refspecs.linuxfoundation.org/fhs.shtml
 RULE:   - Debian Policy: https://www.debian.org/doc/debian-policy/
 TODO-A: - This package correctly follows FHS and Debian Policy
-TODO-B: - This package violates FHS or Debian Polciy, reasons for that are TBD
+TODO-B: - This package violates FHS or Debian Policy, reasons for that are TBD
 
 [Maintenance/Owner]
 RULE: The package must have an acceptable level of maintenance corresponding
