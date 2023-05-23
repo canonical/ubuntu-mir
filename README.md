@@ -202,7 +202,7 @@ TODO:   should go universe->main instead of this.
 
 RULE: Reviews will take some time. Also the potential extra work out of review
 RULE: feedback from either MIR-team and/or security-team will take time.
-RULE: For better priorization it is quite helpful to clearly state the
+RULE: For better prioritization it is quite helpful to clearly state the
 RULE: target release and set a milestone to the bug task.
 RULE: When doing so do not describe what you "wish" or "would like to have".
 RULE: Only milestones that are sufficiently well-founded and related to
