@@ -152,7 +152,7 @@ The reporter/reviewer is tasked to use the templates the following way:
       - To assist the template-user those alternatives are marked like *TODO-A:, TODO-B:, ...*. Of those one would usually expect only one to remain in the final content.
    1. The MIR Team reviewer will have to judge, therefore all his statements start in an *OK:* section. But any time a violation is found the statement is moved to the *Problems:* area and flagged what is missing/expected. If no *Problems:* are present leave just the alternative *Problems: None* for posting the review.
 1. Remove the lines starting with *RULE* after you have processed them
-1. Eventually all you will have left are the categories Availability, Rationale, ... and therin the answers that the MIR process expects
+1. Eventually all you will have left are the categories Availability, Rationale, ... and therein the answers that the MIR process expects
 1. You can and are encouraged to always add more details/background that make the case comprehensible
 1. Update the MIR Bug
    1. Reporter: File the MIR bug based on the processed template as the bug description
