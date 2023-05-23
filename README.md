@@ -547,8 +547,8 @@ be addressed should go to the *Problem:* sections (and briefly the
 summary at the top).
 
 ```
-RULE: Since we sometimes have many such posts on one bug in case multiple
-RULE: packages are associated clearly state which one this is for.
+RULE: Since we sometimes have many such posts on one bug, in case multiple
+RULE: packages are associated, clearly state which one this is for.
 TODO: Review for Package: TBDSRC
 
 [Summary]
