@@ -799,7 +799,7 @@ RULE: - Lintian warnings
 RULE: - Is debian/rules a mess? Ideally it uses dh and overrides to make it as
 RULE:   tiny as possible.
 RULE: - If a package shall be promoted it should NOT be on the lto-disabled
-RULE:   list, but the fix, or the work-around should be directly in the package
+RULE:   list, but the fix, or the workaround should be directly in the package
 RULE:   to enforce maintainer awareness and make it more visible to anyone
 RULE:   looking at the package - see https://wiki.ubuntu.com/ToolChain/LTO.
 
@@ -819,7 +819,7 @@ TODO:   maintained the package
 TODO: - no massive Lintian warnings
 TODO: - debian/rules is rather clean
 TODO: - It is not on the lto-disabled list
-RULE:   (fix, or the work-around should be directly in the package,
+RULE:   (fix, or the workaround should be directly in the package,
 RULE:    see https://launchpad.net/ubuntu/+source/lto-disabled-list)
 
 TODO-A: Problems:
