@@ -1,61 +1,53 @@
-# reject `m_data` as there's a certain OS which has evil defines that break things if it's used elsewhere
-# \bm_data\b
-
-# If you have a framework that uses `it()` for testing and `fit()` for debugging a specific test,
-# you might not want to check in code where you were debugging w/ `fit()`, in which case, you might want
-# to use this:
-#\bfit\(
-
-# s.b. GitHub
+# If you encounter this error, use spelling "GitHub" instead.
 \bGithub\b
 
-# s.b. GitLab
+# If you encounter this error, use spelling "GitLab" instead.
 \bGitlab\b
 
-# s.b. JavaScript
+# If you encounter this error, use spelling "JavaScript" instead.
 \bJavascript\b
 
-# s.b. Microsoft
+# If you encounter this error, use spelling "Microsoft" instead.
 \bMicroSoft\b
 
-# s.b. another
+# If you encounter this error, use spelling "another" instead.
 \ban[- ]other\b
 
-# s.b. greater than
+# If you encounter this error, use spelling "greater than" instead.
 \bgreater then\b
 
-# s.b. into
+# If you encounter this error, use spelling "into" instead.
 \sin to\s
 
-# s.b. opt-in
+# If you encounter this error, use spelling "opt-in" instead.
 \sopt in\s
 
-# s.b. less than
+# If you encounter this error, use spelling "less than" instead.
 \bless then\b
 
-# s.b. otherwise
+# If you encounter this error, use spelling "otherwise" instead.
 \bother[- ]wise\b
 
-# s.b. nonexistent
+# If you encounter this error, use spelling "nonexistent" instead.
 \bnon existing\b
 \b[Nn]o[nt][- ]existent\b
 
-# s.b. preexisting
+# If you encounter this error, use spelling "preexisting" instead.
 [Pp]re[- ]existing
 
-# s.b. preempt
+# If you encounter this error, use spelling "preempt" instead.
 [Pp]re[- ]empt\b
 
-# s.b. preemptively
+# If you encounter this error, use spelling "preemptively" instead.
 [Pp]re[- ]emptively
 
-# s.b. reentrancy
+# If you encounter this error, use spelling "reentrancy" instead.
 [Rr]e[- ]entrancy
 
-# s.b. reentrant
+# If you encounter this error, use spelling "reentrant" instead.
 [Rr]e[- ]entrant
 
-# s.b. workaround(s)
+# If you encounter this error, use spelling "workaround" or "workarounds" instead.
 \bwork[- ]arounds?\b
 
 # Reject duplicate words
