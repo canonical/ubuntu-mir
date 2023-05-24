@@ -1,0 +1,11 @@
+budgie
+cinnamon
+edubuntu
+kubuntu
+kylin
+lubuntu
+mate
+studio
+ubuntu
+unity
+xubuntu

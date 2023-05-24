@@ -1,0 +1,54 @@
+# If you encounter this error, use spelling "GitHub" instead.
+\bGithub\b
+
+# If you encounter this error, use spelling "GitLab" instead.
+\bGitlab\b
+
+# If you encounter this error, use spelling "JavaScript" instead.
+\bJavascript\b
+
+# If you encounter this error, use spelling "Microsoft" instead.
+\bMicroSoft\b
+
+# If you encounter this error, use spelling "another" instead.
+\ban[- ]other\b
+
+# If you encounter this error, use spelling "greater than" instead.
+\bgreater then\b
+
+# If you encounter this error, use spelling "into" instead.
+\sin to\s
+
+# If you encounter this error, use spelling "opt-in" instead.
+\sopt in\s
+
+# If you encounter this error, use spelling "less than" instead.
+\bless then\b
+
+# If you encounter this error, use spelling "otherwise" instead.
+\bother[- ]wise\b
+
+# If you encounter this error, use spelling "nonexistent" instead.
+\bnon existing\b
+\b[Nn]o[nt][- ]existent\b
+
+# If you encounter this error, use spelling "preexisting" instead.
+[Pp]re[- ]existing
+
+# If you encounter this error, use spelling "preempt" instead.
+[Pp]re[- ]empt\b
+
+# If you encounter this error, use spelling "preemptively" instead.
+[Pp]re[- ]emptively
+
+# If you encounter this error, use spelling "reentrancy" instead.
+[Rr]e[- ]entrancy
+
+# If you encounter this error, use spelling "reentrant" instead.
+[Rr]e[- ]entrant
+
+# If you encounter this error, use spelling "workaround" or "workarounds" instead.
+\bwork[- ]arounds?\b
+
+# Reject duplicate words
+\s([A-Z]{3,}|[A-Z][a-z]{2,}|[a-z]{3,})\s\g{-1}\s

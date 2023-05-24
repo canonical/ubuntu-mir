@@ -1,0 +1,10 @@
+endmeeting
+malloc
+meetingology
+openwall
+pkgname
+sourcepackagename
+sprintf
+SRCPKG
+startmeeting
+TBDSRC
