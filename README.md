@@ -100,7 +100,7 @@ The MIR-bug reporter is expected to:
    1. Write down all positive checks that you did as well (not only the issues)
 1. File a bug report about the package, titled "[MIR] sourcepackagename".
    1. use below template from [Ubuntu Main Inclusion RULEs and TODOs](#main-inclusion-requirements)
-   1. For each rule include a positive or negative statment as confirmation that you checked each requirement carefully.
+   1. For each rule include a positive or negative statement as confirmation that you checked each requirement carefully.
    1. For any rule violations ensure to explain why it should be ok for this case.
 1. Subscribe `ubuntu-mir` to the bug report (keep it in state "NEW" and do not assign it to anyone!), so that it appears in the  [MIR bug list](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir).
 1. The [MIR team](https://launchpad.net/~ubuntu-mir) reviews the reports, and sets acceptable ones to *In Progress* or *Fix Committed*. They might also delegate portions of the review to other teams, by assigning it to them; common cases are getting a thorough security review from the [security team](https://launchpad.net/~ubuntu-security) (please see [SecurityTeam/Auditing](https://wiki.ubuntu.com/SecurityTeam/Auditing) for details on requesting an audit and the [security team Jira board](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594)` (private board) for prioritized list of MIR security reviews), or getting a sign-off from particular team leads about maintenance commitments.
@@ -152,7 +152,7 @@ The reporter/reviewer is tasked to use the templates the following way:
       - To assist the template-user those alternatives are marked like *TODO-A:, TODO-B:, ...*. Of those one would usually expect only one to remain in the final content.
    1. The MIR Team reviewer will have to judge, therefore all his statements start in an *OK:* section. But any time a violation is found the statement is moved to the *Problems:* area and flagged what is missing/expected. If no *Problems:* are present leave just the alternative *Problems: None* for posting the review.
 1. Remove the lines starting with *RULE* after you have processed them
-1. Eventually all you will have left are the categories Availability, Rationale, ... and therin the answers that the MIR process expects
+1. Eventually all you will have left are the categories Availability, Rationale, ... and therein the answers that the MIR process expects
 1. You can and are encouraged to always add more details/background that make the case comprehensible
 1. Update the MIR Bug
    1. Reporter: File the MIR bug based on the processed template as the bug description
@@ -202,7 +202,7 @@ TODO:   should go universe->main instead of this.
 
 RULE: Reviews will take some time. Also the potential extra work out of review
 RULE: feedback from either MIR-team and/or security-team will take time.
-RULE: For better priorization it is quite helpful to clearly state the
+RULE: For better prioritization it is quite helpful to clearly state the
 RULE: target release and set a milestone to the bug task.
 RULE: When doing so do not describe what you "wish" or "would like to have".
 RULE: Only milestones that are sufficiently well-founded and related to
@@ -242,7 +242,7 @@ TODO-B:   TBD (list services, timers, jobs)
 TODO-C: - Package does install services, timers or recurring jobs
 TODO-C:   TBD (list services, timers, jobs)
 TODO-C:   Those have the following security features: TBD (add details like
-TODO-C:   reduced permissions, temp envronment, restricted users/groups,
+TODO-C:   reduced permissions, temp environment, restricted users/groups,
 TODO-C:   seccomp, apparmor, ...)
 TODO: - Packages does not open privileged ports (ports < 1024)
 TODO: - Packages does not contain extensions to security-sensitive software
@@ -299,7 +299,7 @@ RULE:   at least once each release cycle. In the comment to the MIR bug,
 RULE:   please link to the codebase of these tests (scripts or doc of manual
 RULE:   steps) and attach a full log of these test runs. This is meant to
 RULE:   assess their validity (e.g. not just superficial)
-TODO: - The package can not be tested at build or autopktest time because TBD
+TODO: - The package can not be tested at build or autopkgtest time because TBD
 TODO:   to make up for that here TBD is a test plan/automation and example
 TODO:   test TBD (logs/scripts)
 
@@ -389,7 +389,7 @@ RULE: - Major violations should be documented and justified.
 RULE:   - FHS: https://refspecs.linuxfoundation.org/fhs.shtml
 RULE:   - Debian Policy: https://www.debian.org/doc/debian-policy/
 TODO-A: - This package correctly follows FHS and Debian Policy
-TODO-B: - This package violates FHS or Debian Polciy, reasons for that are TBD
+TODO-B: - This package violates FHS or Debian Policy, reasons for that are TBD
 
 [Maintenance/Owner]
 RULE: The package must have an acceptable level of maintenance corresponding
@@ -461,7 +461,7 @@ RULE:   dependencies (except those provided by the rust runtime itself).
 RULE:   This implies that all the rules for vendored builds always
 RULE:   apply to them. In addition:
 RULE:   - The rules and checks for rust based packages are preliminary and might
-RULE:     change over time as the ecosytem matures and while
+RULE:     change over time as the ecosystem matures and while
 RULE:     processing the first few rust based packages.
 RULE:   - It is expected rust builds will use dh-cargo so that a later switch
 RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
@@ -501,7 +501,7 @@ TODO-B:   to the security team for any affected vendored code for the lifetime
 TODO-B:   of the release (including ESM).
 
 TODO-A: - This does not use vendored code
-TODO-B: - This package uses vendored go code tracked in go.sum as shiped in the
+TODO-B: - This package uses vendored go code tracked in go.sum as shipped in the
 TODO-B:   package, refreshing that code is outlined in debian/README.source
 TODO-C: - This package uses vendored rust code tracked in Cargo.lock as shipped,
 TODO-C:   in the package (at /usr/share/doc/<pkgname>/Cargo.lock - might be
@@ -547,8 +547,8 @@ be addressed should go to the *Problem:* sections (and briefly the
 summary at the top).
 
 ```
-RULE: Since we sometimes have many such posts on one bug in case multiple
-RULE: packages are assocuated clearly state which one this is for.
+RULE: Since we sometimes have many such posts on one bug, in case multiple
+RULE: packages are associated, clearly state which one this is for.
 TODO: Review for Package: TBDSRC
 
 [Summary]
@@ -662,7 +662,7 @@ RULE:   to build shared libraries and `-linkshared` to dynamically link against
 RULE:   shared libraries. In general, statically compiled binaries are not
 RULE:   suitable for the Ubuntu archive because they increase the maintenance
 RULE:   burden significantly. As such, from Ubuntu 16.10 and later, golang
-RULE:   packages packages in main were expected to be built with shared
+RULE:   packages in main were expected to be built with shared
 RULE:   libraries.
 RULE: - Evaluating cost/benefits while considering the ABI instability of golang
 RULE:   libraries during this period, the MIR team decided for 17.10 and later
@@ -799,7 +799,7 @@ RULE: - Lintian warnings
 RULE: - Is debian/rules a mess? Ideally it uses dh and overrides to make it as
 RULE:   tiny as possible.
 RULE: - If a package shall be promoted it should NOT be on the lto-disabled
-RULE:   list, but the fix, or the work-around should be directly in the package
+RULE:   list, but the fix, or the workaround should be directly in the package
 RULE:   to enforce maintainer awareness and make it more visible to anyone
 RULE:   looking at the package - see https://wiki.ubuntu.com/ToolChain/LTO.
 
@@ -819,7 +819,7 @@ TODO:   maintained the package
 TODO: - no massive Lintian warnings
 TODO: - debian/rules is rather clean
 TODO: - It is not on the lto-disabled list
-RULE:   (fix, or the work-around should be directly in the package,
+RULE:   (fix, or the workaround should be directly in the package,
 RULE:    see https://launchpad.net/ubuntu/+source/lto-disabled-list)
 
 TODO-A: Problems:
