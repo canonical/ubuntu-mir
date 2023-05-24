@@ -32,4 +32,6 @@ vendored
 vendoring
 vendorized
 wiki
+workaround
+workarounds
 www
