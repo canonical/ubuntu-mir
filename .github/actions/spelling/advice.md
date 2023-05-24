@@ -7,8 +7,8 @@ By default the suggested command will add the listed items to the <code>.github/
 
 If a listed items is
 * ... **misspelled**, then please *correct* them instead of changing the spell checker configuration.
-* ... an *actual* word/term that has a high probability of showing up in future contributions, please add it to the [`allowed words`](/.github/actions/spelling/allow).
-* ... an term/word that just you use or shouldn't generally be accepted, please add it to [`.github/actions/spelling/expect.txt`](/.github/actions/spelling/expect.txt).
+* ... an *actual* word/term that has a high probability of showing up in future contributions, please add it to [`.github/actions/spelling/allow`](https://github.com/canonical/ubuntu-mir/tree/main/.github/actions/spelling/allow).
+* ... an term/word that just you use or shouldn't generally be accepted, please add it to [`.github/actions/spelling/expect.txt`](https://github.com/canonical/ubuntu-mir/tree/main/.github/actions/spelling/expect.txt).
 
 See the `README.md` in each directory for more information.
 
