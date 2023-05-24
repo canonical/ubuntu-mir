@@ -3,12 +3,12 @@
 <summary>
 :pencil2: Contributor please read this
 </summary>
-By default the suggested command will add the listed items to the <code>.github/actions/spelling/expect.txt</code>. <b>This is not allways desired!</b>
+By default the suggested command will add the listed items to the <code>.github/actions/spelling/expect.txt</code>. <b>This is not always desired!</b>
 
 If a listed items is
 * ... **misspelled**, then please *correct* them instead of changing the spell checker configuration.
 * ... an *actual* word/term that has a high probability of showing up in future contributions, please add it to the [`allowed words`](/.github/actions/spelling/allow).
-* ... an term/word that just you use or shouldn't generally be accepted, please add it to [`.github/actions/spelling/expect.txt`](/.github/actions/spelling/expect.txt).
+* ... a term/word that just you use or shouldn't generally be accepted, please add it to [`.github/actions/spelling/expect.txt`](/.github/actions/spelling/expect.txt).
 
 See the `README.md` in each directory for more information.
 
