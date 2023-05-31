@@ -12,60 +12,84 @@ promotion from universe to main.
 
 That is the *Main Inclusion Review* =\> MIR
 
-## Process states
+## Process States
 
-This is supposed to be an overview of MIR bug status (as there was
-enough confusion in the past). Especially to make clear who\'s turn it
-is to act next on a MIR bug.
+This overview aims to clarify the meaning of MIR bug states, address previous 
+confusion, and indicate the next course of action on a MIR bug.
 
-| State                                   | Explanation |
-| -----                                   | ------- |
-| 1. New/Confirmed (unassigned)           | Bug is new for the MIR team to dispatch it to a MIR Team member |
-| 2. New/Confirmed (assigned)             | on the TODO list of the assigned MIR team member |
-| 3. New/Confirmed (assigned to Security) | on the TODO list of the Security Team |
-| Hint: from #2/#3 to #4/#5/#8 | The successor of these states depends (as seen by multiple potential arrows in the infographic) on the packages current state in the archive. #8 Nack is set to Won\'t Fix and the former reviewer unassigned - if there is context to believe that there might be a follow up by the reporter it might be assigned to them. In case of an Ack it depends on the state of the package - if the package is already tried to be pulled into main (seen in component mismatches) then the next state is #5 (Fix Committed), otherwise the next state is #4 (In Progress) |
-| 4. In Progress (any)                    | MIR team ack (and if needed Security Team ack) done, but now needs the Dependency/Seed change to happen to pull it into Main |
-| 5. Fix Committed (any)                  | All of the above done, waiting for an AA (Archive Admin) to promote the packages |
-| 6. Fix Released (any)                   | Case resolved by an AA |
-| 7. Incomplete (any)                     | Questions/Requests were raised for the bug reporter to resolve/clarify |
-| 8. Won\'t Fix (any)                     | Final Nack or given up by the bug reporter |
-| 9. Invalid (any)                        | No Feedback for a while when in incomplete status |
+```mermaid
+%% mermaid flowcharts documentation: https://mermaid.js.org/syntax/flowchart.html
+%%{ init: { 'flowchart': { 'curve': 'monotoneY' } } }%%
+flowchart TD 
+    subgraph New["New / Confirmed¹"]
+        Unassigned["<i>1.</i> Unassigned"]
+        Assigned["<i>2.</i> Assigned"]
+        AssignedToSecurity["<i>3.</i> Assigned to Security team"]
+        
+        Unassigned -->|"start triaging"| Assigned
+        Assigned -->|"if Security Review needed"| AssignedToSecurity
+    end
 
+    WontFix["<i>7.</i> Won't Fix"]:::FinalState
+
+    InProgress["<i>4.</i> In Progress"]
+    FixCommitted["<i>5.</i> Fix Committed"]
+    DependencyOrSeedChanges(["Dependency/Seed change that<br>pulls package(s) into <code>main</code>/<code>restricted</code>"])
+
+    FixReleased["<i>6.</i> Fix Released"]:::FinalState
+    Incomplete["<i>8.</i> Incomplete"]
+    Invalid["<i>9.</i> Invalid"]:::FinalState
+
+    New --->|"MIR team NACK"| WontFix
+    New --->|"MIR team ACK"| InProgress
+
+    New -.-|"<i>(unrelated)</i>"| DependencyOrSeedChanges 
+
+    InProgress --- DependencyOrSeedChanges
+    DependencyOrSeedChanges --> FixCommitted
+    FixCommitted -->|"Archive Admin (AA)</br>promotes package(s)"| FixReleased
+
+    New --->|"Questions or<br>Requests arise"| Incomplete
+    Incomplete -->|"Questions or<br>Requests resolved"| New
+    Incomplete -->|"no response within 60 days"| Invalid
+
+    %% Styling
+    style DependencyOrSeedChanges stroke-width:0px
+    classDef FinalState stroke-width:5px
 ```
-          Answered       +-7----------+     No feedback        +-9-------+
-      +------------------+ Incomplete +------------------------> Invalid |
-      |   old assign can | any        <--------------------+   | any     |
-      |   be kept as-is  +-----^------+                    |   +---------+
-      |                        |    question               |
-      |                        |                           |
-+-1---v-------+  Triage  +-2---+----+ Security needed  +-3-+------------------+
-|  New/Conf   +--------->+ New/Conf +----------------->+ New/Conf             |
-| unassigned  |          | assigned |                  | assigned to Security |
-+-------------+          +-+--+--+--+                  +-+--+--+--------------+
-                           |  |  |    +-8-----------+    |  |  |
-                           |  |  +----> Won't Fix   <----+  |  |
-                           |  |   Nack| any         | Nack  |  |
-                           |  |       +-------------+       |  |
-                           |  |                             |  |
-                           |  |       +-4-----------+       |  |
-                           |  +-------> In Progress <-------+  |
-                           |    Ack   | any         |  Ack     |
-                           |          +-------------+          |
-                           |             |Change that pulls    |
-                           |             |into Main            |
-+-6------------+           |         +-5-v-----------+         |
-| Fix Released |           +---------> Fix Committed <---------+
-| any          <---------------------+ any           |
-+--------------+  AA promotes        +---------------+
-```
 
-Note1: Since many people set things to confirmed once they are sure it
-*exists* all too often bugs get set to confirmed. Since confirmed does
-not have any meaning for our process we will handle new\<-\>confirmed as
-if the\'y be the same.
+| State                                                | Explanation |
+|------------------------------------------------------|-------------|
+| *1.* New / Confirmed¹ (unassigned)                   | bug is queued for assignment to a MIR Team member |
+| *2.* New / Confirmed¹ (assigned)                     | on the TODO list of the assigned MIR team member |
+| *3.* New / Confirmed¹<br>(assigned to Security team) | on the TODO list of the Security team |
+| *4.* In Progress                                     | MIR team ACK (and if needed, Security team ACK) done, but now needs the Dependency/Seed change to happen to pull package(s) into `main`/`restricted` |
+| *5.* Fix Committed                                   | all of the above done; waiting for an Archive Admin to promote the package(s) to `main`/`restricted` |
+| *6.* Fix Released                                    | case resolved by an Archive Admin |
+| *7.* Won\'t Fix                                      | final NACK from MIR team or bug reporter gave up |
+| *8.* Incomplete                                      | Questions/Requests were raised for the bug reporter to resolve/clarify |
+| *9.* Invalid                                         | no response within 60 days when in `Incomplete` state |
 
-Note2: All other combinations are undefined and should be fixed up to
-one of the defined states
+**Note:** All other states are undefined and should be resolved to
+one of the defined states.
+
+**Hint:** transitioning from *2.*/*3.* to *4.*/*5.*/*8.*: The successor of 
+assigned `New` states depends *(as seen by multiple arrows in the state 
+diagram)* on the package(s) current state in the archive: 
+ * A NACK from the MIR or Security team will result in the `7. Won't Fix` state.
+   A former reviewer will get unassigned. (If there is context to believe that 
+   there might be a follow up by the reporter the reviewer might keep assigned.)
+ * In case of an ACK from the MIR team (and, if required the Security team), if 
+   the package(s) is/are already tried to be pulled into `main`/`restricted` 
+   then the next state is `5. (Fix Committed)`, otherwise the next state is 
+   `4. In Progress`. Seen in:
+     * [component mismatches for `main`/`restricted`](https://people.canonical.com/~ubuntu-archive/component-mismatches.svg) 
+     * [component mismatches for `proposed`](https://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.svg)
+
+**¹** Since many people set Launchpad bugs to `Confirmed` once they verified 
+the validity of a problem, MIR bugs often get set to `Confirmed`. Since 
+`Confirmed` does not have any meaning for our process, we will handle `New` and 
+`Confirmed` as if they are the same.
 
 # Exceptions
 
@@ -932,7 +956,7 @@ Internal link
 * `check-mir` can be run from a checked out source and tell you which dependencies are in universe.
 * `seeded-in-ubuntu PACKAGE` can tell you whether and how a given PACKAGE is seeded
 * `reverse-depends` can tell you reverse source or binary depends, per component
-* The [component mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
+* The [component mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.svg) and [`proposed` component mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
 
 ## Making Life Easier for Archive Team Members
 
