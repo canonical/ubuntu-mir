@@ -1,6 +1,5 @@
 ack
 acks
-architetcures
 auditability
 buildmode
 buildsystem
