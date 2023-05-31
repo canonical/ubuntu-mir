@@ -171,7 +171,7 @@ The package must fulfill the following requirements.
 [Availability]
 TODO: The package TBDSRC is already in Ubuntu universe.
 TODO: The package TBDSRC build for the architectures it is designed to work on.
-TODO: It currently builds and works for architetcures: TBD
+TODO: It currently builds and works for architectures: TBD
 TODO: Link to package https://launchpad.net/ubuntu/+source/TBDSRC
 
 [Rationale]
