@@ -3,7 +3,7 @@
 <summary>
 :pencil2: Contributor please read this
 </summary>
-By default the suggested command will add the listed items to the <code>.github/actions/spelling/expect.txt</code>. <b>This is not allways desired!</b>
+By default the suggested command will add the listed items to the <code>.github/actions/spelling/expect.txt</code>. <b>This is not always desired!</b>
 
 If a listed items is
 * ... **misspelled**, then please *correct* them instead of changing the spell checker configuration.
