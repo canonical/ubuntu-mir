@@ -66,9 +66,9 @@ flowchart TD
 
 | State                                                    | Explanation |
 |----------------------------------------------------------|-------------|
-| *1.* New / Confirmed¹ (unassigned)                       | bug is queued for assignment to a MIR Team member |
-| *2.* New / Confirmed¹ (assigned to MIR team member)       | on the TODO list of the assigned MIR team member |
-| *3.* New / Confirmed¹ (assigned to Security team member) | on the TODO list of the Security team |
+| *1.* New / Confirmed¹ (unassigned)                       | bug is queued for assignment to a MIR team member |
+| *2.* New / Confirmed¹ (assigned to MIR team member)      | on the TODO list of the assigned MIR team member |
+| *3.* New / Confirmed¹ (assigned to Security team member) | on the TODO list of the Security team member |
 | *4.* In Progress                                         | MIR team ACK (and if needed, Security team ACK) done, but now needs the Dependency/Seed change to happen to pull package(s) into `main`/`restricted` |
 | *5.* Fix Committed                                       | all of the above done; waiting for an Archive Admin to promote the package(s) to `main`/`restricted` |
 | *6.* Fix Released                                        | case resolved by an Archive Admin |
