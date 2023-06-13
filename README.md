@@ -159,6 +159,16 @@ The reporter/reviewer is tasked to use the templates the following way:
       - In case of a single context/reasoning, but multiple packages to promote please make a Launchpad bug for each package. One central package may be chosen to maintain the shared context of related packages. Other packages must be tracked by and link to the central package. See the [central Pacemaker MIR](https://bugs.launchpad.net/ubuntu/+source/pcs/+bug/1953341) as an example.
    1. MIR-Team: Review and add a comment to the bug that contains the review
 
+There is a special aspect for re-reviews. Those will not need to
+re-check everything (they could, but they do not have to) while other
+things only are important on a re-check.
+For that there is a section *[Re-Review]* which has entries only needed for
+that.
+Furthermore any `TODO:` entry that shall be re-checked on a re-review has
+a `*` added before the colon. So it would appear as `TODO*:` or `TODO-A*:`
+respectively.
+That allows for easy filtering while not having redundant rules.
+
 ## Main Inclusion requirements
 
 Use this template for the MIR bug report that you will file.
@@ -546,20 +556,82 @@ By default statements are in the *OK* section, but issues that need to
 be addressed should go to the *Problem:* sections (and briefly the
 summary at the top).
 
+# Re-Reviewing an approved package
+
+The MIR team and thereby in extension Ubuntu continuously evolves the MIR
+expectations and guidelines. For example, we add rules based on painful lessons
+learned to avoid the same from happening again. In that regard the demand for
+testing, quality and so on might be best practice now, but have not been
+fulfilled by packages that are in main for a long time.
+
+The proposed approach would be to:
+
+1. We will add (doing so is a TODO) a query that helps us to spot packages in main for the longest time without having a recent update on their MIR bugs.
+1. The MIR team would aim for a constant load of e.g. "1 review per week per MIR member"
+   1. Priority would be on new MIRs, whenever we have spare capacity we would pick up old re-reviews
+   1. On one hand that means if new requests are assigned in a week that we make no progress on the backlog
+   1. But on the other hand this keeps effort of MIR team members somewhat plannable
+1. We'd run a trimmed down check which is a subset of our usual check (see below for details)
+   1. Anything we find for packages already in main becomes part of the owning teams backlog. The decision how hard we push on them is a case by case discussion depending on too many variables to properly pre-define.
+1. As on the initial MIR review we might end up recommending a security (re-)review which goes into their queue at low prio
+
+## Packages without a MIR bug
+
+This is a special case for things that are in main for quite some time.
+Those packages are in main without a launchpad bug based MIR process.
+Some have mailing list posts which can serve as a base, but some have
+nothing at all for auditability.
+
+For these cases we'll still do a re-review. But once we have our new result
+we can not post it on an existing MIR bug. Instead we will essentially start
+creating a MIR bug for this package with this being the initial input.
+
+Then we will reach out to the [owning team](http://reqorts.qa.ubuntu.com/reports/m-r-package-team-mapping.html)
+and ask them to look at what we found and also ask them to reply on the bug
+with a full new `MIR` template. That shall help to ensure the owning teams
+point of view is documented as they should ask (and answer) themselves
+the same questions we expect them to do on any modern MIR.
+
+## Progress and Expectations
+
+We do not expect this to be quick, there are so many old packages in main that
+do not even have any trace how they got promoted.
+But if we never start it will never get better. So instead of holding back,
+being afraid of the volume, we need to just start at some point.
+
+On the other hand this is not meant to be just a one time effort, it should be
+a continuous practise to re-evaluate packages in main.
+Due to the same volume<->velocity considerations a full iteration will likely
+take many years, so a package should not be expected to be rechecked "often".
+
+Since the re-reviewed packages are already in main there can't be any
+conditional ACKs. We mostly fill the backlog of the owning teams.
+
+The urgency of those backlog tasks depend on how bad it is. On one hand we
+will not immediately threaten to demote a package with a small issue.
+But on the other hand, if we find something really bad we want to put quite
+some pressure on the owning team, but that is a case by case decision.
+While on packages already being in main we no more have the formal gate
+of "allow to migrate to main" we still have enough influence without pre
+defining negative consequences (if inactivity to our report really will
+be a problem we can revisit this aspect).
+
+
 ```
 RULE: Since we sometimes have many such posts on one bug, in case multiple
 RULE: packages are associated, clearly state which one this is for.
 TODO: Review for Package: TBDSRC
 
 [Summary]
-TODO: WRITE - TBD The essence of the review result from the MIR POV
-TODO-A: MIR team ACK
-TODO-B: MIR team NACK
+TODO*: WRITE - TBD The essence of the review result from the MIR POV
+TODO-A*: MIR team ACK
+TODO-B*: MIR team NACK
 TODO-C: MIR team ACK under the constraint to resolve the below listed
 TODO-C: required TODOs and as much as possible having a look at the
 TODO-C: recommended TODOs.
-TODO-A: This does need a security review, so I'll assign ubuntu-security
-TODO-B: This does not need a security review
+RULE: This decision is determined by the sum of the [Security] section below.
+TODO-A*: This does need a security review, so I'll assign ubuntu-security
+TODO-B*: This does not need a security review
 TODO: List of specific binary packages to be promoted to main: TBD
 TODO: Specific binary packages built, but NOT to be promoted to main: TBD
 
@@ -595,7 +667,10 @@ RULE: description and check if any of them is in main:
 RULE:   $ rmadison -c main {all,packages,that,look,like,duplicates}
 RULE: If any of them are reported to be in main check in detail if they cover
 RULE: indeed the same use case as the package this MIR is about.
-TODO: There is no other package in main providing the same functionality.
+RULE: On re-review finding duplication might lead to considerations to drop
+RULE: one of the two. back in the day it might have been impossible to pick
+RULE: and support just one, but that might have changed since then.
+TODO*: There is no other package in main providing the same functionality.
 
 [Dependencies]
 OK:
@@ -738,20 +813,27 @@ RULE:   can and then assign to the ubuntu-security team. The bug will then be
 RULE:   added to the prioritized list of MIR security reviews.
 
 OK:
-TODO: - history of CVEs does not look concerning
-TODO: - does not run a daemon as root
-TODO: - does not use webkit1,2
-TODO: - does not use lib*v8 directly
-TODO: - does not parse data formats (files [images, video, audio,
-TODO:   xml, json, asn.1], network packets, structures, ...) from
-TODO:   an untrusted source.
-TODO: - does not open a port/socket
-TODO: - does not process arbitrary web content
-TODO: - does not use centralized online accounts
-TODO: - does not integrate arbitrary javascript into the desktop
-TODO: - does not deal with system authentication (eg, pam), etc)
-TODO: - does not deal with security attestation (secure boot, tpm, signatures)
-TODO: - does not deal with cryptography (en-/decryption, certificates, signing, ...)
+TODO*: - history of CVEs does not look concerning
+TODO*: - does not run a daemon as root
+TODO*: - does not use webkit1,2
+TODO*: - does not use lib*v8 directly
+TODO*: - does not parse data formats (files [images, video, audio,
+TODO*:   xml, json, asn.1], network packets, structures, ...) from
+TODO*:   an untrusted source.
+TODO*: - does not open a port/socket
+TODO*: - does not process arbitrary web content
+TODO*: - does not use centralized online accounts
+TODO*: - does not integrate arbitrary javascript into the desktop
+TODO*: - does not deal with system authentication (eg, pam), etc)
+TODO*: - does not deal with security attestation (secure boot, tpm, signatures)
+TODO*: - does not deal with cryptography (en-/decryption, certificates, signing, ...)
+TODO*: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside
+TODO*:   tests)
+TODO*: - no use of user nobody
+TODO*: - no use of setuid
+TODO*: - use of setuid, but ok because TBD (prefer systemd to set those
+TODO*:   for services)
+
 
 TODO-A: Problems:
 TODO-A: - TBD
@@ -764,14 +846,14 @@ RULE:   the Main Inclusion requirements
 
 OK:
 TODO: - does not FTBFS currently
-TODO: - does have a test suite that runs at build time
-TODO:   - test suite fails will fail the build upon error.
-TODO: - does have a non-trivial test suite that runs as autopkgtest
-TODO-A: - This does seem to need special HW for build or test so it can't be
-TODO-A:   automatic. Is there a test plan, code, hardware available and
-TODO-A:   committment to cover that continuously?
-TODO-A:   Please outline in detail and provide a sample log of a successful run.
-TODO-B: - This does not need special HW for build or test
+TODO*: - does have a test suite that runs at build time
+TODO*:   - test suite fails will fail the build upon error.
+TODO*: - does have a non-trivial test suite that runs as autopkgtest
+TODO-A*: - This does seem to need special HW for build or test so it can't be
+TODO-A*:   automatic. Is there a test plan, code, hardware available and
+TODO-A*:   committment to cover that continuously?
+TODO-A*:   Please outline in detail and provide a sample log of a successful run.
+TODO-B*: - This does not need special HW for build or test
 TODO: - if a non-trivial test on this level does not make sense (the lib alone
 TODO:   is only doing rather simple things), is the overall solution (app+libs)
 TODO:   extensively covered i.e. via end to end autopkgtest ?
@@ -804,19 +886,24 @@ RULE:   to enforce maintainer awareness and make it more visible to anyone
 RULE:   looking at the package - see https://wiki.ubuntu.com/ToolChain/LTO.
 
 OK:
-TODO-A: - Ubuntu does not carry a delta
-TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
-TODO-B:   control
-TODO: - symbols tracking is in place
-TODO: - symbols tracking not applicable for this kind of code.
-TODO-A: - debian/watch is present and looks ok (if needed, e.g. non-native)
-TODO-B: - debian/watch is not present but also not needed (e.g. native)
-TODO: - Upstream update history is (good/slow/sporadic)
-TODO: - Debian/Ubuntu update history is (good/slow/sporadic)
-TODO: - the current release is packaged
+TODO-A*: - Ubuntu does not carry a delta
+TODO-B*: - Ubuntu does carry a delta, but it is reasonable and maintenance under
+TODO-B*:   control
+TODO-C*: - Ubuntu does carry delta and it seems it could be simplified or upstreamed
+TODO*: - symbols tracking is in place
+TODO*: - symbols tracking not applicable for this kind of code.
+TODO-A*: - debian/watch is present and works well
+TODO-B*: - debian/watch is not present but also not needed (e.g. native)
+RULE: - On a re-review the bug history will be interesting again, it might show
+RULE:   that this was abandoned by upstream, Debian or even Ubuntu. While on the
+RULE:   other hand an insight might be that a package is more costly to maintain
+RULE:   than everyone assumed.
+TODO*: - Upstream update history is (good/slow/sporadic)
+TODO*: - Debian/Ubuntu update history is (good/slow/sporadic)
+TODO*: - the current release is packaged
 TODO: - promoting this does not seem to cause issues for MOTUs that so far
 TODO:   maintained the package
-TODO: - no massive Lintian warnings
+TODO*: - no massive Lintian warnings
 TODO: - debian/rules is rather clean
 TODO: - It is not on the lto-disabled list
 RULE:   (fix, or the workaround should be directly in the package,
@@ -834,12 +921,6 @@ OK:
 TODO: - no Errors/warnings during the build
 TODO-A: - no incautious use of malloc/sprintf (as far as we can check it)
 TODO-B: - no incautious use of malloc/sprintf (the language has no direct MM)
-TODO: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside
-TODO:   tests)
-TODO: - no use of user nobody
-TODO: - no use of setuid
-TODO: - use of setuid, but ok because TBD (prefer systemd to set those
-TODO:   for services)
 TODO: - no important open bugs (crashers, etc) in Debian or Ubuntu
 TODO: - no dependency on webkit, qtwebkit, seed or libgoa-*
 TODO-A: - not part of the UI for extra checks
@@ -850,6 +931,12 @@ TODO-B: - translation present
 TODO-A: Problems:
 TODO-A: - TBD
 TODO-B: Problems: None
+
+[Re-Review*]
+TODO*: Have defined manual testplans been demonstrated to be executed well?
+TODO-A*: - d/copyright seems still reasonable for todays code
+TODO-B*: - The code has changed a lot since d/copyright was written, please adapt
+TODO*: - debian/rules is following modern practice e.g. using dh tooling
 ```
 
 # MIR Team weekly status meeting
