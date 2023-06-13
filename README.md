@@ -20,58 +20,64 @@ confusion, and indicate the next course of action on a MIR bug.
 ```mermaid
 %% mermaid flowcharts documentation: https://mermaid.js.org/syntax/flowchart.html
 %%{ init: { 'flowchart': { 'curve': 'monotoneY' } } }%%
-flowchart TD 
-    subgraph New["New / Confirmed¹"]
-        Unassigned["<i>1.</i> Unassigned"]
-        Assigned["<i>2.</i> Assigned"]
-        AssignedToSecurity["<i>3.</i> Assigned to Security team"]
-        
-        Unassigned -->|"start triaging"| Assigned
-        Assigned -->|"if Security Review needed"| AssignedToSecurity
-    end
+flowchart TD
+    %% Styles
+    classDef Invisible stroke-width:0,fill:#00000000 
 
-    WontFix["<i>7.</i> Won't Fix"]:::FinalState
+    %% States
+    Unassigned["<b><i>1.</i> New / Confirmed¹<br>(unassigned)</b>"]
+    AssignedToMirTeamMember["<b><i>2.</i> New / Confirmed¹<br>(assigned to MIR team member)</b>"]
+    AssignedToSecurityTeamMember["<b><i>3.</i> New / Confirmed¹<br>(assigned to Security team member)</b>"]
+    WontFix[["<b><i>7.</i> Won't Fix</b>"]]
+    InProgress["<b><i>4.</i> In Progress</b>"]
+    FixCommitted["<b><i>5.</i> Fix Committed</b>"]
+    FixReleased[["<b><i>6.</i> Fix Released</b>"]]
+    Incomplete["<b><i>8.</i> Incomplete</b>"]
+    Invalid[["<b><i>9.</i> Invalid</b>"]]
 
-    InProgress["<i>4.</i> In Progress"]
-    FixCommitted["<i>5.</i> Fix Committed"]
-    DependencyOrSeedChanges(["Dependency/Seed change that<br>pulls package(s) into <code>main</code>/<code>restricted</code>"])
+    %% Meta States
+    Start((" ")):::Invisible
+    BugCreated>"Bug created"]
+    IsSecurityReviewNeeded{{"is Security Review needed"}}
+    Reviewed{{"Reviewed<br><i>(report added as bug comment)</i>"}}
+    QuestionsArise>"Questions or Requests arise"]
+    
+    %% Transitions
+    Start-->|"create MIR bug<br>following the template"| BugCreated
+    BugCreated-->|"subscribe Launchpad team<br><code>~ubuntu-mir</code> to the bug"|Unassigned
 
-    FixReleased["<i>6.</i> Fix Released"]:::FinalState
-    Incomplete["<i>8.</i> Incomplete"]
-    Invalid["<i>9.</i> Invalid"]:::FinalState
+    Unassigned -->|"triaged at MIR team meeting"| AssignedToMirTeamMember
+    AssignedToMirTeamMember --> IsSecurityReviewNeeded -->|"yes"| AssignedToSecurityTeamMember
 
-    New --->|"MIR team NACK"| WontFix
-    New --->|"MIR team ACK"| InProgress
+    IsSecurityReviewNeeded -->|"no"| Reviewed
+    AssignedToSecurityTeamMember --> Reviewed
+    Reviewed -->|"MIR team NACK"| WontFix
+    Reviewed -->|"MIR team ACK"| InProgress
 
-    New -.-|"<i>(unrelated)</i>"| DependencyOrSeedChanges 
-
-    InProgress --- DependencyOrSeedChanges
-    DependencyOrSeedChanges --> FixCommitted
+    InProgress -->|"Dependency/Seed change that<br>pulls package(s) into <code>main</code>/<code>restricted</code>"| FixCommitted
     FixCommitted -->|"Archive Admin (AA)</br>promotes package(s)"| FixReleased
 
-    New --->|"Questions or<br>Requests arise"| Incomplete
-    Incomplete -->|"Questions or<br>Requests resolved"| New
-    Incomplete -->|"no response within 60 days"| Invalid
-
-    %% Styling
-    style DependencyOrSeedChanges stroke-width:0px
-    classDef FinalState stroke-width:5px
+    AssignedToSecurityTeamMember --> QuestionsArise
+    AssignedToMirTeamMember --> QuestionsArise
+    QuestionsArise --> Incomplete
+    Incomplete -->|"Questions or<br>Requests resolved"| Unassigned
+    Incomplete -->|"no response by the bug<br>reporter/driver within 60 days"| Invalid
 ```
 
-| State                                                | Explanation |
-|------------------------------------------------------|-------------|
-| *1.* New / Confirmed¹ (unassigned)                   | bug is queued for assignment to a MIR Team member |
-| *2.* New / Confirmed¹ (assigned)                     | on the TODO list of the assigned MIR team member |
-| *3.* New / Confirmed¹<br>(assigned to Security team) | on the TODO list of the Security team |
-| *4.* In Progress                                     | MIR team ACK (and if needed, Security team ACK) done, but now needs the Dependency/Seed change to happen to pull package(s) into `main`/`restricted` |
-| *5.* Fix Committed                                   | all of the above done; waiting for an Archive Admin to promote the package(s) to `main`/`restricted` |
-| *6.* Fix Released                                    | case resolved by an Archive Admin |
-| *7.* Won\'t Fix                                      | final NACK from MIR team or bug reporter gave up |
-| *8.* Incomplete                                      | Questions/Requests were raised for the bug reporter to resolve/clarify |
-| *9.* Invalid                                         | no response within 60 days when in `Incomplete` state |
+| State                                                    | Explanation |
+|----------------------------------------------------------|-------------|
+| *1.* New / Confirmed¹ (unassigned)                       | bug is queued for assignment to a MIR Team member |
+| *2.* New / Confirmed¹ (assigned to MIR team meber)       | on the TODO list of the assigned MIR team member |
+| *3.* New / Confirmed¹ (assigned to Security team member) | on the TODO list of the Security team |
+| *4.* In Progress                                         | MIR team ACK (and if needed, Security team ACK) done, but now needs the Dependency/Seed change to happen to pull package(s) into `main`/`restricted` |
+| *5.* Fix Committed                                       | all of the above done; waiting for an Archive Admin to promote the package(s) to `main`/`restricted` |
+| *6.* Fix Released                                        | case resolved by an Archive Admin |
+| *7.* Won\'t Fix                                          | final NACK from MIR team or bug reporter gave up |
+| *8.* Incomplete                                          | Questions/Requests were raised for the bug reporter to resolve/clarify |
+| *9.* Invalid                                             | no response within 60 days when in `Incomplete` state |
 
 **Note:** All other states are undefined and should be resolved to
-one of the defined states.
+one of the defined states – otherwise they might be completely missed on the weekly checks.
 
 **Hint:** transitioning from *2.*/*3.* to *4.*/*5.*/*8.*: The successor of 
 assigned `New` states depends *(as seen by multiple arrows in the state 
