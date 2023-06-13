@@ -1,6 +1,5 @@
 ack
 acks
-architetcures
 auditability
 buildmode
 buildsystem
@@ -32,4 +31,6 @@ vendored
 vendoring
 vendorized
 wiki
+workaround
+workarounds
 www
