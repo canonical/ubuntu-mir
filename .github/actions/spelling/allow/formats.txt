@@ -54,6 +54,8 @@ svg
 tex
 toml
 typescript
+url
+urls
 visual
 webassembly
 xhtml
