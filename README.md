@@ -807,8 +807,11 @@ OK:
 TODO-A: - Ubuntu does not carry a delta
 TODO-B: - Ubuntu does carry a delta, but it is reasonable and maintenance under
 TODO-B:   control
-TODO: - symbols tracking is in place
-TODO: - symbols tracking not applicable for this kind of code.
+TODO-A: - symbols tracking is in place.
+TODO-B: - For c++ libraries - symbols tracking isn't in place but the owning
+TODO-B:   team tried to set it up and came back with a reasonable rational
+TODO-B:   of why it isn't practical to do for the package.
+TODO-C: - symbols tracking not applicable for this kind of code.
 TODO-A: - debian/watch is present and looks ok (if needed, e.g. non-native)
 TODO-B: - debian/watch is not present but also not needed (e.g. native)
 TODO: - Upstream update history is (good/slow/sporadic)
