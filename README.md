@@ -549,7 +549,7 @@ summary at the top).
 ```
 RULE: Since we sometimes have many such posts on one bug, in case multiple
 RULE: packages are associated, clearly state which one this is for.
-TODO: Review for Package: TBDSRC
+TODO: Review for Source Package: TBDSRC
 
 [Summary]
 TODO: WRITE - TBD The essence of the review result from the MIR POV
