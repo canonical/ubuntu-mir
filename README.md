@@ -333,10 +333,37 @@ RULE:   commit to running that test either at each upload of the package or
 RULE:   at least once each release cycle. In the comment to the MIR bug,
 RULE:   please link to the codebase of these tests (scripts or doc of manual
 RULE:   steps) and attach a full log of these test runs. This is meant to
-RULE:   assess their validity (e.g. not just superficial)
-TODO: - The package can not be tested at build or autopkgtest time because TBD
-TODO:   to make up for that here TBD is a test plan/automation and example
-TODO:   test TBD (logs/scripts)
+RULE:   assess their validity (e.g. not just superficial).
+RULE:   This is a balance that is hard to strike well, the request is that all
+RULE:   options have been exploited before giving up. Look for more details
+RULE:   and backgrounds https://github.com/canonical/ubuntu-mir/issues/30
+TODO: - The package can not be well tested at build or autopkgtest time
+TODO:   because TBD. To make up for that:
+TODO-A:   - We have access to such hardware in the team
+TODO-B:   - We have allocated budget to get this hardware, but it is not here
+TODO-B:     yet
+TODO-C:   - We have checked with solutions-qa and will use their hardware
+TODO-C:     through testflinger
+TODO-D:   - We have checked with other team TBD and will use their hardware
+TODO-D:     through TBD (eg. MAAS)
+TODO-E:   - We have checked and found a simulator which covers this case
+TODO-E:     sufficiently for testing, our plan to use it is TBD
+TODO-F:   - We have engaged with the upstream community and due to that
+TODO-F:     can tests new package builds via TBD
+TODO-G:   - We have engaged with our user community and due to that
+TODO-G:     can tests new package builds via TBD
+TODO-H:   - We have engaged with the hardware manufacturer and made an
+TODO-H:     agreement to test new builds via TBD
+TODO-A-H: - Here are the details of the test plan/automation TBD (e.g. script
+TODO-A-H:   or repo) and (if possible) example output of a test run TBD (logs).
+TODO-A-H:   We will execute that
+TODO-A-H1:  on-uploads
+TODO-A-H2:  regularly
+TODO-X:   - We have exhausted all options, there really is no feasible way
+TODO-X:     to test or recreate this. We are aware of the extra implications
+TODO-X:     and duties this has for our team (= help SEG and security on
+TODO-X:     servicing this package, but also more effort on any of your own
+TODO-X:     bug triage and fixes).
 
 RULE: - In some cases a solution that is about to be promoted consists of
 RULE:   several very small libraries and one actual application uniting them
@@ -796,6 +823,13 @@ TODO-B: Problems: None
 RULE: - There are plenty of testing requirements, hopefully already resolved
 RULE:   by the reporter upfront, see "Quality assurance - testing" section of
 RULE:   the Main Inclusion requirements
+RULE: - The MIR process shall ensure quality and maintainability, due to that
+RULE:   the expectations to that are quite high, but especially in cases where
+RULE:   special HW is needed that can be a hard to achieve which bloats the
+RULE:   options below, it is a balance or compromise we need to strike between
+RULE:   giving such cases a pass too easily and making them impossible.
+RULE:   Please read (to keep this short) for more background:
+RULE:   https://github.com/canonical/ubuntu-mir/issues/30
 
 OK:
 TODO: - does not FTBFS currently
@@ -803,10 +837,23 @@ TODO: - does have a test suite that runs at build time
 TODO:   - test suite fails will fail the build upon error.
 TODO: - does have a non-trivial test suite that runs as autopkgtest
 TODO-A: - This does seem to need special HW for build or test so it can't be
-TODO-A:   automatic. Is there a test plan, code, hardware available and
-TODO-A:   committment to cover that continuously?
-TODO-A:   Please outline in detail and provide a sample log of a successful run.
+TODO-A:   automatic at build or autopkgtest time. But as outlined
+TODO-A:   by the requester in [Quality assurance - testing] there:
+TODO-A1:   - is hardware and a test plan or code
+TODO-A2:   - are partner engagements and a test plan or code
+TODO-A3:   - is community support to test this for Ubuntu
+TODO-A4:   - a simulator and a test plan or code
+TODO-A5:   - is upstream support to test this for Ubuntu
+TODO-A6:   - an agreement with the manufacturer to test this for Ubuntu
+TODO-A7:   - an agreement with solutions-qa to be able to test this for Ubuntu
+TODO-A8:   - an agreement with another team to be able to test this for Ubuntu
 TODO-B: - This does not need special HW for build or test
+TODO-C: - This does need special HW for thorough testing, but all options to
+TODO-C:   get this covered have been exhausted and based on demonstration of
+TODO-C1:   enough investigation
+TODO-C2:   proof of why there is currently no other option
+TODO-C:   it is accepted as-is as a compromise.
+TODO-C:   The owning team is committed and aware of the implications for ongoing maintenance.
 TODO: - if a non-trivial test on this level does not make sense (the lib alone
 TODO:   is only doing rather simple things), is the overall solution (app+libs)
 TODO:   extensively covered i.e. via end to end autopkgtest ?
