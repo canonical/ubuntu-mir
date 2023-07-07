@@ -354,11 +354,12 @@ TODO-G:   - We have engaged with our user community and due to that
 TODO-G:     can tests new package builds via TBD
 TODO-H:   - We have engaged with the hardware manufacturer and made an
 TODO-H:     agreement to test new builds via TBD
-TODO-A-H: - Here are the details of the test plan/automation TBD (e.g. script
-TODO-A-H:   or repo) and (if possible) example output of a test run TBD (logs).
-TODO-A-H:   We will execute that
+TODO-A-H: - Based on that access outlined above, here are the details of the
+TODO-A-H:   test plan/automation TBD (e.g. script or repo) and (if already
+TODO-A-H:   possible) example output of a test run: TBD (logs).
+TODO-A-H:   We will execute that test plan
 TODO-A-H1:  on-uploads
-TODO-A-H2:  regularly
+TODO-A-H2:  regularly (TBD details like frequency: monthly, infra: jira-url)
 TODO-X:   - We have exhausted all options, there really is no feasible way
 TODO-X:     to test or recreate this. We are aware of the extra implications
 TODO-X:     and duties this has for our team (= help SEG and security on
