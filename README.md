@@ -334,6 +334,11 @@ RULE:   at least once each release cycle. In the comment to the MIR bug,
 RULE:   please link to the codebase of these tests (scripts or doc of manual
 RULE:   steps) and attach a full log of these test runs. This is meant to
 RULE:   assess their validity (e.g. not just superficial).
+RULE:   If possible such things should stay in universe. Sometimes that is
+RULE:   impossible due to the way how features/plugins/dependencies work
+RULE:   but if you are going to ask for promotion of something untestable
+RULE:   please outline why it couldn't provide its value (e.g. by splitting
+RULE:   binaries) to users from universe.
 RULE:   This is a balance that is hard to strike well, the request is that all
 RULE:   options have been exploited before giving up. Look for more details
 RULE:   and backgrounds https://github.com/canonical/ubuntu-mir/issues/30
@@ -365,6 +370,8 @@ TODO-X:     to test or recreate this. We are aware of the extra implications
 TODO-X:     and duties this has for our team (= help SEG and security on
 TODO-X:     servicing this package, but also more effort on any of your own
 TODO-X:     bug triage and fixes).
+TODO-X:     Due to TBD there also is no way to provide this to users from
+TODO-X:     universe.
 
 RULE: - In some cases a solution that is about to be promoted consists of
 RULE:   several very small libraries and one actual application uniting them
@@ -851,10 +858,10 @@ TODO-A8:   - an agreement with another team to be able to test this for Ubuntu
 TODO-B: - This does not need special HW for build or test
 TODO-C: - This does need special HW for thorough testing, but all options to
 TODO-C:   get this covered have been exhausted and based on demonstration of
-TODO-C1:   enough investigation
-TODO-C2:   proof of why there is currently no other option
-TODO-C:   it is accepted as-is as a compromise.
-TODO-C:   The owning team is committed and aware of the implications for ongoing maintenance.
+TODO-C:   enough investigation and proof of why there is currently no other
+TODO-C:   option it is accepted as-is as a compromise.
+TODO-C:   The owning team is committed and aware of the implications for
+TODO-C:   ongoing maintenance.
 TODO: - if a non-trivial test on this level does not make sense (the lib alone
 TODO:   is only doing rather simple things), is the overall solution (app+libs)
 TODO:   extensively covered i.e. via end to end autopkgtest ?
