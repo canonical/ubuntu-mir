@@ -14,7 +14,9 @@ multiverse
 nbs
 restricted
 sru
+triage
 triaged
+triaging
 uife
 universe
 wontfix

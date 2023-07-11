@@ -24,6 +24,10 @@ testplans
 todo
 todos
 toolchain
+transition
+transitions
+transitioned
+transitioning
 upstream
 upstreamed
 upstreaming
