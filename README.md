@@ -776,7 +776,7 @@ TODO: - does not use lib*v8 directly
 TODO: - does not parse data formats (files [images, video, audio,
 TODO:   xml, json, asn.1], network packets, structures, ...) from
 TODO:   an untrusted source.
-TODO: - does not open a port/socket
+TODO: - does not open a port/socket/dbus-endpoint or similar
 TODO: - does not process arbitrary web content
 TODO: - does not use centralized online accounts
 TODO: - does not integrate arbitrary javascript into the desktop
