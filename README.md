@@ -274,7 +274,8 @@ TODO-C:   TBD (list services, timers, jobs)
 TODO-C:   Those have the following security features: TBD (add details like
 TODO-C:   reduced permissions, temp environment, restricted users/groups,
 TODO-C:   seccomp, apparmor, ...)
-TODO: - Packages does not open privileged ports (ports < 1024)
+TODO: - Packages does not open privileged ports (ports < 1024) or has
+TODO:   a reason to do so (TBD)
 TODO: - Packages does not contain extensions to security-sensitive software
 TODO:   (filters, scanners, plugins, UI skins, ...)
 
