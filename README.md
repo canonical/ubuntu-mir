@@ -873,7 +873,9 @@ TODO-B: - no incautious use of malloc/sprintf (the language has no direct MM)
 TODO: - no use of sudo, gksu, pkexec, or LD_LIBRARY_PATH (usage is OK inside
 TODO:   tests)
 TODO: - no use of user nobody
+TODO:   (consider at least grepp'ing for it and `find . -user nobody`)
 TODO: - no use of setuid
+TODO:   (consider at least grepp'ing for it and `find . -perm -4000')
 TODO: - use of setuid, but ok because TBD (prefer systemd to set those
 TODO:   for services)
 TODO: - no important open bugs (crashers, etc) in Debian or Ubuntu
