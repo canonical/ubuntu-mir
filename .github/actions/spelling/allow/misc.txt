@@ -38,3 +38,5 @@ wiki
 workaround
 workarounds
 www
+Hrn
+setgid
