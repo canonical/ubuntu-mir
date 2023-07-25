@@ -274,7 +274,12 @@ TODO-C:   TBD (list services, timers, jobs)
 TODO-C:   Those have the following security features: TBD (add details like
 TODO-C:   reduced permissions, temp environment, restricted users/groups,
 TODO-C:   seccomp, apparmor, ...)
-TODO: - Packages does not open privileged ports (ports < 1024)
+TODO-A: - Packages does not open privileged ports (ports < 1024).
+TODO-B: - Packages open privileged ports (ports < 1024), but they have 
+TODO-B:   a reason to do so (TBD)
+TODO-A: - Package does not expose any external endpoints
+TODO-B: - Package does not expose an external endpoint, it is
+TODO-B:   TBD endpoint + TBD purpose
 TODO: - Packages does not contain extensions to security-sensitive software
 TODO:   (filters, scanners, plugins, UI skins, ...)
 
@@ -775,7 +780,7 @@ TODO: - does not use lib*v8 directly
 TODO: - does not parse data formats (files [images, video, audio,
 TODO:   xml, json, asn.1], network packets, structures, ...) from
 TODO:   an untrusted source.
-TODO: - does not open a port/socket
+TODO: - does not expose any external endpoint (port/socket/... or similar)
 TODO: - does not process arbitrary web content
 TODO: - does not use centralized online accounts
 TODO: - does not integrate arbitrary javascript into the desktop

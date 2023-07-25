@@ -5,6 +5,7 @@ autopkgtest
 autopkgtests
 curl
 dbgsym
+dbus
 debconf
 dpkg
 gettext
