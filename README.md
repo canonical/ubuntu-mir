@@ -342,6 +342,13 @@ RULE:   binaries) to users from universe.
 RULE:   This is a balance that is hard to strike well, the request is that all
 RULE:   options have been exploited before giving up. Look for more details
 RULE:   and backgrounds https://github.com/canonical/ubuntu-mir/issues/30
+RULE:   Just like in the SRU process it is worth to understand what the
+RULE:   consequences a regression (due to a test miss) would be. Therefore
+RULE:   if being untestable we ask to outline what consequences this would
+RULE:   have for the given package. And let us be honest, even if you can
+RULE:   test you are never sure you will be able to catch all potential
+RULE:   regressions. So this is mostly to force self-awareness of the owning
+RULE:   team than to make a decision on.
 TODO: - The package can not be well tested at build or autopkgtest time
 TODO:   because TBD. To make up for that:
 TODO-A:   - We have access to such hardware in the team
@@ -372,6 +379,12 @@ TODO-X:     servicing this package, but also more effort on any of your own
 TODO-X:     bug triage and fixes).
 TODO-X:     Due to TBD there also is no way to provide this to users from
 TODO-X:     universe.
+TODO-X:     Due to the nature, integration and use cases of the package the
+TODO-X:     consequences of a regression that might slip through most likely
+TODO-X:     would include
+TODO-X:     - TBD
+TODO-X:     - TBD
+TODO-X:     - TBD
 
 RULE: - In some cases a solution that is about to be promoted consists of
 RULE:   several very small libraries and one actual application uniting them
