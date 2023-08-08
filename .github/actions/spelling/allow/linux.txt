@@ -27,6 +27,7 @@ root
 run
 rw
 sbin
+setgid
 sgid
 sgml
 share
