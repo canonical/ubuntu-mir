@@ -13,6 +13,7 @@ if you come up with a better system.
 | File | Description |
 | ---- | ----------- |
 | [architectures](architectures.txt) | architecture identifiers like `risc-v`  |
+| [canonical](canonical.txt) | words/terms related to Canonical, like internal systems or products |
 | [contributors](contributors.txt) | usernames of contributors (that show up in the [`README.md`](../../../../README.md))  |
 | [debian](debian.txt) | debian related terms like `sid` |
 | [formats](formats.txt) | names of programming languages, file formats and protocols (e.g. `http`, `golang`, `jpeg`) |
