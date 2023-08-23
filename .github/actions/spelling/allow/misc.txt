@@ -39,4 +39,5 @@ wiki
 workaround
 workarounds
 workflow
+workflows
 www
