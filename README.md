@@ -969,8 +969,11 @@ TODO-B: Problems: None
 # MIR Team weekly status meeting
 
 
-The MIR Team holds weekly meetings on Tuesdays, at 4.30 PM CET, in
-libera.chat #ubuntu-meeting.
+The MIR Team holds weekly meetings every Tuesday at
+<time datetime="T16:30+01:00">16:30 CET</time> on the IRC Server
+`irc.libera.chat` in the `#ubuntu-meeting` channel. You can follow these
+[instructions](https://libera.chat/guides/connect) on how to connect to
+`irc.libera.chat`.
 
 The meeting is meant to help to facilitate
 
@@ -1070,7 +1073,7 @@ we can do two things:
 
 We welcome everyone who wants to improve the Ubuntu MIR documentation! Whether you've found a typo, have a suggestion for improving existing content, or want to add new content, we'd love to hear from you.
 
-To contribute, simply submit a pull request with your changes or create an issue. Please also attend the weekly MIR Team meeting (Tuesdays 15:30-16:00 GMT) on our [IRC](https://wiki.ubuntu.com/IRC/ChannelList) in the [#ubuntu-meeting](https://wiki.ubuntu.com/BeginnersTeam/Meetings) channel to discuss your issue with the MIR Team.
+To contribute, simply submit a pull request with your changes or create an issue. Please also attend the weekly MIR Team meeting (every Tuesday at <time datetime="T16:30+01:00">16:30 CET</time> on the IRC `irc.libera.chat` in the `#ubuntu-meeting` channel) to discuss your issue with the MIR Team. You can follow these [instructions](https://libera.chat/guides/connect) on how to connect to `irc.libera.chat`.
 
 ### Code of Conduct
 
