@@ -2,6 +2,7 @@ datetime
 endmeeting
 Hrn
 malloc
+markdownlint
 meetingology
 openwall
 pkgname
