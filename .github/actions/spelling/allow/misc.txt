@@ -32,6 +32,7 @@ transitioning
 upstream
 upstreamed
 upstreaming
+usernames
 vendored
 vendoring
 vendorized

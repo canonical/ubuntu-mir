@@ -13,7 +13,7 @@ powerpc
 powerpc64
 ppc64el
 risc
-riscv 
+riscv
 riscv64
 s390x
 x64
