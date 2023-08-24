@@ -61,3 +61,4 @@ webassembly
 xhtml
 xml
 yaml
+yml
