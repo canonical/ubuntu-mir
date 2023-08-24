@@ -1,6 +1,6 @@
 # Allowed Words
 
-The `*.txt` files contained in this directory extend the dictonary provided by 
+The `*.txt` files contained in this directory extend the dictionary provided by 
 [`check-spelling`](https://github.com/check-spelling/check-spelling).
 
 Add new words to the respective categories. Feel free to recategorize the words 
