@@ -59,5 +59,6 @@ ignore$
 \.woff2?$
 \.xlsx?$
 \.zip$
-^\.github/actions/spelling/
-^\Q.github/workflows/spelling.yml\E$
+^\.github\/actions\/spelling\/candidate\.patterns$
+^\.github\/actions\/spelling\/line_forbidden\.patterns$
+^\.github\/actions\/spelling\/.+\.txt$
