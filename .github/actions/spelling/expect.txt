@@ -1,5 +1,8 @@
+datetime
 endmeeting
+Hrn
 malloc
+markdownlint
 meetingology
 openwall
 pkgname
@@ -8,4 +11,3 @@ sprintf
 SRCPKG
 startmeeting
 TBDSRC
-Hrn

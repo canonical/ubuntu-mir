@@ -1,6 +1,6 @@
 # Allowed Words
 
-The `*.txt` files contained in this directory extend the dictonary provided by 
+The `*.txt` files contained in this directory extend the dictionary provided by 
 [`check-spelling`](https://github.com/check-spelling/check-spelling).
 
 Add new words to the respective categories. Feel free to recategorize the words 
@@ -12,7 +12,7 @@ if you come up with a better system.
 
 | File | Description |
 | ---- | ----------- |
-| [architectures](architectures.txt) | architecture identifiers like `risc-v`  |
+| [architectures](architectures.txt) | architecture identifiers like `riscv`  |
 | [canonical](canonical.txt) | words/terms related to Canonical, like internal systems or products |
 | [contributors](contributors.txt) | usernames of contributors (that show up in the [`README.md`](../../../../README.md))  |
 | [debian](debian.txt) | debian related terms like `sid` |

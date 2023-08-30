@@ -1,0 +1,21 @@
+name: Greet new Contributor
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Welcome Message 
+      uses: actions/first-interaction@v1
+      continue-on-error: true
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: |-
+          Thank you so much for creating your first issue and therefore improving the Ubuntu MIR documentation!
+          
+          Please also attend the next weekly MIR Team meeting (every Tuesday at <time datetime="T16:30+01:00">16:30 CET</time> on the IRC Server `irc.libera.chat` in the `#ubuntu-meeting` channel) to discuss your issue with the MIR Team. You can follow these [instructions](https://libera.chat/guides/connect) on how to connect to `irc.libera.chat`.
+        pr-message:  |-
+          Thank you so much for creating your first pull request and therefore improving the Ubuntu MIR documentation! We hope this is only the first in a long list of contributions :)
+          
+          Please also attend the next weekly MIR Team meeting (every Tuesday at <time datetime="T16:30+01:00">16:30 CET</time> on the IRC Server `irc.libera.chat` in the `#ubuntu-meeting` channel) to discuss your pull request with the MIR Team. You can follow these [instructions](https://libera.chat/guides/connect) on how to connect to `irc.libera.chat`.

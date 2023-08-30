@@ -11,6 +11,7 @@ demangle
 executables
 foss
 infographic
+metadata
 nack
 nacks
 oss
@@ -31,10 +32,13 @@ transitioning
 upstream
 upstreamed
 upstreaming
+usernames
 vendored
 vendoring
 vendorized
 wiki
 workaround
 workarounds
+workflow
+workflows
 www

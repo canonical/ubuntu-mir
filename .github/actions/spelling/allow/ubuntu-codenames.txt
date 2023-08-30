@@ -4,6 +4,8 @@ badger
 beaver
 bionic
 breezy
+codename
+codenames
 cosmic
 cuttlefish
 dapper
