@@ -261,21 +261,29 @@ TODO-A:   - TBD to any context that shows how these issues got handled in
 TODO-A:     the past
 TODO-B: - No CVEs/security issues in this software in the past
 
-RULE: - Check for security relevant binaries and behavior.
+RULE: - Check for security relevant binaries, services and behavior.
 RULE:   If any are present, this requires a more in-depth security review.
+RULE:   Demonstrating that common isolation/risk-mitigation patterns are used
+RULE:   will help to raise confidence. For example a service running as root
+RULE:   open to the network will need to be considered very carefully. The same
+RULE:   service dropping the root permissions after initial initialization,
+RULE:   using various systemd isolation features and having a default active
+RULE:   apparmor profile is much less concerning and can speed up acceptance.
+RULE:   This helps Ubuntu, but you are encouraged to consider working with
+RULE:   Debian and upstream to get those security features used at wide scale.
 TODO: - no `suid` or `sgid` binaries
 TODO-A: - no executables in `/sbin` and `/usr/sbin`
 TODO-B: - Binary TBD in sbin is no problem because TBD
 TODO-A: - Package does not install services, timers or recurring jobs
 TODO-B: - Package does install services, timers or recurring jobs
 TODO-B:   TBD (list services, timers, jobs)
-TODO-C: - Package does install services, timers or recurring jobs
-TODO-C:   TBD (list services, timers, jobs)
-TODO-C:   Those have the following security features: TBD (add details like
-TODO-C:   reduced permissions, temp environment, restricted users/groups,
-TODO-C:   seccomp, apparmor, ...)
+TODO: - Security has been kept in mind and common isolation/risk-mitigation
+TODO:   patterns are in place utilizing the following features:
+TODO:   TBD (add details and links/examples about things like dropping
+TODO:   permissions, using temporary environments, restricted users/groups,
+TODO:   seccomp, systemd isolation features, apparmor, ...)
 TODO-A: - Packages does not open privileged ports (ports < 1024).
-TODO-B: - Packages open privileged ports (ports < 1024), but they have 
+TODO-B: - Packages open privileged ports (ports < 1024), but they have
 TODO-B:   a reason to do so (TBD)
 TODO-A: - Package does not expose any external endpoints
 TODO-B: - Package does not expose an external endpoint, it is
@@ -819,6 +827,12 @@ RULE:   Err on the side of caution.
 RULE: - If the package is security sensitive, you should review as much as you
 RULE:   can and then assign to the ubuntu-security team. The bug will then be
 RULE:   added to the prioritized list of MIR security reviews.
+RULE: - We do not block on, but want to recommend using enhanced isolation
+RULE:   features, things like systemd isolation, apparmor and such shall at
+RULE:   least have gotten a thought if they would help to mitigate risks in
+RULE:   this case. If we spot a case where we think it should be either easy or
+RULE:   very beneficial to use such features we should add them to recommended
+RULE:   tasks.
 
 OK:
 TODO: - history of CVEs does not look concerning
@@ -834,7 +848,12 @@ TODO: - does not use centralized online accounts
 TODO: - does not integrate arbitrary javascript into the desktop
 TODO: - does not deal with system authentication (eg, pam), etc)
 TODO: - does not deal with security attestation (secure boot, tpm, signatures)
-TODO: - does not deal with cryptography (en-/decryption, certificates, signing, ...)
+TODO: - does not deal with cryptography (en-/decryption, certificates,
+TODO:   signing, ...)
+TODO: - this makes appropriate (for its exposure) use of established risk
+TODO:   mitigation features (dropping permissions, using temporary environments,
+TODO:   restricted users/groups, seccomp, systemd isolation features,
+TODO:   apparmor, ...)
 
 TODO-A: Problems:
 TODO-A: - TBD
