@@ -492,9 +492,11 @@ RULE:   - A case needs to have a team essentially saying "yes we will own that"
 RULE:     to enter the MIR process. Usually that is implied by team members
 RULE:     filing MIR requests having the backup by their management for the
 RULE:     long term commitment this implies.
-RULE:     Community driven MIR requests might be filed to show the case, but
-RULE:     but then, as a first step, need to get a team to agree and own it
-RULE:     before the case is processed further.
+RULE:     - A community driven MIR request might be filed to show the use case,
+RULE:       but then, as a first step, needs to get a team agreeing to own
+RULE:       it before the case can be processed further.
+RULE:       If unsure which teams to consider have a look at the current mapping
+RULE:       http://reqorts.qa.ubuntu.com/reports/m-r-package-team-mapping.html
 RULE:   - The package needs a bug subscriber before it can be promoted to main.
 RULE:     Strictly speaking that subscription can therefore wait until the
 RULE:     moment of the actual promotion by an archive admin. But it is
@@ -703,8 +705,9 @@ RULE: No matter how useful a rationale is and how unique a package might be
 RULE: it will need an owning team that is willing and able to spend the time
 RULE: to maintain it well for the benefit of all Ubuntu users and use cases.
 TODO: A team is committed to own long term maintenance of this package.
-RULE: We ask the reporters to state a reasoning, but a MIR team member should
-RULE: try to judge if this is any good for Ubuntu and its users.
+RULE: In the template to submit cases we ask the reporter to state a rationale
+RULE: why this should be considered. But a MIR team member needs to
+RULE: try to judge if this rationale is good for Ubuntu and its users.
 TODO: The rationale given in the report seems valid and useful for Ubuntu
 RULE: If any of the above checks in this section the MIR team can decide to
 RULE: skip the rest of the check until these basic questions are resolved.
