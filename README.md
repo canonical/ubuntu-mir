@@ -486,11 +486,22 @@ TODO-B: - This package violates FHS or Debian Policy, reasons for that are TBD
 RULE: The package must have an acceptable level of maintenance corresponding
 RULE: to its complexity:
 RULE: - All packages must have a designated "owning" team, regardless of
-RULE:   complexity, which is set as a package bug contact. This is not a
-RULE:   requirement for the MIR team ACK, but for the package to be promoted
-RULE:   by an archive admin. Still, it is strongly suggested to subscribe,
-RULE:   as the owning team will get a preview of the to-be-expected incoming
-RULE:   bugs later on.
+RULE:   complexity.
+RULE:   This requirement of an owning-team comes in two aspects:
+RULE:   - A case needs to have a team essentially saying "yes we will own that"
+RULE:     to enter the MIR process. Usually that is implied by team members
+RULE:     filing MIR requests having the backup by their management for the
+RULE:     long term commitment this implies.
+RULE:     - A community driven MIR request might be filed to show the use case,
+RULE:       but then, as a first step, needs to get a team agreeing to own
+RULE:       it before the case can be processed further.
+RULE:       If unsure which teams to consider have a look at the current mapping
+RULE:       http://reqorts.qa.ubuntu.com/reports/m-r-package-team-mapping.html
+RULE:   - The package needs a bug subscriber before it can be promoted to main.
+RULE:     Strictly speaking that subscription can therefore wait until the
+RULE:     moment of the actual promotion by an archive admin. But it is
+RULE:     strongly recommended to subscribe early, as the owning team will get
+RULE      a preview of the to-be-expected incoming bugs later on.
 RULE: - Simple packages (e.g. language bindings, simple Perl modules, small
 RULE:   command-line programs, etc.) might not need very much maintenance
 RULE:   effort, and if they are maintained well in Debian we can just keep them
@@ -501,9 +512,12 @@ RULE:   developers paying attention to their bugs, whether that be in Ubuntu
 RULE:   or elsewhere (often Debian). Packages that deliver major new headline
 RULE:   features in Ubuntu need to have commitment from Ubuntu developers
 RULE:   willing to spend substantial time on them.
-TODO: - Owning Team will be TBD
-TODO-A: - Team is already subscribed to the package
-TODO-B: - Team is not yet, but will subscribe to the package before promotion
+TODO-A: - The owning team will be TBD and I have their acknowledgement for
+TODO-A:   that commitment
+TODO-B: - I Suggest the owning team to be TBD
+TODO-A: - The future owning team is already subscribed to the package
+TODO-B: - The future owning team is not yet subscribed, but will subscribe to
+TODO-B:   the package before promotion
 
 RULE: - Responsibilities implied by static builds promoted to main, which is
 RULE:   not a recommended but a common case with golang and rust packages.
@@ -665,7 +679,7 @@ RULE:   by an AA)
 TODO: - The package should get a team bug subscriber before being promoted
 TODO: - TBD (Please add them numbered for later reference)
 
-[Duplication]
+[Rationale, Duplication and Ownership]
 RULE: One easy way to avoid the burden of maintaining the package is to not
 RULE: use it in the first place! If a package is pulling in some random jpeg
 RULE: parsing library that needs a MIR, maybe it makes more sense to patch the
@@ -687,6 +701,16 @@ RULE:   $ rmadison -c main {all,packages,that,look,like,duplicates}
 RULE: If any of them are reported to be in main check in detail if they cover
 RULE: indeed the same use case as the package this MIR is about.
 TODO: There is no other package in main providing the same functionality.
+RULE: No matter how useful a rationale is and how unique a package might be
+RULE: it will need an owning team that is willing and able to spend the time
+RULE: to maintain it well for the benefit of all Ubuntu users and use cases.
+TODO: A team is committed to own long term maintenance of this package.
+RULE: In the template to submit cases we ask the reporter to state a rationale
+RULE: why this should be considered. But a MIR team member needs to
+RULE: try to judge if this rationale is good for Ubuntu and its users.
+TODO: The rationale given in the report seems valid and useful for Ubuntu
+RULE: If any of the above checks in this section the MIR team can decide to
+RULE: skip the rest of the check until these basic questions are resolved.
 
 [Dependencies]
 OK:
