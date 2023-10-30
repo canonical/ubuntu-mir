@@ -1103,6 +1103,14 @@ we can do two things:
 1. List all distinct binary packages that should be promoted.  Often a source package will have binary packages that aren't actually needed in main.  Things like `-doc`, `-autopilot` or `-dbgsym`.  These can stay in universe, and it is a kindness to list only the packages we need for the archive team member that does the promotion.
 1. Recommend the owning team to add their corresponding team bug subscriber during the MIR process.
 
+## Security Reviews
+
+Security team MIRs are laborious and require lead time. Make MIR requests as early in a release cycle as possible, ideally well before Feature Freeze. For a MIR to be considered for a release, it must be assigned to the Security team (by the MIR team) before Beta Freeze. This does not guarantee that a secuirty review can be completed by Final Release. Ask the director of Security for exceptions.
+
+The best ways to contact the Security team about MIRs is the [MIR / Audits Jira Page](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594) or through the Mattermost channels `~mir-security-review-priority` or `~security`.
+
+Teams are encouarged to set the relative importance of MIRs they own on the [MIR / Audits Jira Page](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594). Security attempts to work across and prioritize all teams equally. Jira priority drives the order we work on MIRs.
+
 ## Bug Lists
 
 * [All MIR bugs](https://bugs.launchpad.net/~ubuntu-mir)
