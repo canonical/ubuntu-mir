@@ -279,6 +279,8 @@ TODO-B: - Package does install services, timers or recurring jobs
 TODO-B:   TBD (list services, timers, jobs)
 TODO: - Security has been kept in mind and common isolation/risk-mitigation
 TODO:   patterns are in place utilizing the following features:
+TODO:   Deprecated algorithms are not used for cryptography (e.g., 3DES or
+TODO:   TLS/SSL 1.1). State "Package may use deprecated crypto" if unsure.
 TODO:   TBD (add details and links/examples about things like dropping
 TODO:   permissions, using temporary environments, restricted users/groups,
 TODO:   seccomp, systemd isolation features, apparmor, ...)
@@ -288,6 +290,8 @@ TODO-B:   a reason to do so (TBD)
 TODO-A: - Package does not expose any external endpoints
 TODO-B: - Package does not expose an external endpoint, it is
 TODO-B:   TBD endpoint + TBD purpose
+TODO-A: - Package does not use deprecated crypto
+TODO-B: - Package may use deprecated crypto
 TODO: - Packages does not contain extensions to security-sensitive software
 TODO:   (filters, scanners, plugins, UI skins, ...)
 
