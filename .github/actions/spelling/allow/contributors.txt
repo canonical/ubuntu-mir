@@ -6,5 +6,4 @@ jamespage
 joalif
 panlinux
 sarnold
-seb128
 slyon
