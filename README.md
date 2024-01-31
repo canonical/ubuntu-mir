@@ -271,6 +271,12 @@ RULE:   using various systemd isolation features and having a default active
 RULE:   apparmor profile is much less concerning and can speed up acceptance.
 RULE:   This helps Ubuntu, but you are encouraged to consider working with
 RULE:   Debian and upstream to get those security features used at wide scale.
+RULE: - It might be impossible for the submitting team to check this perfectly
+RULE:   (the security team will), but you should be aware that deprecated
+RULE:   security algorithms like 3DES or TLS/SSL 1.1 are not acceptable.
+RULE:   If you think a package might do that it would be great to provide a
+RULE:   hint for the security team like "Package may use deprecated crypto"
+RULE:   and provide the details you have about that.
 TODO: - no `suid` or `sgid` binaries
 TODO-A: - no executables in `/sbin` and `/usr/sbin`
 TODO-B: - Binary TBD in sbin is no problem because TBD
@@ -290,6 +296,14 @@ TODO-B: - Package does not expose an external endpoint, it is
 TODO-B:   TBD endpoint + TBD purpose
 TODO: - Packages does not contain extensions to security-sensitive software
 TODO:   (filters, scanners, plugins, UI skins, ...)
+
+RULE: The package should not use deprecated security algorithms like 3DES or
+RULE: TLS/SSL 1.1. The security team is the one responsible to check this,
+RULE: but if you happen to spot something it helps to provide a hint.
+RULE: Provide whatever made you suspicious as details along that statement.
+RULE: Or remove the following lines entirely if you did not spot anything.
+TODO: - I've spotted what I consider deprecated algorithms, the security team
+TODO:   should have a more careful look please, details are:
 
 [Quality assurance - function/usage]
 RULE: - After installing the package it must be possible to make it working with
