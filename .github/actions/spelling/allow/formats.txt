@@ -38,8 +38,6 @@ php
 png
 prolog
 python
-python2
-python3
 restructuredtext
 rst
 ruby

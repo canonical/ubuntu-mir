@@ -10,8 +10,6 @@ home
 include
 init
 lib
-lib32
-lib64
 libexec
 linux
 linuxfoundation
@@ -45,6 +43,4 @@ uid
 unix
 usr
 var
-x11
-x11r6
 xml
