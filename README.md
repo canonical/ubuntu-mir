@@ -1121,7 +1121,7 @@ we can do two things:
 
 Security team MIRs are laborious and require lead time. Make MIR requests as early in a release cycle as possible, ideally well before Feature Freeze. For a MIR to be considered for a release, it must be assigned to the Security team (by the MIR team) before Beta Freeze. This does not guarantee that a security review can be completed by Final Release. Ask the director of Security for exceptions.
 
-The best ways to contact the Security team about MIRs is the [MIR / Audits Jira Page](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594) or through the Mattermost channels `~mir-security-review-priority` or `~security`.
+The best ways to contact the Security team about MIRs is the [MIR / Audits Jira Page](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594) or through the Mattermost channels `~mir-security-review-priority` or `~security-engineering`.
 
 Teams are encouraged to set the relative importance of MIRs they own on the [MIR / Audits Jira Page](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594). Security attempts to work across and prioritize all teams equally. Jira priority drives the order we work on MIRs.
 
