@@ -19,7 +19,7 @@ confusion, and indicate the next course of action on a MIR bug.
 
 ```mermaid
 %% mermaid flowcharts documentation: https://mermaid.js.org/syntax/flowchart.html
-%%{ init: { 'flowchart': { 'curve': 'monotoneY' } } }%%
+%%{ init: { 'flowchart': { 'curve': 'monotoneY', 'htmlLabels': true } } }%%
 flowchart TD
     %% Styles
     classDef Invisible stroke-width:0,fill:#00000000 
