@@ -292,7 +292,7 @@ TODO-A: - Packages does not open privileged ports (ports < 1024).
 TODO-B: - Packages open privileged ports (ports < 1024), but they have
 TODO-B:   a reason to do so (TBD)
 TODO-A: - Package does not expose any external endpoints
-TODO-B: - Package does not expose an external endpoint, it is
+TODO-B: - Package does expose an external endpoint, it is
 TODO-B:   TBD endpoint + TBD purpose
 TODO: - Packages does not contain extensions to security-sensitive software
 TODO:   (filters, scanners, plugins, UI skins, ...)
