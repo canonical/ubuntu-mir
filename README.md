@@ -229,6 +229,14 @@ RULE: address the problem you might spend some time explaining what exists and
 RULE: why it isn't a sufficient alternative.
 TODO: - There is no other/better way to solve this that is already in main or
 TODO:   should go universe->main instead of this.
+RULE: You truly need to understand the difference between main and universe
+RULE: in general and in the context of changed rules (build-depends) and
+RULE: constraints (Ubuntu Pro made it less of a difference in many cases).
+RULE: We have seen requests that were mostly based on old "I said supported (a
+RULE: weakly defined term to begin with) in a contract, so it has to be in main"
+RULE: feelings, but with sometimes no true reason - neither technically nor
+RULE: helping the user base of Ubuntu. Hence we need to ask for that clearly.
+TODO: - The binary package TBD needs to be in main to achieve TBD
 
 RULE: Reviews will take some time. Also the potential extra work out of review
 RULE: feedback from either MIR-team and/or security-team will take time.
@@ -731,6 +739,9 @@ TODO: A team is committed to own long term maintenance of this package.
 RULE: In the template to submit cases we ask the reporter to state a rationale
 RULE: why this should be considered. But a MIR team member needs to
 RULE: try to judge if this rationale is good for Ubuntu and its users.
+RULE: We've also seen requests that thought they need to be in main, but that
+RULE: was based on wrong assumptions, ensure the requester understands what and
+RULE: why they request a main inclusion when judging if the rationale is valid.
 TODO: The rationale given in the report seems valid and useful for Ubuntu
 RULE: If any of the above checks in this section the MIR team can decide to
 RULE: skip the rest of the check until these basic questions are resolved.
