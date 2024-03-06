@@ -511,6 +511,10 @@ RULE:       but then, as a first step, needs to get a team agreeing to own
 RULE:       it before the case can be processed further.
 RULE:       If unsure which teams to consider have a look at the current mapping
 RULE:       http://reqorts.qa.ubuntu.com/reports/m-r-package-team-mapping.html
+RULE:       In that case (you are not a representative of the team who will
+RULE:       gain the long term committment to this) please ask a representative
+RULE:       of that team to comment on the bug confirming that they are ok to
+RULE:       own it.
 RULE:   - The package needs a bug subscriber before it can be promoted to main.
 RULE:     Strictly speaking that subscription can therefore wait until the
 RULE:     moment of the actual promotion by an archive admin. But it is
@@ -718,6 +722,11 @@ TODO: There is no other package in main providing the same functionality.
 RULE: No matter how useful a rationale is and how unique a package might be
 RULE: it will need an owning team that is willing and able to spend the time
 RULE: to maintain it well for the benefit of all Ubuntu users and use cases.
+RULE: If someone submitted an MIR on behalf of another team and suggested them
+RULE: to own it, we expect someone representing that to be owning team to
+RULE: comment on the bug and confirm that they are ok to own that package
+RULE: (to avoid review and process effort being spent only to then
+RULE: immediately be cancelled by a lack of ownership).
 TODO: A team is committed to own long term maintenance of this package.
 RULE: In the template to submit cases we ask the reporter to state a rationale
 RULE: why this should be considered. But a MIR team member needs to
