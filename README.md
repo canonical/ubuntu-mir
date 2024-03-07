@@ -521,7 +521,7 @@ RULE:       If unsure which teams to consider have a look at the current mapping
 RULE:       http://reqorts.qa.ubuntu.com/reports/m-r-package-team-mapping.html
 RULE:       In that case (you are not a representative of the team who will
 RULE:       gain the long term committment to this) please ask a representative
-RULE:       of that team to comment on the bug confirming that they are ok to
+RULE:       of that team to comment on the bug acknowledging that they are ok to
 RULE:       own it.
 RULE:   - The package needs a bug subscriber before it can be promoted to main.
 RULE:     Strictly speaking that subscription can therefore wait until the
@@ -732,7 +732,7 @@ RULE: it will need an owning team that is willing and able to spend the time
 RULE: to maintain it well for the benefit of all Ubuntu users and use cases.
 RULE: If someone submitted an MIR on behalf of another team and suggested them
 RULE: to own it, we expect someone representing that to be owning team to
-RULE: comment on the bug and confirm that they are ok to own that package
+RULE: comment on the bug and acknowledge that they are ok to own that package
 RULE: (to avoid review and process effort being spent only to then
 RULE: immediately be cancelled by a lack of ownership).
 TODO: A team is committed to own long term maintenance of this package.
