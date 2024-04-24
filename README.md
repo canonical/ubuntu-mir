@@ -1032,7 +1032,7 @@ RULE:    built binaries)
 TODO: - use of setuid, but ok because TBD (prefer systemd to set those
 TODO:   for services)
 TODO: - no important open bugs (crashers, etc) in Debian or Ubuntu
-TODO: - no dependency on webkit, qtwebkit, seed or libgoa-*
+TODO: - no dependency on webkit, qtwebkit or libseed
 TODO-A: - not part of the UI for extra checks
 TODO-B: - part of the UI, desktop file is ok
 TODO-A: - no translation present, but none needed for this case (user visible)?
