@@ -74,7 +74,8 @@ flowchart TD
 | *6.* Fix Released                                        | case resolved by an Archive Admin |
 | *7.* Won\'t Fix                                          | final NACK from MIR team or bug reporter gave up |
 | *8.* Incomplete                                          | Questions/Requests were raised for the bug reporter to resolve/clarify |
-| *9.* Invalid                                             | no response within 60 days when in `Incomplete` state |
+| *9.* Invalid¹                                            | no response within 60 days when in `Incomplete` state |
+| *10.* Invalid¹                                            | not promoted to main by owning-team 2 years after MIR approval |
 
 **Note:** All other states are undefined and should be resolved to
 one of the defined states – otherwise they might be completely missed on the weekly checks.
