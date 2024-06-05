@@ -19,6 +19,7 @@ jira
 libgoa
 libhunt
 libjpeg
+libseed
 linkshared
 lintian
 makeshlibs
