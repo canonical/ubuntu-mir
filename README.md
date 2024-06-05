@@ -1035,6 +1035,11 @@ RULE:    built binaries)
 TODO: - use of setuid, but ok because TBD (prefer systemd to set those
 TODO:   for services)
 TODO: - no important open bugs (crashers, etc) in Debian or Ubuntu
+RULE: Old dependencies, partially even still in main we want to get rid of over
+RULE: time. While they may be still there, we'd not want to add new
+RULE: dependencies. webkit = Web content engine library for GTK,
+RULE: qtwebkit = Web content engine library for Qt, libseed = GObject JavaScript
+RULE: bindings for the webkit engine
 TODO: - no dependency on webkit, qtwebkit or libseed
 TODO-A: - not part of the UI for extra checks
 TODO-B: - part of the UI, desktop file is ok
