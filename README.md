@@ -572,6 +572,8 @@ RULE:     - the security team will alert the owning team of issues that may
 RULE:       affect their vendored code
 RULE:     - the owning team will provide timely, high quality updates for the
 RULE:       security team to sponsor to fix issues in the affected vendored code
+RULE:     - the owning team will use a minimal set of vendored code (e.g., Rust
+RULE:       packages are unlikely to need `*_win` crates to build)
 RULE:     - if subsequent uploads add new vendored components or dependencies
 RULE:       these have to be reviewed and agreed by the security team.
 RULE:     - Such updates in the project might be trivial, but imply that a
