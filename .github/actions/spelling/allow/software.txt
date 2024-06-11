@@ -11,6 +11,7 @@ dpkg
 gettext
 github
 gksu
+GObject
 grep
 gtk
 intltool
@@ -19,6 +20,7 @@ jira
 libgoa
 libhunt
 libjpeg
+libseed
 linkshared
 lintian
 makeshlibs
