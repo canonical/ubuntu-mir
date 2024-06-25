@@ -647,12 +647,27 @@ TODO-A: - This package is not rust based
 TODO-B: - This package is rust based and vendors all non language-runtime
 TODO-B:   dependencies
 
-RULE: - if there has been an archive test rebuild that has occurred more recently
-RULE:   than the last upload, the package must have rebuilt successfully
-TODO-A: - The package has been built in the archive more recently than the last
-TODO-A:   test rebuild
-TODO-B: - The package successfully built during the most recent test rebuild
-TODO-C: - The package was test rebuilt in PPA or sbuild recently (provide link/logs)
+RULE: - Some packages build and update often, in this case everyone can just
+RULE:   check the recent build logs to ensure if it builds fine.
+RULE:   But some other packages are rather stable and have not been rebuilt
+RULE:   in a long time. There no one can be confident it would build on e.g.
+RULE:   an urgent security fix. Hence we ask if there has been a recent build.
+RULE:   That might be a recent build that has been done anyway as seen on
+RULE:   https://launchpad.net/ubuntu/+source/<source>, a reference to a recent
+RULE:   archive test rebuild (those are announced on the ubuntu-devel mailing
+RULE:   list like https://lists.ubuntu.com/archives/ubuntu-devel-announce/2024-January/001342.html),
+RULE:   or a build set up by the reporter in a PPA with all architectures
+RULE:   enabled.
+TODO-A: - The package has been built within the last 3 months in the archive
+TODO-B: - The package has been built within the last 3 months as part
+TODO-B:   of a test rebuild
+TODO-C: - The package has been built within the last 3 months in PPA
+TODO-D: - The package has been built within the last 3 months in sbuild as it
+TODO-D:   can not be uploaded yet
+RULE: - To make it easier for everyone, please provide a link to that build so
+RULE:   everyone can follow up easily e.g. checking the various architectures.
+RULE:   Example https://launchpad.net/ubuntu/+source/qemu/1:8.2.2+ds-0ubuntu1
+TODO: - Build link on launchpad: TBD
 
 [Background information]
 RULE: - The package descriptions should explain the general purpose and context
