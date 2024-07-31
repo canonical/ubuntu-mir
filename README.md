@@ -334,8 +334,18 @@ TODO:   - Debian https://bugs.debian.org/cgi-bin/pkgreport.cgi?src=TBDSRC
 TODO:   - Upstream's bug tracker, e.g., GitHub Issues
 TODO: - The package has important open bugs, listing them: TBD
 TODO-A: - The package does not deal with exotic hardware we cannot support
-TODO-B: - The package does deal with exotic hardware, it is present at TBD
-TODO-B:   to be able to test, fix and verify bugs
+TODO-B: - The package does deal with exotic hardware, such hardware is available
+TODO-B:   to the team for debugging, test, verification and development via
+RULE: This is about confidence to be able to maintain the package, therefore
+RULE: any option (the examples or anything else you add) is "valid", but it
+RULE: depends on the case if that is then considered sufficient.
+RULE: The following examples are in descending order in regard to how "ok" they
+RULE: likely will be.
+TODO-B1: testflinger under the following queue(s): TBD
+TODO-B2: (multiple) Canonical systems in the TBD computing center/lab
+TODO-B3: an engineering sample in engineers home on TBD team, manager TBD
+TODO-B4: (multiple) cloud providers as type: TBD
+TODO-B5: hopefully somewhen getting it due to TBD
 
 [Quality assurance - testing]
 RULE: - The package must include a non-trivial test suite
