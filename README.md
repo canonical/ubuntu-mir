@@ -118,6 +118,12 @@ come up later. The MIR Team should try to clarify that with the Team
 that owns the depending package to own the font as well (read: without
 the overhead of a full MIR process).
 
+## OEM Packages
+
+Starting in 20.04, Ubuntu Desktop ISOs will support installing hardware specific metapackages if the machine being installed on has a corresponding enablement package available. These packages enable an additional APT archive. This is the subject of a [discussion with the Technical Board](https://lists.ubuntu.com/archives/technical-board/2020-January/002478.html). See [OEMArchive](https://wiki.ubuntu.com/OEMArchive) for further details.
+
+See [exceptions/OEM.md](exceptions/OEM.md).
+
 # Filing a MIR bug
 
 The steps of the MIR process require a reporter (the one who wants a
