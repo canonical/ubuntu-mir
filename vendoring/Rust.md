@@ -1,0 +1,114 @@
+# Rust code in main
+
+Due to the current state of the Rust ecosystem, the MIR rules state that packages in main that contain Rust code should vendor their Rust dependencies rather than rely on the individual package versions, see [cpaelzer/ubuntu-mir#3](https://github.com/cpaelzer/ubuntu-mir/pull/3) for some background on the issue.
+
+## Vendoring Rust dependencies
+It's a simple matter of running `cargo vendor` where you're on the top-level directory. Sadly, it's not possible to exclude irrelevant dependencies during vendoring yet, so you might want to automate that step and add some post-processing to remove voluminous, unused dependencies, and/or the C code for some system libraries that could be statically linked.
+
+### Teaching dh-cargo about vendored sources
+`dh-cargo` by default assumes the dependencies of the main project will be provided by packaged crates from our archive. Since our MIR policy is to vendor dependencies, you need to set the `CARGO_VENDOR_DIR` environment to wherever the vendored dependencies are stored, e.g.
+
+```sh
+export CARGO_VENDOR_DIR = vendor/
+```
+
+Note that even if you're using the more manual steps, you'll want to export this variable, as some scripts might expect it.
+
+### Modifying individual vendored crates
+If you have to modify the contents of individual vendored crates, e.g. to remove pre-compiled files, this'll change the checksum of the crate, and cargo will complain. So far, the best solution we've come up with is to do JSON surgery in the crate's `.cargo-checksum.json` to remove the individual file checksums while keeping intact the individual crate checksum.
+
+Eventually we should provide helper scripts to do so in the dh-cargo package, but meanwhile the following snippet does the trick:
+
+```sh
+[ -e /usr/bin/jq ] || (echo "jq is required to run this script. Try installing it with 'sudo apt install jq'" && exit 1);
+for dep in $(ls vendor_rust -1); do
+    checksum_file="vendor_rust/${dep}/.cargo-checksum.json";
+    a_files=$(cat ${checksum_file} | jq '.files | keys | map(select(.|test(".a$")))');
+    if [ "$a_files" = "[]" ]; then
+        continue;
+    fi;
+    pkg_checksum=$$(cat "${checksum_file}" | jq '.package');
+    echo "{\"files\": {}, \"package\": ${pkg_checksum}}" >"${checksum_file}";
+done;
+```
+
+## Cargo wrapper
+The `cargo` package ships a wrapper script around the actual `cargo` binary that sets default options useful for packaging, and exposes custom subcommands. Therefore, it is advised to use it rather than the binary directly whenever you need to do manual calls.
+
+```
+CARGO := /usr/share/cargo/bin/cargo
+```
+
+## dh-cargo
+If your project is pure Rust code in a single crate, `dh-cargo` should be able to drive the build via the following snippet:
+
+```
+%:
+    dh $@ --buildsystem=cargo
+```
+
+Sadly, dh cannot have multiple buildsystems at the same time, so for hybrid codebases you'll need to trigger the build phases manually. Moreover, dh-cargo does *not* support building workspaces at the moment, at it was designed to work on source packages pulled directly from crates.io (which only ships individual crates), so there's a likely chance it'd choke on it.
+
+### Jammy support
+Support for vendored dependencies hasn't been SRUed to Jammy yet, this is tracked in [LP: #2028153](https://bugs.launchpad.net/ubuntu/+source/dh-cargo/+bug/2028153).
+
+## Manual steps
+### `prepare-debian`
+The wrapper expects a few things to be set up before the build:
+
+```make
+override_dh_auto_configure:
+    dh_auto_configure
+    dh_auto_configure --buildsystem=cargo
+```
+
+If you're targeting Jammy, you would want to run something like this instead:
+
+```make
+DEB_HOST_GNU_TYPE=$(DEB_HOST_GNU_TYPE) DEB_HOST_RUST_TYPE=$(DEB_HOST_RUST_TYPE) \
+CARGO_HOME=$(CURDIR)/debian/cargo_home DEB_CARGO_CRATE=adsys_$(shell dpkg-parsechangelog --show-field Version) \
+$(CARGO) prepare-debian $(CARGO_VENDOR_DIR)
+```
+
+### Tests
+Due to the oddities of the Debian Rust ecosystem, by default dh-cargo does not run the tests but rather only does a build test. One needs an override to force it to run the tests.
+
+```make
+override_dh_auto_test:
+    dh_auto_test --buildsystem=cargo -- test --all
+```
+
+### Build
+dh-cargo does *not* build the code in the build stage, it's all folded into the `install` stage.
+
+### Install
+This should work out of the box for single-crate projects:
+
+However, for more complex projects, you'll need this somewhat gnarly invocation along those lines:
+
+```make
+    # Here we utilise a logical flaw in the cargo wrapper to our advantage:
+    # when specifying DEB_CARGO_CRATE_IN_REGISTRY=1, the wrapper will
+    # avoid adding the `--path` option, so that we can specify it ourselves
+    DEB_HOST_GNU_TYPE=$(DEB_HOST_GNU_TYPE) \
+    DEB_HOST_RUST_TYPE=$(DEB_HOST_RUST_TYPE) \
+    CARGO_HOME=$(CURDIR)/debian/cargo_home \
+    DEB_CARGO_CRATE=adsys_mount_0.1.0 \
+    DEB_CARGO_CRATE_IN_REGISTRY=1 \
+    DESTDIR=$(CURDIR)/debian/tmp \
+        $(CARGO) install --path $(ADSYS_MOUNT)
+    # Currently doesn't work because of https://github.com/rust-lang/cargo/issues/4101
+    # combined with a lack of flexibility in the cargo wrapper. That means we
+    # have to do it manually (with the build split out in dh_auto_build for good
+    # measure, even though dh-cargo does it all in the install step)
+    # dh_auto_install --buildsystem=cargo -- --path $(ADSYS_MOUNT)
+```
+
+### Rust vendored sources tracking
+The tracking of embedded Rust vendored dependencies is done via a field in the source package, fittingly named `XS-Vendored-Sources-Rust`, composed of a comma-separated list of versioned crate names of the format `CRATE@VERSION`.
+
+From version 28ubuntu1 on, the `dh-cargo` package contains a script that checks this field's content against the contents of the vendor tree, and fails the build if it doesn't match, outputting the expected value.
+
+The script is available in /usr/share/cargo/bin/dh-cargo-vendored-sources
+
+Note that the field can easily be fairly gigantic.
