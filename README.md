@@ -620,9 +620,15 @@ RULE:     packages will be used to build).
 RULE:   - The tooling to get a Cargo.lock that will include internal vendored
 RULE:     dependencies is described at:
 RULE:     https://github.com/canonical/ubuntu-mir/blob/main/vendoring/Rust.md
-RULE:   - An example of how Rust dependencies are vendored for gnome-snapshot
-RULE      can be found here:
-RULE      https://salsa.debian.org/ubuntu-dev-team/snapshot/-/blob/ubuntu/latest/debian/README.source
+RULE:   - An example of how Rust dependency vendoring can be automated is
+RULE:     "s390-tools", isolating crates in a .orig-vendor.tar.xz tarball:
+RULE:     * https://git.launchpad.net/ubuntu/+source/s390-tools/tree/debian/rules
+RULE:     Other examples include "authd" (for a native package, combined with
+RULE:     Golang vendoring) and "gnome-snapshot" (using debian/missing-sources):
+RULE:     * authd:
+RULE:       https://github.com/ubuntu/authd/blob/main/debian/rules
+RULE:     * gnome-snapshot:
+RULE:       https://salsa.debian.org/ubuntu-dev-team/snapshot/-/blob/ubuntu/latest/debian/README.source
 
 RULE: - All vendored dependencies (no matter what language) shall have a
 RULE:   way to be refreshed
