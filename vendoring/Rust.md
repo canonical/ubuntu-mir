@@ -3,13 +3,24 @@
 Due to the current state of the Rust ecosystem, the MIR rules state that packages in main that contain Rust code should vendor their Rust dependencies rather than rely on the individual package versions, see [cpaelzer/ubuntu-mir#3](https://github.com/cpaelzer/ubuntu-mir/pull/3) for some background on the issue.
 
 ## Vendoring Rust dependencies
-It's a simple matter of running `cargo vendor` where you're on the top-level directory. Sadly, it's not possible to exclude irrelevant dependencies during vendoring yet, so you might want to automate that step and add some post-processing to remove voluminous, unused dependencies, and/or the C code for some system libraries that could be statically linked.
+It's a simple matter of running `cargo vendor debian/missing-sources/` where you're on the top-level directory. Sadly, it's not possible to exclude irrelevant dependencies during vendoring yet, so you might want to automate that step and add some post-processing to remove voluminous, unused dependencies, and/or the C code for some system libraries that could be statically linked.
+
+### Handling binaries inside vendored crates
+Some vendored crates include binary files which `dpkg-source` does not like. Here are commands to handle such cases:
+
+```sh
+rm debian/source/include-binaries
+dpkg-source --include-binaries -b .
+git add debian/source/include-binaries
+git commit -m "Update debian/source/include-binaries"
+git reset --hard && git clean -fdx
+```
 
 ### Teaching dh-cargo about vendored sources
 `dh-cargo` by default assumes the dependencies of the main project will be provided by packaged crates from our archive. Since our MIR policy is to vendor dependencies, you need to set the `CARGO_VENDOR_DIR` environment to wherever the vendored dependencies are stored, e.g.
 
 ```sh
-export CARGO_VENDOR_DIR = vendor/
+export CARGO_VENDOR_DIR = debian/missing-sources/
 ```
 
 Note that even if you're using the more manual steps, you'll want to export this variable, as some scripts might expect it.
@@ -112,3 +123,15 @@ From version 28ubuntu1 on, the `dh-cargo` package contains a script that checks 
 The script is available in /usr/share/cargo/bin/dh-cargo-vendored-sources
 
 Note that the field can easily be fairly gigantic.
+
+#### Manual tracking of vendored sources
+In cases where the provided script does not work due to build environment constraints (e.g. using the meson buildsystem), the vendored dependencies should be tracked manually. The following commands can help with that:
+
+```sh
+rm Cargo.toml
+# Use the output to update the XS-Vendored-Sources-Rust line in debian/control
+CARGO_VENDOR_DIR=debian/missing-sources/ /usr/share/cargo/bin/dh-cargo-vendored-sources
+git add debian/control
+git commit -m "Update XS-Vendored-Sources-Rust field"
+git reset --hard # restore Cargo.toml
+```
