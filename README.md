@@ -19,15 +19,15 @@ confusion, and indicate the next course of action on a MIR bug.
 
 ```mermaid
 %% mermaid flowcharts documentation: https://mermaid.js.org/syntax/flowchart.html
-%%{ init: { 'flowchart': { 'curve': 'monotoneY', 'htmlLabels': true } } }%%
+%%{ init: { "flowchart": { "curve": "monotoneY", "htmlLabels": true } } }%%
 flowchart TD
     %% Styles
     classDef Invisible stroke-width:0,fill:#00000000 
 
     %% States
     Unassigned["<b><i>1.</i> New / Confirmed¹<br>(unassigned)</b>"]
-    AssignedToMirTeamMember["<b><i>2.</i> New / Confirmed¹<br>(assigned to MIR team member)</b>"]
-    AssignedToSecurityTeamMember["<b><i>3.</i> New / Confirmed¹<br>(assigned to Security team member)</b>"]
+    AssignedToMirTeamMember["<b><i>2.</i> New / Confirmed¹<br>(assigned to<br>MIR team member)</b>"]
+    AssignedToSecurityTeamMember["<b><i>3.</i> New / Confirmed¹<br>(assigned to<br>Security team)</b>"]
     WontFix[["<b><i>7.</i> Won't Fix</b>"]]
     InProgress["<b><i>4.</i> In Progress</b>"]
     FixCommitted["<b><i>5.</i> Fix Committed</b>"]
@@ -39,8 +39,8 @@ flowchart TD
     Start((" ")):::Invisible
     BugCreated>"Bug created"]
     IsSecurityReviewNeeded{{"is Security Review needed"}}
-    Reviewed{{"Reviewed<br><i>(report added as bug comment)</i>"}}
-    QuestionsArise>"Questions or Requests arise"]
+    Reviewed{{"Reviewed<br><i>(report added as<br>bug comment)</i>"}}
+    QuestionsArise>"Questions or Requests<br>arise"]
     
     %% Transitions
     Start-->|"create MIR bug<br>following the template"| BugCreated
