@@ -3,7 +3,84 @@
 Due to the current state of the Rust ecosystem, the MIR rules state that packages in main that contain Rust code should vendor their Rust dependencies rather than rely on the individual package versions, see [cpaelzer/ubuntu-mir#3](https://github.com/cpaelzer/ubuntu-mir/pull/3) for some background on the issue.
 
 ## Vendoring Rust dependencies
-It's a simple matter of running `cargo vendor debian/missing-sources/` where you're on the top-level directory. Sadly, it's not possible to exclude irrelevant dependencies during vendoring yet, so you might want to automate that step and add some post-processing to remove voluminous, unused dependencies, and/or the C code for some system libraries that could be statically linked.
+It's a simple matter of running `cargo vendor debian/rust-vendor/` where you're on the top-level directory. Sadly, it's not possible to exclude irrelevant dependencies during vendoring yet, so you might want to automate that step and add some post-processing to remove voluminous, unused dependencies, and/or the C code for some system libraries that could be statically linked.
+
+### Automation via `debian/rules`
+A good example for automating Rust vendoring is provided by [s390-tools](https://git.launchpad.net/ubuntu/+source/s390-tools/tree/debian/rules) and can be executed via **debian/rules**.
+
+First, the package is updated as usual, including the new `debian/changelog` entry. Then a vendor tarball can be (re-)created, using the `vendor-tarball` target:
+```sh
+debian/rules vendor-tarball
+```
+
+See [debian/README.source](https://git.launchpad.net/ubuntu/+source/s390-tools/tree/debian/README.source) for more details.
+
+The relevant parts of s390-tools **debian/rules** file are listed below:
+```makefile
+export CARGO = /usr/share/cargo/bin/cargo
+export CARGO_VENDOR_DIR = rust-vendor
+export CARGO_HOME = $(CURDIR)/debian/cargo_home
+
+include /usr/share/rustc/architecture.mk
+export DEB_HOST_RUST_TYPE DEB_HOST_GNU_TYPE
+
+VENDOR_TARBALL = s390-tools_$(DEB_VERSION_UPSTREAM).orig-$(CARGO_VENDOR_DIR).tar.xz
+
+vendor-tarball-sanity-check:
+        if [ -e ../$(VENDOR_TARBALL) ]; then echo "../$(VENDOR_TARBALL) already exists, bailing!"; exit 1; fi
+
+vendor-deps:
+        if QUILT_PATCHES=debian/patches quilt applied | grep vendor-remove-unused-deps ; then \
+                echo "Detecting patch on vendor dir applied, aborting."; \
+                exit 1; \
+        fi
+        rm -rf $(CARGO_VENDOR_DIR)
+        # Deliberately don't use the wrapper, as it expects the configure step
+        # to have occurred already.
+        # If you have to modify the path here, don't forget to change the README.source doc
+        # as well.
+        cargo vendor --manifest-path rust/Cargo.toml $(CARGO_VENDOR_DIR)
+        # Remove some crates that aren't useful for us and take up a lot of space
+        rm -r \
+                $(CARGO_VENDOR_DIR)/winapi \
+                $(CARGO_VENDOR_DIR)/winapi-* \
+                $(CARGO_VENDOR_DIR)/windows-* \
+                $(CARGO_VENDOR_DIR)/windows_* \
+                # End of list
+        # Remove the C sources from the binding crates, we're using the system libs
+        rm -r \
+                $(CARGO_VENDOR_DIR)/libz-sys/src/zlib \
+                $(CARGO_VENDOR_DIR)/libz-sys/src/zlib-ng \
+                $(CARGO_VENDOR_DIR)/curl-sys/curl \
+                # End of list
+        # Remove unused and undesirable data files (e.g. test data for vendored crates)
+        rm -r \
+                $(CARGO_VENDOR_DIR)/vcpkg/test-data \
+                $(CARGO_VENDOR_DIR)/*/tests \
+                # End of list
+        # Remove the checksum files to allow us to patch the crates to remove extraneous dependencies
+        for crate in $(CARGO_VENDOR_DIR)/*; do \
+                sed -i 's/^{"files":.*"package":"\([a-z0-9]\+\)"}$$/{"files":{},"package":"\1"}/' $$crate/.cargo-checksum.json; \
+        done
+        # Cleanup temp files
+        rm -rf $(CARGO_HOME)
+
+vendor-tarball: vendor-tarball-sanity-check vendor-deps
+        tar -caf ../$(VENDOR_TARBALL) $(CARGO_VENDOR_DIR)
+
+%:
+        dh $@
+
+override_dh_auto_configure:
+        DEB_CARGO_CRATE=s390-tools_$(shell dpkg-parsechangelog --show-field Version) \
+        $(CARGO) prepare-debian $(CARGO_VENDOR_DIR)
+        /usr/share/cargo/bin/dh-cargo-vendored-sources
+        dh_auto_configure
+
+override_dh_clean:
+        dh_clean
+        rm -rf $(CARGO_HOME)
+```
 
 ### Handling binaries inside vendored crates
 Some vendored crates include binary files which `dpkg-source` does not like. Here are commands to handle such cases:
@@ -20,7 +97,7 @@ git reset --hard && git clean -fdx
 `dh-cargo` by default assumes the dependencies of the main project will be provided by packaged crates from our archive. Since our MIR policy is to vendor dependencies, you need to set the `CARGO_VENDOR_DIR` environment to wherever the vendored dependencies are stored, e.g.
 
 ```sh
-export CARGO_VENDOR_DIR = debian/missing-sources/
+export CARGO_VENDOR_DIR = debian/rust-vendor/
 ```
 
 Note that even if you're using the more manual steps, you'll want to export this variable, as some scripts might expect it.
@@ -75,7 +152,7 @@ override_dh_auto_configure:
 
 If you're targeting Jammy, you would want to run something like this instead:
 
-```make
+```makefile
 DEB_HOST_GNU_TYPE=$(DEB_HOST_GNU_TYPE) DEB_HOST_RUST_TYPE=$(DEB_HOST_RUST_TYPE) \
 CARGO_HOME=$(CURDIR)/debian/cargo_home DEB_CARGO_CRATE=adsys_$(shell dpkg-parsechangelog --show-field Version) \
 $(CARGO) prepare-debian $(CARGO_VENDOR_DIR)
@@ -84,7 +161,7 @@ $(CARGO) prepare-debian $(CARGO_VENDOR_DIR)
 ### Tests
 Due to the oddities of the Debian Rust ecosystem, by default dh-cargo does not run the tests but rather only does a build test. One needs an override to force it to run the tests.
 
-```make
+```makefile
 override_dh_auto_test:
     dh_auto_test --buildsystem=cargo -- test --all
 ```
@@ -97,7 +174,7 @@ This should work out of the box for single-crate projects:
 
 However, for more complex projects, you'll need this somewhat gnarly invocation along those lines:
 
-```make
+```makefile
     # Here we utilise a logical flaw in the cargo wrapper to our advantage:
     # when specifying DEB_CARGO_CRATE_IN_REGISTRY=1, the wrapper will
     # avoid adding the `--path` option, so that we can specify it ourselves
@@ -120,7 +197,7 @@ The tracking of embedded Rust vendored dependencies is done via a field in the s
 
 From version 28ubuntu1 on, the `dh-cargo` package contains a script that checks this field's content against the contents of the vendor tree, and fails the build if it doesn't match, outputting the expected value.
 
-The script is available in /usr/share/cargo/bin/dh-cargo-vendored-sources
+The script is available in `/usr/share/cargo/bin/dh-cargo-vendored-sources`
 
 Note that the field can easily be fairly gigantic.
 
@@ -130,7 +207,7 @@ In cases where the provided script does not work due to build environment constr
 ```sh
 rm Cargo.toml
 # Use the output to update the XS-Vendored-Sources-Rust line in debian/control
-CARGO_VENDOR_DIR=debian/missing-sources/ /usr/share/cargo/bin/dh-cargo-vendored-sources
+CARGO_VENDOR_DIR=debian/rust-vendor/ /usr/share/cargo/bin/dh-cargo-vendored-sources
 git add debian/control
 git commit -m "Update XS-Vendored-Sources-Rust field"
 git reset --hard # restore Cargo.toml
