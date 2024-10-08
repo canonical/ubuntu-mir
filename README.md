@@ -617,25 +617,18 @@ RULE:   - It is expected rust builds will use dh-cargo so that a later switch
 RULE:     to non vendored dependencies isn't too complex (e.g. it is likely
 RULE:     that over time more common libs shall become stable and then archive
 RULE:     packages will be used to build).
-RULE:   - Right now that tooling to get a Cargo.lock that will include internal
-RULE:     vendored dependencies isn't in place yet (expect a dh-cargo change
-RULE:     later). Until it is available, as a fallback one can scan the
-RULE:     directory at build time and let it be generated in debian/rules.
-RULE:     An example might look like:
-RULE:       debian/rules:
-RULE:         override_dh_auto_test:
-RULE:             CARGO_HOME=debian /usr/share/cargo/bin/cargo test --offline
-RULE:       debian/<pkg>.install:
-RULE:         Cargo.lock /usr/share/doc/<pkg>
-RULE:       debian/config.toml
-RULE:         # Use the vendorized sources to produce the Cargo.lock file. This
-RULE:         # can be performed by pointing $CARGO_HOME to the path containing
-RULE:         # this file.
-RULE:         [source]
-RULE:         [source.my-vendor-source]
-RULE:         directory = "vendor"
-RULE:         [source.crates-io]
-RULE:         replace-with = "my-vendor-source"
+RULE:   - The tooling to get a Cargo.lock that will include internal vendored
+RULE:     dependencies is described at:
+RULE:     https://github.com/canonical/ubuntu-mir/blob/main/vendoring/Rust.md
+RULE:   - An example of how Rust dependency vendoring can be automated is
+RULE:     "s390-tools", isolating crates in a .orig-vendor.tar.xz tarball:
+RULE:     * https://git.launchpad.net/ubuntu/+source/s390-tools/tree/debian/rules
+RULE:     Other examples include "authd" (for a native package, combined with
+RULE:     Golang vendoring) and "gnome-snapshot" (using debian/missing-sources):
+RULE:     * authd:
+RULE:       https://github.com/ubuntu/authd/blob/main/debian/rules
+RULE:     * gnome-snapshot:
+RULE:       https://salsa.debian.org/ubuntu-dev-team/snapshot/-/blob/ubuntu/latest/debian/README.source
 
 RULE: - All vendored dependencies (no matter what language) shall have a
 RULE:   way to be refreshed
@@ -815,11 +808,7 @@ RULE:   which should be discouraged (except golang/rust, see below)
 RULE:   - Rust - toolchain and dh tools are still changing a lot. Currently it
 RULE:     is expected to only list the rust toolchain in `Built-Using`.
 RULE:     the remaining (currently vendored) dependencies shall be tracked
-RULE:     in a cargo.lock file
-RULE:     - The rust tooling can not yet automatically provide all we require.
-RULE:       For example Cargo.lock - until available a package is at least
-RULE:       expected to generate this file itself at build time - an example
-RULE:       how to do so is shown above in the template for the reporter.
+RULE:     in a Cargo.lock file
 RULE:   - Go - here `Built-Using` is expected to only contain the go
 RULE:     toolchain used to build it. Additional packaged dependencies
 RULE:     will be tracked in `Static-Built-Using:` automatically.
