@@ -66,7 +66,7 @@ vendor-deps:
         rm -rf $(CARGO_HOME)
 
 vendor-tarball: vendor-tarball-sanity-check vendor-deps
-        tar -caf ../$(VENDOR_TARBALL) $(CARGO_VENDOR_DIR)
+        tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime -caf ../$(VENDOR_TARBALL) $(CARGO_VENDOR_DIR)
 
 %:
         dh $@
