@@ -1,5 +1,6 @@
 admins
 adsys
+atime
 authd
 buildsystems
 bvn
@@ -7,6 +8,7 @@ bvr
 changelog
 codebases
 compat
+ctime
 CURDIR
 datetime
 debdiff
@@ -15,6 +17,7 @@ deps
 DESTDIR
 dmi
 endmeeting
+exthdr
 fdx
 fwupd
 Hrn
@@ -29,6 +32,7 @@ meetingology
 metapackage
 modalias
 modaliase
+mtime
 oem
 openwall
 parsechangelog
