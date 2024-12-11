@@ -124,6 +124,29 @@ Starting in 20.04, Ubuntu Desktop ISOs will support installing hardware specific
 
 See [exceptions/OEM.md](exceptions/OEM.md).
 
+## Renamed or Reorganized sources
+
+Historically if something was in main once there was no re-evaluation done
+later unless if teams asked for it based on huge changes. Doing regular
+re-evaluations on all packages would be a nice, but also rather huge effort.
+Yet we can use some regular events to start with it at a smaller scale,
+when things pop up on our radar anyway.
+
+In the past, if a source was already in main, but then appeared in a different
+form - common cases that come to mind are renames or code split out - have
+gotten a fast-path approval based on being in main already. This has changed
+and at least for those packages old enough to not have any audit-trail via a
+MIR bug we want to do a re-evaluation when they show up as component mismatch.
+
+We want to be pragmatic, therefore:
+- All we identify shall be recommended tasks (not required to continue) unless we find something really intolerable.
+- We'd appreciate if the owning team could file a MIR-reporter bug for it, but would not insist on it if they can't. In that case we create a stub for it.
+
+The benefit of this is, that the stricter rules that we have today (added for
+good reasons usually triggered by painful lessons learned no one wants to
+repeat), will be considered and thereby might create useful suggestions for
+components that are central to Ubuntu, its quality and maintainability.
+
 # Filing a MIR bug
 
 The steps of the MIR process require a reporter (the one who wants a
