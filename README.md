@@ -139,10 +139,10 @@ good reasons usually triggered by painful lessons learned no one wants to
 repeat), will be considered and thereby might create useful suggestions for
 components that are central to Ubuntu, its quality and maintainability.
 
-We'd create a MIR bug if there was none. But if there was a bug alread
+We'd create a MIR bug if there was none. But if there was a bug already
 we'd want to keep the context together and avoid flooding launchpad with
 multiple MIR bugs for a single package. Therefore in this case, just
-as we do when we retroactively promote in SRUs we'd add per-series bug tasks
+as we do when we retroactively promote in an SRU we'd add per-series bug tasks
 to show the state of each review independently.
 If source renames are involved those can be tracked the same way all associated
 to one bug.
