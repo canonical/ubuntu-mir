@@ -5,6 +5,12 @@ Due to the current state of the Rust ecosystem, the MIR rules state that package
 ## Vendoring Rust dependencies
 It's a simple matter of running `cargo vendor debian/rust-vendor/` where you're on the top-level directory. Sadly, it's not possible to exclude irrelevant dependencies during vendoring yet, so you might want to automate that step and add some post-processing to remove voluminous, unused dependencies, and/or the C code for some system libraries that could be statically linked.
 
+**Note:** [cargo-vendor-filterer](https://crates.io/crates/cargo-vendor-filterer) can be used to avoid unnecessary dependencies, e.g.:
+```sh
+$ apt install cargo-vendor-filterer
+$ cargo vendor-filterer --platform=*-unknown-linux-gnu debian/rust-vendor/
+```
+
 ### Automation via `debian/rules`
 A good example for automating Rust vendoring is provided by [s390-tools](https://git.launchpad.net/ubuntu/+source/s390-tools/tree/debian/rules) and can be executed via **debian/rules**.
 
