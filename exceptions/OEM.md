@@ -10,9 +10,17 @@ Installing the package implies that it is on the ISO image. Packages on the ISO 
 # Process
 If packages meet the subscriber, naming and content requirements defined below, they may be promoted or NEWed directly into main without recourse to the MIR team. No future update may cause the package to not follow the requirements.
 
-Archive admins can use the `oem-metapackage-mir-check` script from `lp:ubuntu-archive-tools` to view a debdiff against a reference package which is in the Ubuntu archive. If any of the differences are not covered in this document or trivially understandable, go back to the uploader.
+Since these uploads usually target active releases it is an SRU process to handle them, but it also requires AA privileges for the NEW queue handling.
+Which means it can either only be processed by members being in the intersection of https://launchpad.net/~ubuntu-sru/+members and https://launchpad.net/~ubuntu-archive/+members.
+Or following the joint processing as mentioned in https://canonical-sru-docs.readthedocs-hosted.com/en/latest/howto/special/#sru-uploads-hitting-the-new-queue.
+
+When uploaded to -unapproved the SRU team will see it, but only those that also are Archive admins can process it.
+For awareness the uploader is encouraged to subscribe `ubuntu-sru`, but not `ubuntu-archive` to the related bug.
+
+The Archive admins being also SRU members can then use the `oem-metapackage-mir-check` script from `lp:ubuntu-archive-tools` to view a debdiff against a reference package which is in the Ubuntu archive. If any of the differences are not covered in this document or trivially understandable, go back to the uploader.
 
 # Subscriber
+
 As the packages are going to be in main, they need to have an 'owning' team which is subscribed to the bugs for the package in Launchpad. The team [~canonical-mainstream](https://launchpad.net/~canonical-mainstream) must be subscribed to the package before it is promoted.
 
 # Naming
