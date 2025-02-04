@@ -20,7 +20,6 @@ For awareness the uploader is encouraged to subscribe `ubuntu-sru`, but not `ubu
 The Archive admins being also SRU members can then use the `oem-metapackage-mir-check` script from `lp:ubuntu-archive-tools` to view a debdiff against a reference package which is in the Ubuntu archive. If any of the differences are not covered in this document or trivially understandable, go back to the uploader.
 
 # Subscriber
-
 As the packages are going to be in main, they need to have an 'owning' team which is subscribed to the bugs for the package in Launchpad. The team [~canonical-mainstream](https://launchpad.net/~canonical-mainstream) must be subscribed to the package before it is promoted.
 
 # Naming
