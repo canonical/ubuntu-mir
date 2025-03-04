@@ -1148,7 +1148,7 @@ template:
 ```
 #startmeeting Weekly Main Inclusion Requests status
 
-Ping for MIR meeting - didrocks joalif slyon sarnold cpaelzer jamespage ( dviererbe )
+Ping for MIR meeting - didrocks joalif slyon sarnold cpaelzer jamespage pushkarnk ( dviererbe )
 
 #topic current component mismatches
 Mission: Identify required actions and spread the load among the teams
