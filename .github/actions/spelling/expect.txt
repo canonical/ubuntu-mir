@@ -23,6 +23,7 @@ fwupd
 Hrn
 hwe
 ISOs
+kanban
 keyring
 lenovo
 libz
