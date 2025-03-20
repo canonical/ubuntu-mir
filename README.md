@@ -287,7 +287,9 @@ RULE: We have seen requests that were mostly based on old "I said supported (a
 RULE: weakly defined term to begin with) in a contract, so it has to be in main"
 RULE: feelings, but with sometimes no true reason - neither technically nor
 RULE: helping the user base of Ubuntu. Hence we need to ask for that clearly.
-TODO: - The binary package TBD needs to be in main to achieve TBD
+TODO-A: - The binary packages TBD needs to be in main to achieve TBD
+TODO-A: - All other binary packages built by TBDSRC should remain in universe
+TODO-B: - All binary packages built by TBDSRC need to be in main to achieve TBD
 
 RULE: Reviews will take some time. Also the potential extra work out of review
 RULE: feedback from either MIR-team and/or security-team will take time.
