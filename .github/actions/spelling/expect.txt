@@ -35,6 +35,7 @@ modaliase
 mtime
 oem
 openwall
+orderby
 parsechangelog
 pkgname
 pvr
