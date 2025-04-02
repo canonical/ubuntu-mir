@@ -1211,7 +1211,7 @@ we can do two things:
 1. List all distinct binary packages that should be promoted.  Often a source package will have binary packages that aren't actually needed in main.  Things like `-doc`, `-autopilot` or `-dbgsym`.  These can stay in universe, and it is a kindness to list only the packages we need for the archive team member that does the promotion.
 1. Recommend the owning team to add their corresponding team bug subscriber during the MIR process.
 
-## MIR Review SLO
+## MIR Review - service level objective
 
 MIR reviews take time, scaling up with the complexity of the case. Sadly it is usually
 the very complex, very special cases that come in very late then are not happy with the
