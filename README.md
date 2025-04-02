@@ -1211,6 +1211,31 @@ we can do two things:
 1. List all distinct binary packages that should be promoted.  Often a source package will have binary packages that aren't actually needed in main.  Things like `-doc`, `-autopilot` or `-dbgsym`.  These can stay in universe, and it is a kindness to list only the packages we need for the archive team member that does the promotion.
 1. Recommend the owning team to add their corresponding team bug subscriber during the MIR process.
 
+## MIR Review SLO
+
+MIR reviews take time, scaling up with the complexity of the case. Sadly it is usually
+the very complex, very special cases that come in very late then are not happy with the
+velocity of review.
+
+While we aim for more when possible, our goal is to assign (in the weekly meeting)
+one review per active MIR member per week, and coming back with the result until
+the next meeting or earlier. That usually means we can handle ~4 cases per week,
+sometimes more (if we can make the space or they are trivial) and sometimes
+less (PTO times).
+
+So far this used to be always enough and allowed <week responses for almost
+all cases for several years now. Except in spikes of everyone dumping huge
+changes last minute right before feature freeze. Try to avoid that phase
+to help yourself getting a timely review.
+
+The above of course is for the initial review, if everything is fine and no
+security review needed that is it and you are done. But findings have to be
+answered or fixed and if needed a security review has to be exercised. The time
+for this depends on the complexity of the findings and remember that there have
+been cases as bad as being rejected forcing the requester to look for
+alternative solutions.
+Please consider this in your estimations when you plan a contribution.
+
 ## Security Reviews
 
 Security team MIRs are laborious and require lead time. Make MIR requests as early in a release cycle as possible, ideally well before Feature Freeze. For a MIR to be considered for a release, it must be assigned to the Security team (by the MIR team) before Beta Freeze. This does not guarantee that a security review can be completed by Final Release. Ask the director of Security for exceptions.
