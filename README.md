@@ -1200,7 +1200,7 @@ Internal link
 * `check-mir` can be run from a checked out source and tell you which dependencies are in universe.
 * `seeded-in-ubuntu PACKAGE` can tell you whether and how a given PACKAGE is seeded
 * `reverse-depends` can tell you reverse source or binary depends, per component
-* The [component mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.svg) and [`proposed` component mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
+* The [component mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches.svg) and [`proposed` component mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.svg)
 
 ## Making Life Easier for Archive Team Members
 
