@@ -1152,6 +1152,9 @@ template:
 
 Ping for MIR meeting - didrocks joalif slyon sarnold cpaelzer mylesjp pushkarnk ( dviererbe )
 
+#topic add agenda items from the community
+Mission: Are there topics that we need to discuss in the Any Other Business section, or earlier?
+
 #topic current component mismatches
 Mission: Identify required actions and spread the load among the teams
 
