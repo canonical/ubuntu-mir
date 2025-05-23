@@ -1150,9 +1150,7 @@ template:
 ```
 #meeting start MIR
 
-Ping for MIR meeting - didrocks joalif slyon sarnold cpaelzer mylesjp pushkarnk ( dviererbe )
-TODO: I need your proper handles here
-TODO: I need to find if/how we can integrate this into the template
+Ping for MIR meeting - @didrocks:matrix.org @joalif:matrix.org @seth-arnold:ubuntu.com @paelzer:ubuntu.com @mylesjp:matrix.org @pushkarnk:matrix.org ( @dviererbe:ubuntu.com @slyon:ubuntu.com )
 
 #meeting topic Awareness of external agenda items
 
