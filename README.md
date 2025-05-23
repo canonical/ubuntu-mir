@@ -1148,49 +1148,49 @@ If you're chairing the meeting, you can the following meetingology
 template:
 
 ```
-#startmeeting Weekly Main Inclusion Requests status
+#meeting start MIR
 
-Ping for MIR meeting - didrocks joalif slyon sarnold cpaelzer mylesjp pushkarnk ( dviererbe )
+This is the MIR Team weekly status meeting
+General rules and process description can be found at https://github.com/canonical/ubuntu-mir
 
-#topic current component mismatches
-Mission: Identify required actions and spread the load among the teams
+Ping for MIR meeting - @didrocks:matrix.org @joalif:matrix.org @seth-arnold:ubuntu.com @paelzer:ubuntu.com @mylesjp:matrix.org @pushkarnk:matrix.org ( @dviererbe:ubuntu.com @slyon:ubuntu.com )
 
-#link https://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.svg
-#link https://people.canonical.com/~ubuntu-archive/component-mismatches.svg
+#meeting topic Current component mismatches
 
-#topic New MIRs
-Mission: ensure to assign all incoming reviews for fast processing
+### Mission: Identify required actions and spread the load among the teams
+* [component-mismatches-proposed](https://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.svg)
+* [component-mismatches](link https://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
 
-#link https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir
+#meeting topic New MIRs
 
-#topic Incomplete bugs / questions
-Mission: Identify required actions and spread the load among the teams
+### Mission: ensure to assign all incoming reviews for fast processing
+* [New MIRs](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir)
 
-#link https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&field.subscriber=ubuntu-mir
+#meeting topic Incomplete bugs / questions
 
-#topic Process/Documentation improvements
-Mission: Review pending process/documentation pull-requests or issues
+### Mission: Identify required actions and spread the load among the teams
+* [Incomplete bugs](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&field.subscriber=ubuntu-mir)
 
-#link https://github.com/canonical/ubuntu-mir/pulls
-#link https://github.com/canonical/ubuntu-mir/issues
+#meeting topic Process/Documentation improvements
 
-#topic MIR related Security Review Queue
-Mission: Check on progress, do deadlines seem doable?
+### Mission: Review pending process/documentation pull-requests or issues
+* [PRs](https://github.com/canonical/ubuntu-mir/pulls)
+* [Issues](link https://github.com/canonical/ubuntu-mir/issues)
 
+#meeting topic MIR related Security Review Queue
+
+### Mission: Check on progress, do deadlines seem doable?
+* ensure your teams items are prioritized among each other as you'd expect
+* ensure community requests do not get stomped by teams calling for favors too much
 Some clients can only work with one, some with the other escaping - the URLs point to the same place.
-#link https://bugs.launchpad.net/~ubuntu-security/+bugs?field.searchtext=%5BMIR%5D&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir&orderby=-date_last_updated&start=0
-#link https://bugs.launchpad.net/~ubuntu-security/+bugs?field.searchtext=[MIR]&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir&orderby=-date_last_updated&start=0
+* [MIR bugs in security - variant 1](https://bugs.launchpad.net/~ubuntu-security/+bugs?field.searchtext=%5BMIR%5D&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir)
+* [MIR bugs in security - variant 2](https://bugs.launchpad.net/~ubuntu-security/+bugs?field.searchtext=[MIR]&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir)
+* [The same, but on an internal kanban board](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594)
 
-Internal link
-- ensure your teams items are prioritized among each other as you'd expect
-- ensure community requests do not get stomped by teams calling for favors too much
-#link https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594
+#meeting topic Any other business?
 
-#topic Any other business?
-
-#endmeeting
+#meeting end
 ```
-
 
 
 # MIR related helpers
