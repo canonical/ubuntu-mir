@@ -1150,6 +1150,9 @@ template:
 ```
 #meeting start MIR
 
+This is the MIR Team weekly status meeting
+General rules and process description can be found at https://github.com/canonical/ubuntu-mir
+
 Ping for MIR meeting - @didrocks:matrix.org @joalif:matrix.org @seth-arnold:ubuntu.com @paelzer:ubuntu.com @mylesjp:matrix.org @pushkarnk:matrix.org ( @dviererbe:ubuntu.com @slyon:ubuntu.com )
 
 #meeting topic Awareness of external agenda items
