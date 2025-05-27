@@ -1152,6 +1152,9 @@ template:
 
 Ping for MIR meeting - didrocks joalif slyon sarnold cpaelzer mylesjp pushkarnk ( dviererbe )
 
+# Awareness of external agenda items
+Mission: To be aware and potentially allocate the required time, poll if anyone attending has discussions that should be added to the agenda today.
+
 #topic current component mismatches
 Mission: Identify required actions and spread the load among the teams
 
@@ -1187,6 +1190,7 @@ Internal link
 #link https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594
 
 #topic Any other business?
+Mission: catch-all chance for anything missed or not covered by the usual agenda items.
 
 #endmeeting
 ```
