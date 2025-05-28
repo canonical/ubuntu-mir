@@ -1120,11 +1120,10 @@ TODO-B: Problems: None
 # MIR Team weekly status meeting
 
 
-The MIR Team holds weekly meetings every Tuesday at
-<time datetime="T16:30+01:00">16:30 CET</time> on the IRC Server
-`irc.libera.chat` in the `#ubuntu-meeting` channel. You can follow these
-[instructions](https://libera.chat/guides/connect) on how to connect to
-`irc.libera.chat`.
+The MIR Team holds weekly meetings for 30 minutes every Tuesday at
+<time datetime="T16:30+01:00">16:30 CET</time> on the
+[Ubuntu Matrix Server](https://ubuntu.com/community/communications/matrix)
+in the [Ubuntu Meeting channel](https://matrix.to/#/#meeting:ubuntu.com).
 
 The meeting is meant to help to facilitate
 
