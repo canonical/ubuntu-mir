@@ -1148,55 +1148,58 @@ If you're chairing the meeting, you can the following meetingology
 template:
 
 ```
-#meeting start MIR
+# Start of the Main inclusion request team meeting
+Welcome to the MIR Team's weekly meeting
+General rules and the process description can be found at https://github.com/canonical/ubuntu-mir
+Ping for MIR meeting members - @didrocks:matrix.org @joalif:matrix.org @seth-arnold:ubuntu.com @paelzer:ubuntu.com @mylesjp:matrix.org @pushkarnk:matrix.org ( @dviererbe:ubuntu.com @slyon:ubuntu.com )
 
-This is the MIR Team weekly status meeting
-General rules and process description can be found at https://github.com/canonical/ubuntu-mir
 
-Ping for MIR meeting - @didrocks:matrix.org @joalif:matrix.org @seth-arnold:ubuntu.com @paelzer:ubuntu.com @mylesjp:matrix.org @pushkarnk:matrix.org ( @dviererbe:ubuntu.com @slyon:ubuntu.com )
-
-#meeting topic Awareness of external agenda items
-
+## Topic 1/7: Awareness of external agenda items
 ### Mission: To be aware and potentially allocate the required time, poll if anyone attending has discussions that should be added to the agenda today.
-Are there any we should know about right now?
+Please speak up if you have a topic to add
 
-#meeting topic Current component mismatches
 
+## Topic 2/7: Current component mismatches
 ### Mission: Identify required actions and spread the load among the teams
+Check these generated reports:
 * [component-mismatches-proposed](https://people.canonical.com/~ubuntu-archive/component-mismatches-proposed.svg)
-* [component-mismatches](link https://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
+* [component-mismatches](https://people.canonical.com/~ubuntu-archive/component-mismatches.svg)
 
-#meeting topic New MIRs
 
+## Topic 3/7: New MIRs
 ### Mission: ensure to assign all incoming reviews for fast processing
+Check this launchpad bug list:
 * [New MIRs](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=NEW&field.status%3Alist=CONFIRMED&assignee_option=none&field.assignee=&field.subscriber=ubuntu-mir)
 
-#meeting topic Incomplete bugs / questions
 
+## Topic 4/7: Incomplete bugs / questions
 ### Mission: Identify required actions and spread the load among the teams
+Check this launchpad bug list:
 * [Incomplete bugs](https://bugs.launchpad.net/ubuntu/?field.searchtext=&orderby=-date_last_updated&field.status%3Alist=INCOMPLETE_WITH_RESPONSE&field.status%3Alist=INCOMPLETE_WITHOUT_RESPONSE&field.subscriber=ubuntu-mir)
 
-#meeting topic Process/Documentation improvements
 
+## Topic 5/7: Process/Documentation improvements
 ### Mission: Review pending process/documentation pull-requests or issues
+Check these GH based lists:
 * [PRs](https://github.com/canonical/ubuntu-mir/pulls)
 * [Issues](link https://github.com/canonical/ubuntu-mir/issues)
 
-#meeting topic MIR related Security Review Queue
 
+## Topic 6/7: MIR related Security Review Queue
 ### Mission: Check on progress, do deadlines seem doable?
 * ensure your teams items are prioritized among each other as you'd expect
 * ensure community requests do not get stomped by teams calling for favors too much
 Some clients can only work with one, some with the other escaping - the URLs point to the same place.
-* [MIR bugs in security - variant 1](https://bugs.launchpad.net/~ubuntu-security/+bugs?field.searchtext=%5BMIR%5D&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir)
-* [MIR bugs in security - variant 2](https://bugs.launchpad.net/~ubuntu-security/+bugs?field.searchtext=[MIR]&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir)
-* [The same, but on an internal kanban board](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594)
+* [Security assigned MIR in launchpad](https://bugs.launchpad.net/~ubuntu-security/+bugs?field.searchtext=%5BMIR%5D&assignee_option=choose&field.assignee=ubuntu-security&field.bug_reporter=&field.bug_commenter=&field.subscriber=ubuntu-mir)
+* [(internal) kanban board](https://warthogs.atlassian.net/jira/software/c/projects/SEC/boards/594)
 
-#meeting topic Any other business?
 
+## Topic 7/7: Any other business?
 ### Mission: catch-all chance for anything missed or not covered by the usual agenda items.
+Please also report if you have nothing, so we know that no one has fallen asleep :-P
 
-#meeting end
+
+# End of the Main inclusion request team meeting
 ```
 
 
