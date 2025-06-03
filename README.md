@@ -1169,7 +1169,7 @@ Check this launchpad bug list:
 ### Mission: Review pending process/documentation pull-requests or issues
 Check these GH based lists:
 * [PRs](https://github.com/canonical/ubuntu-mir/pulls)
-* [Issues](link https://github.com/canonical/ubuntu-mir/issues)
+* [Issues](https://github.com/canonical/ubuntu-mir/issues)
 
 
 ## Topic 6/7: MIR related Security Review Queue
