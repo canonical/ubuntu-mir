@@ -15,7 +15,6 @@ debian/rules vendor-tarball
 
 See [debian/README.source](https://git.launchpad.net/ubuntu/+source/s390-tools/tree/debian/README.source) for more details.
 
-The relevant parts of s390-tools **debian/rules** file are listed below:
 ```makefile
 export CARGO = /usr/share/cargo/bin/cargo
 export CARGO_VENDOR_DIR = rust-vendor
@@ -46,6 +45,7 @@ vendor-deps:
                 $(CARGO_VENDOR_DIR)/winapi-* \
                 $(CARGO_VENDOR_DIR)/windows-* \
                 $(CARGO_VENDOR_DIR)/windows_* \
+                $(CARGO_VENDOR_DIR)/js-sys-* \
                 # End of list
         # Remove the C sources from the binding crates, we're using the system libs
         rm -r \
@@ -59,9 +59,7 @@ vendor-deps:
                 $(CARGO_VENDOR_DIR)/*/tests \
                 # End of list
         # Remove the checksum files to allow us to patch the crates to remove extraneous dependencies
-        for crate in $(CARGO_VENDOR_DIR)/*; do \
-                sed -i 's/^{"files":.*"package":"\([a-z0-9]\+\)"}$$/{"files":{},"package":"\1"}/' $$crate/.cargo-checksum.json; \
-        done
+        /usr/share/cargo/bin/cargo-prune-checksums $(CARGO_VENDOR_DIR)/*
         # Cleanup temp files
         rm -rf $(CARGO_HOME)
 
@@ -81,6 +79,9 @@ override_dh_clean:
         dh_clean
         rm -rf $(CARGO_HOME)
 ```
+
+You might also want to manually audit the `vendor` directory to see if there are other suspicious files inside the `vendor` directory
+after the automated clean up (hint: you can check the size of each individual directory under the `vendor` directory).
 
 ### Handling binaries inside vendored crates
 Some vendored crates include binary files which `dpkg-source` does not like. Here are commands to handle such cases:
